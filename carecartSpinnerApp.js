@@ -1,0 +1,1965 @@
+//******* @author: CareCart Wheelify *******************************************
+//****** Store Frontend JS - js-script.js GH v.1.0.0 - Build ver 1.0.0 *******
+//****** Updated at: 19-Nov-2020, 02:56 PM  **********************************
+
+(function () {
+    var d = new Date();
+    var version = d.getSeconds();
+
+    var API_URL = 'https://app-spinner.carecart.io' + '/';
+
+    //var API_URL = 'https://dev-spinner.carecart.io' + '/';
+
+    var CDN_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app_assets@1.5.7/';
+
+    var dataSpin = false;
+
+    function scriptInjection(src, callback) {
+        var script = document.createElement('script');
+        script.type = "text/javascript";
+
+        script.src = src;
+        if (typeof callback == 'function') {
+            script.addEventListener('load', callback);
+        }
+
+        document.getElementsByTagName('head')[0].appendChild(script);
+    }
+
+    function cssFileInjection(href) {
+        var link = document.createElement("link");
+        link.href = href;
+        link.type = "text/css";
+        link.rel = "stylesheet";
+        document.getElementsByTagName("head")[0].appendChild(link);
+    }
+
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    //cssFileInjection(API_URL +"public/app/css/front-store-spinner.css?v=" + new Date().toLocaleTimeString());
+    cssFileInjection(API_URL +"public/app/css/front-store-spinner.css?v=time()");
+
+    scriptInjection("https://code.jquery.com/jquery-3.2.1.min.js", function () {
+
+        window.carecartSpinnerJquery = jQuery.noConflict(true);
+        setTimeout(function () {
+            scriptInjection(CDN_URL + "spinner.js?v=1.5.7", function () {
+
+
+                function Spin2WinWheel() {
+                    var t, e, n, r, i, o, a, l, s, u, h, c, d, g, p, f, S, m, b, w, T, y, x, N, v, A, M, C, E, k, I, P,
+                        O,
+                        R, B, W, D, G, z, L, V, _, F, H, U = "http://www.w3.org/2000/svg",
+                        Y = "http://www.w3.org/1999/xlink",
+                        q = function (t) {
+                            return document.querySelector(t)
+                        },
+                        J = this,
+                        X = q(".wheelSVG"),
+                        j = q(".wheel"),
+                        K = q(".wheelOutline"),
+                        Q = q(".wheelContainer"),
+                        Z = q(".peg"),
+                        $ = q(".pegContainer"),
+                        tt = q(".mainContainer"),
+                        et = q(".valueContainer"),
+                        nt = q(".centerCircle"),
+                        rt = q(".toast"),
+                        it = q(".toast p"),
+                        ot = 0,
+                        at = 0,
+                        lt = 2,
+                        st = 0,
+                        ut = 0,
+                        ht = ut,
+                        ct = [],
+                        dt = null,
+                        gt = [],
+                        pt = !0,
+                        ft = null,
+                        St = !1,
+                        mt = function () {
+                            r = t.wheelStrokeColor, o = t.wheelSize, a = o / 2, l = t.wheelTextColor, r = t.wheelStrokeColor, i = t.wheelStrokeWidth, s = t.wheelTextOffsetY, u = t.wheelImageOffsetY, c = t.wheelImageSize, h = t.wheelTextSize, p = t.centerCircleStrokeColor, f = t.centerCircleStrokeWidth, S = t.centerCircleFillColor, m = t.centerCircleSize, b = m / 2, w = t.segmentStrokeColor, T = t.segmentStrokeWidth, y = t.segmentValuesArray, x = y.length, N = -1 == t.numSpins ? 1e16 : parseInt(t.numSpins), I = t.minSpinDuration, P = t.gameOverText, O = t.invalidSpinText, R = t.introText, W = t.hasSound, B = t.gameId, G = t.clickToSpin, A = (v = 360 / x) / 2, C = t.centerX, E = t.centerY, k = t.colorArray, D = t.hasShadows, F = t.spinDestinationArray, D && (K.setAttributeNS(null, "filter", "url(#shadow)"), et.setAttributeNS(null, "filter", "url(#shadow)"), nt.setAttributeNS(null, "filter", "url(#shadow)"), $.setAttributeNS(null, "filter", "url(#shadow)"), rt.style.boxShadow = "0px 0px 20px rgba(21,21,21,0.5)")
+                        },
+                        bt = function () {
+                            TweenMax.set("#spin_a_sale_cc_store_front_module svg", {
+                                visibility: "visible"
+                            }), TweenMax.set(j, {
+                                svgOrigin: C + " " + E,
+                                x: 0,
+                                y: 0
+                            }), TweenMax.set(Z, {
+                                x: C - Z.getBBox().width / 2,
+                                y: E - a - Z.getBBox().height / 2,
+                                transformOrigin: "50% 25%",
+                                visibility: "visible"
+                            }), TweenMax.set($, {
+                                transformOrigin: "50% 100%",
+                                scale: o / 600
+                            }), TweenMax.set(tt, {
+                                svgOrigin: C + " " + E,
+                                rotation: -90,
+                                x: 0,
+                                y: 0
+                            }), TweenMax.set([rt], {
+                                xPercent: -50,
+                                left: "50%"
+                            }), TweenMax.set("#spin_a_sale_cc_store_front_module svg", {
+                                xPercent: -50,
+                                left: "50%"
+                            })
+                        },
+                        wt = function () {
+                            if (0 != N) {
+                                if (!St) {
+                                    if (F.length > 0) {
+                                        pt = !1, N = F.length;
+                                        for (var t = 0; t < F.length; t++) {
+                                            if (F[t] > x || 0 === F[t]) return showInitError("Invalid destination set - please ensure the destination in spinDestinationArray is greater than 0 and less than or equal to the number of segments"), void (rt.style.backgroundColor = "red");
+                                            F[t] = F[t] - 1, F[t] = -1 * F[t] * v - 1080 * lt, lt += 2
+                                        }
+                                    }
+                                    G ? createClickToSpin() : Dt(), showIntroText()
+                                }
+                            } else showInitError("numSpins MUST BE GREATER THAN 0")
+                        },
+                        Tt = function (t, e) {
+                            return Math.floor(Math.random() * (e - t + 1) + t)
+                        },
+                        yt = function () {
+                            for (var t, e, n, r, i, o, l, s, u = 0; u < x; u++) ht = (ut = -A) + v, t = C + a * Math.cos(Math.PI * ut / 180), n = E + a * Math.sin(Math.PI * ut / 180), e = C + a * Math.cos(Math.PI * ht / 180), r = E + a * Math.sin(Math.PI * ht / 180), i = "M" + C + "," + E + "  L" + t + "," + n + "  A" + a + "," + a + " 0 0,1 " + e + "," + r + "z", l = document.createElementNS(U, "g"), o = document.createElementNS(U, "path"), l.appendChild(o), j.appendChild(l), TweenMax.set(o, {
+                                rotation: u * v,
+                                svgOrigin: C + " " + E
+                            }), o.setAttributeNS(null, "d", i), k[u] ? s = k[u] : (s = k[st], ++st == k.length && (st = 0)), o.setAttributeNS(null, "fill", s), o.setAttributeNS(null, "stroke", 0), ct.push({
+                                path: o,
+                                x1: t,
+                                x2: e,
+                                y1: n,
+                                y2: r
+                            });
+                            T > 0 && xt(), Nt()
+                        },
+                        xt = function () {
+                            for (var t = 0; t < x; t++) {
+                                var e = document.createElementNS(U, "line");
+                                e.setAttributeNS(null, "x1", C), e.setAttributeNS(null, "x2", ct[t].x2), e.setAttributeNS(null, "y1", E), e.setAttributeNS(null, "y2", ct[t].y2), e.setAttributeNS(null, "stroke", w), e.setAttributeNS(null, "stroke-width", T), j.appendChild(e), TweenMax.set(e, {
+                                    svgOrigin: C + " " + E,
+                                    rotation: t * v
+                                })
+                            }
+                        },
+                        Nt = function () {
+                            var t = document.createElementNS(U, "g"),
+                                e = document.createElementNS(U, "image");
+                            t.appendChild(e), e.setAttribute("class", "wheelLogo"), e.setAttributeNS(null, "x", C - 60), e.setAttributeNS(null, "y", E - 60), e.setAttributeNS(Y, "xlink:href", "https://sw.secomapp.com/img/app_icon.png"), e.setAttributeNS(null, "width", 120), e.setAttributeNS(null, "height", 120), et.appendChild(t);
+                            for (var n = 0; n < x; n++) {
+                                var r = document.createElementNS(U, "g");
+                                if ("image" == y[n].type) {
+                                    e = document.createElementNS(U, "image");
+                                    r.appendChild(e), e.setAttribute("class", "wheelImage"), e.setAttributeNS(null, "x", C - c / 2), e.setAttributeNS(null, "y", E - a + u), e.setAttributeNS(null, "width", c), e.setAttributeNS(null, "height", c), e.setAttributeNS(Y, "xlink:href", y[n].value)
+                                } else if ("string" == y[n].type) {
+                                    var i, o, d = document.createElementNS(U, "text");
+                                    y[n].value.split("^").forEach(function (t, e) {
+                                        i = document.createTextNode(t), (o = document.createElementNS(U, "tspan")).setAttributeNS(null, "dy", e ? "1.2em" : 0), o.setAttributeNS(null, "x", C), o.setAttributeNS(null, "text-anchor", "middle"), o.appendChild(i), d.appendChild(o)
+                                    }), r.appendChild(d), d.setAttribute("class", "wheelText"), d.setAttributeNS(null, "fill", l), d.setAttributeNS(null, "x", C), d.setAttributeNS(null, "y", E - a + s), d.setAttributeNS(null, "transform", "rotate(-90, 590, -2)"), d.setAttributeNS(null, "text-anchor", "middle"), d.style.fontSize = h
+                                }
+                                et.appendChild(r), TweenMax.set(r, {
+                                    svgOrigin: C + " " + E,
+                                    rotation: n * v
+                                })
+                            }
+                            TweenMax.set(et, {
+                                svgOrigin: C + " " + E
+                            })
+                        },
+                        vt = function () {
+                            var t = document.createElementNS(U, "g"),
+                                e = document.createElementNS(U, "circle");
+                            return K.appendChild(t), e.setAttributeNS(null, "fill", "transparent"), e.setAttributeNS(null, "stroke", r), e.setAttributeNS(null, "stroke-width", i), e.setAttributeNS(null, "cx", C), e.setAttributeNS(null, "cy", E), e.setAttributeNS(null, "r", a), t.appendChild(e), t
+                        },
+                        At = function () {
+                            var t = document.createElementNS(U, "circle");
+                            return t.setAttributeNS(null, "fill", S), t.setAttributeNS(null, "stroke", p), t.setAttributeNS(null, "stroke-width", f), t.setAttributeNS(null, "cx", C), t.setAttributeNS(null, "cy", E), t.setAttributeNS(null, "r", b), t
+                        },
+                        Mt = function () {
+                            null.play()
+                        },
+                        Ct = function () {
+                            rt.style.visibility = "hidden"
+                        },
+                        Et = function () {
+                            rt.style.visibility = "hidden", dt.onclick = null, lt += 2
+                        },
+                        kt = function () {
+                            disableWheel(), pt && (_ = VelocityTracker.track(j, "rotation"))
+                        },
+                        It = function (t) {
+                            if (M = ot, (ot = Math.round(j._gsTransform.rotation / v)) != M) {
+                                var e = ot > M ? -35 : 35;
+                                TweenMax.fromTo(Z, .2, {
+                                    rotation: e
+                                }, {
+                                    onStart: W ? Mt : null,
+                                    rotation: 0,
+                                    ease: Back.easeOut
+                                })
+                            }
+                            TweenMax.set(et, {
+                                rotation: j._gsTransform.rotation
+                            })
+                        },
+                        Pt = function () {
+                            g = j._gsTransform.rotation;
+                            var t = Math.round(g % 360);
+                            if (t = t > 0 ? 360 - t : t, t = t < 0 ? t *= -1 : t, _ && _.getVelocity("rotation") <= .5) return enableWheel(), void showResult("invalidSpin");
+                            var e = Math.round(t / v);
+                            ct[e].path;
+                            if (showResult(Math.abs(e)), pt) {
+                                if (!(N > -1)) return;
+                                at++
+                            } else at++, d[0].vars.snap = [F[at]];
+                            VelocityTracker.untrack(j), at >= N ? endGame() : enableWheel()
+                        },
+                        Ot = function () {
+                            G || d[0].applyBounds({
+                                minRotation: -1e16,
+                                maxRotation: g
+                            })
+                        },
+                        Rt = function (t) {
+                            return function (e) {
+                                return Math.round(e / v) * v - t
+                            }
+                        },
+                        Bt = function () {
+                            return -v * Tt(0, x) - 1080 * lt
+                        },
+                        Wt = function () {
+                            var t = Math.floor(Math.random() * ft.length),
+                                e = ft[t];
+                            return -v * e - 1080 * lt
+                        },
+                        Dt = function () {
+                            d = Draggable.create(j, {
+                                type: "rotation",
+                                bounds: {
+                                    minRotation: -1e16,
+                                    maxRotation: 0
+                                },
+                                throwProps: !0,
+                                ease: Back.easeOut.config(.2),
+                                snap: pt ? Rt(0) : [F[at]],
+                                throwResistance: 0,
+                                minDuration: I,
+                                onThrowComplete: Pt,
+                                onPress: Ct,
+                                onDrag: It,
+                                onThrowUpdate: It,
+                                overshootTolerance: 1,
+                                onDragEnd: kt
+                            })
+                        },
+                        Gt = function () {
+                            St = !0, y.forEach(function (t, e) {
+                                isNaN(t.probability) && (St = !1)
+                            }), St && (F = [], N = -1 == t.numSpins ? 1e16 : parseInt(t.numSpins), zt())
+                        },
+                        zt = function () {
+                            var t = 0;
+                            y.forEach(function (e, n) {
+                                t += e.probability
+                            }), H = t, Math.ceil(t) == H || Math.floor(t) == H ? createProbabilityArray() : 1 == confirm("Total probability: " + t + " - If you have set JSON probability values they must add up to 100") && (TweenMax.set(Q, {
+                                autoAlpha: 0
+                            }), TweenMax.set(Q, {
+                                autoAlpha: 0
+                            }))
+                        };
+                    createProbabilityArray = function () {
+                        ft = [], y.forEach(function (t, e) {
+                            for (var n = 0; n < t.probability; n++) ft.push(e)
+                        })
+                    }, showProbabilityError = function () {
+                    }, createClickToSpin = function () {
+                        Gt() && createProbabilityArray(), dt ? dt.onclick = getTrigger() : (dt = j, j.onclick = getTrigger())
+                    }, getTrigger = function () {
+                        return function () {
+                            if (St) ThrowPropsPlugin.to(j, {
+                                throwProps: {
+                                    rotation: {
+                                        velocity: Tt(-700, -500),
+                                        end: Wt()
+                                    }
+                                },
+                                onStart: Et,
+                                onUpdate: It,
+                                ease: Back.easeOut.config(.2),
+                                overshootTolerance: 0,
+                                onComplete: spinComplete
+                            });
+                            else {
+                                ThrowPropsPlugin.to(j, {
+                                    throwProps: {
+                                        rotation: {
+                                            velocity: Tt(-700, -500),
+                                            end: pt ? Bt() : [F[at]]
+                                        }
+                                    },
+                                    onStart: Et,
+                                    onUpdate: It,
+                                    ease: Back.easeOut.config(.2),
+                                    overshootTolerance: 0,
+                                    onComplete: spinComplete
+                                })
+                            }
+                        }
+                    }, spinComplete = function () {
+                        g = j._gsTransform.rotation;
+                        var t = Math.round(g % 360);
+                        t = (t = t > 0 ? 360 - t : t) < 0 ? t *= -1 : t;
+                        var e = Math.round(t / v);
+                        ct[e].path;
+                        if (showResult(Math.abs(e)), pt) {
+                            if (!(N > -1)) return;
+                            at++
+                        } else at++;
+                        at >= N ? endGame() : dt.onclick = getTrigger()
+                    }, endGame = function () {
+                        disableWheel(), TweenMax.set(X, {
+                            alpha: .3
+                        }), TweenMax.to(it, 1, {
+                            text: P,
+                            ease: Linear.easeNone,
+                            delay: 2
+                        }), L({
+                            gameId: B,
+                            target: J,
+                            results: gt
+                        })
+                    }, disableWheel = function () {
+                        G || d[0].disable()
+                    }, enableWheel = function () {
+                        G || d[0].enable()
+                    }, showResult = function (t) {
+                        Ot();
+                        var e;
+                        if ("invalidSpin" == t) return TweenMax.set(j, {
+                            rotation: F[at]
+                        }), showToast(O), e = {
+                            target: J,
+                            type: "error",
+                            spinCount: at,
+                            win: null,
+                            msg: O,
+                            gameId: B
+                        }, V(e), void gt.push(e);
+                        if (!isNaN(t)) {
+                            var n = y[t].resultText;
+                            showToast(n), e = {
+                                target: J,
+                                type: "result",
+                                spinCount: at,
+                                win: y[t].win,
+                                msg: y[t].resultText,
+                                gameId: B,
+                                userData: y[t].userData
+                            }, z(e), gt.push(e)
+                        }
+                    }, showIntroText = function (t) {
+                        showToast(R)
+                    }, showInitError = function (t) {
+                        TweenMax.set([X, Z], {
+                            visibility: "hidden"
+                        }), alert(t)
+                    }, showToast = function (t) {
+                        rt.style.visibility = "visible", rt.style.backgroundColor = "#E81D62", it.innerHTML = t, TweenMax.fromTo(rt, .6, {
+                            y: 20,
+                            alpha: 0
+                        }, {
+                            y: 0,
+                            alpha: 1,
+                            delay: .2,
+                            onStart: onresize,
+                            ease: Elastic.easeOut.config(.7, .7)
+                        })
+                    }, checkNumSegments = function () {
+                        x <= 1 && (showInitError("Not enough segments. Please add more entries to segmentValuesArray"), TweenMax.set(X, {
+                            visibility: "hidden"
+                        }), rt.style.backgroundColor = "red")
+                    }, setSpinTrigger = function () {
+                        dt && (G = !0), G && (dt ? dt.onclick = getTrigger() : j.onclick = getTrigger())
+                    }, z = function (t) {
+                        J.onResult(t)
+                    }, V = function (t) {
+                        J.onError(t)
+                    }, L = function (t) {
+                        J.onGameEnd(t)
+                    }, this.onResult = z, this.onError = V, this.onGameEnd = L, this.getGameProgress = function () {
+                        return gt
+                    }, this.init = function (r) {
+                        if (!r) return bt(), void showInitError("PLEASE INCLUDE THE INIT OBJECT");
+                        e = r.data.svgWidth, n = r.data.svgHeight, X.setAttribute("viewBox", "0 0 " + e + " " + r.data.svgHeight), t = r.data, L = r.onGameEnd ? r.onGameEnd : function () {
+                        }, z = r.onResult ? r.onResult : function () {
+                        }, V = r.onError ? r.onError : function () {
+                        }, dt = r.spinTrigger ? r.spinTrigger : null, setSpinTrigger(), mt(), bt(), yt(), K.appendChild(vt()), nt.appendChild(At()), wt(), checkNumSegments()
+                    }, window.onresize = function () {
+                        var t = E - n / 2,
+                            e = (parseFloat(getComputedStyle(X).width), parseFloat(getComputedStyle(X).height)),
+                            r = (parseFloat(getComputedStyle(rt).width), parseFloat(getComputedStyle(rt).height));
+                        TweenMax.set(".toast", {
+                            y: (e + t) / 2 - r / 2
+                        })
+                    }, this.restart = function () {
+                        G || (d[0].kill(), ot = M = null, TweenMax.to([j, et], .3, {
+                            rotation: "0_short",
+                            onComplete: Dt
+                        })), TweenMax.set(X, {
+                            alpha: 1
+                        }), TweenMax.to([j, et], .3, {
+                            rotation: "0_short"
+                        }), rt.style.visibility = "hidden", at = 0, lt = 2, gt = [], showIntroText()
+                    }
+                }
+
+                function myGameEnd(i) {
+                    var t = carecartSpinnerJquery(".winContainer"),
+                        l = carecartSpinnerJquery(".loseContainer"),
+                        e = carecartSpinnerJquery(".signupContainer"),
+                        n = carecartSpinnerJquery(".win_text"),
+                        a = carecartSpinnerJquery(".coupon");
+
+                    postSubscribersInformation(i.results[0].userData.coupon, i.results[0].msg)
+                    window.localStorage.setItem('cc-sas-spinner-cached-coupon-code', i.results[0].userData.coupon);
+                    window.localStorage.setItem('cc-sas-spinner-cached-coupon-code-message', i.results[0].msg);
+                    if (i.results[0].userData.coupon) {
+                        e.fadeOut(), n.text(i.results[0].msg), a.text(i.results[0].userData.coupon), t.find("input").val(i.results[0].userData.coupon), t.css({
+                            paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                        }),
+                            carecartSpinnerJquery(window).resize(function () {
+                                t.css({
+                                    // paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                                })
+                            }),
+                            t.fadeIn()
+                    } else {
+                        e.fadeOut(), n.text(i.results[0].msg), t.css({
+                            paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                        }),
+                            carecartSpinnerJquery(window).resize(function () {
+                                t.css({
+                                    // paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                                })
+                            }),
+                            l.fadeIn()
+                    }
+
+                }
+
+                function myGameEndTest(i) {
+                    var t = carecartSpinnerJquery(".winContainer"),
+                        l = carecartSpinnerJquery(".loseContainer"),
+                        e = carecartSpinnerJquery(".signupContainer"),
+                        n = carecartSpinnerJquery(".win_text"),
+                        a = carecartSpinnerJquery(".coupon");
+
+                    if (i.results[0].userData.coupon) {
+                        e.fadeOut(), n.text(i.results[0].msg), a.text(i.results[0].userData.coupon), t.find("input").val(i.results[0].userData.coupon), t.css({
+                            paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                        }),
+                            carecartSpinnerJquery(window).resize(function () {
+                                t.css({
+                                    // paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                                })
+                            }),
+                            t.fadeIn()
+                    } else {
+                        e.fadeOut(), n.text(i.results[0].msg), t.css({
+                            paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                        }),
+                            carecartSpinnerJquery(window).resize(function () {
+                                t.css({
+                                    // paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                                })
+                            }),
+                            l.fadeIn()
+                    }
+
+                }
+
+                function init() {
+                    var i = document.querySelector(".btn-submit-form-ok");
+                    (new Spin2WinWheel).init({
+                        data: dataSpin,
+                        onGameEnd: myGameEnd,
+                        spinTrigger: i
+                    })
+                }
+
+                function isValidEmailAddress(i) {
+                    // return !/\S+@\S+\.\S+/.test(i)
+                    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    return !re.test(String(i).toLowerCase());
+                }
+
+                function applySASPlugin() {
+                    function i() {
+                        var i = carecartSpinnerJquery(window).width();
+                        i < 680 && (t.css({
+                            width: "100%",
+                            padding: 0
+                        }), v.css({
+                            width: "100%",
+                            padding: 0
+                        }), e.css({
+                            width: "100%",
+                            position: "fixed",
+                            bottom: "-30%",
+                            left: 0,
+                            right: 0,
+                            transform: "translate(-51%)"
+                        }), n.css({
+                            width: "100%",
+                            transform: "translateX(0)"
+                        }), a.css({
+                            maxWidth: "370"
+                        })), i < 400 && e.css({
+                            bottom: "-23%"
+                        }), i >= 680 && t.css({
+                            paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                        })
+                    }
+
+                    var t = carecartSpinnerJquery(".signupContainer"),
+                        v = carecartSpinnerJquery(".winContainer"),
+                        e = carecartSpinnerJquery(".wheelContainer"),
+                        n = carecartSpinnerJquery(".wheelSVG"),
+                        a = carecartSpinnerJquery(".form-group input"),
+                        o = carecartSpinnerJquery(".btn-submit-form"),
+                        s = carecartSpinnerJquery('#cc-spinner-full-name'),
+                        d = carecartSpinnerJquery('#cc-spinner-email'),
+                        u = carecartSpinnerJquery("input[name='coupon']");
+                    carecartSpinnerJquery(".copy-button").click(function () {
+                        var copiedTextVal = carecartSpinnerJquery("#copied_text_only").text();
+                        clipboard.writeText(u.val()), carecartSpinnerJquery(this).html('<i class="fa fa-clone" aria-hidden="true"></i> ' + copiedTextVal);
+                        if(window.localStorage.getItem('urgencyTimerBarEnabled') == 1 && window.localStorage.getItem('cc-sas-spinner-hide-timer-bar') != 1 && window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1){
+                            //if (!getParameterByName('cc-show-spin-a-sale-test')) {
+                            //updateCachedTime();
+                            //}
+                            //hideSpinASaleModule();
+                            //console.log('check is spinner bar hidden: ' + window.localStorage.getItem('cc-sas-spinner-hide-timer-bar'));
+                            window.localStorage.setItem('cc-sas-spinner-copy-button-clicked', 1);
+                            var spinASaleCcUrgencyTimeBarText = carecartSpinnerJquery('#spin_a_sale_cc_urgency_time_bar_text').html();
+                            var wonCouponCode = '<strong>' + window.localStorage.getItem('cc-sas-spinner-cached-coupon-code') + '</strong>';
+                            //console.log('wonCouponCode: ' + wonCouponCode);
+                            spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{coupon_code}}',wonCouponCode);
+                            //console.log('spinASaleCcUrgencyTimeBarText ' + spinASaleCcUrgencyTimeBarText);
+                            var spinASaleCcUrgencyTimeBarInMin = window.localStorage.getItem('urgencyTimerBarTimeInMin');
+                            //console.log('spinASaleCcUrgencyTimeBarInMin: ' + spinASaleCcUrgencyTimeBarInMin);
+                            var deadlineSpinAWheel = new Date(Date.parse(new Date()) + spinASaleCcUrgencyTimeBarInMin * 60 * 1000);
+                            var timerDiv = '<span style="font-weight: bold;"><span class="cc-spin-a-sale-minutes">' + spinASaleCcUrgencyTimeBarInMin + '</span>:<span class="cc-spin-a-sale-seconds">00</span></span>';
+                            //var spinASaleCcUrgencyTimeBarText = '<span class="cc-spin-a-sale-clock-div" id="cc-spin-a-sale-clock-div-preview"><span style="font-weight: bold;"><span class="cc-spin-a-sale-minutes"></span>:<span class="cc-spin-a-sale-seconds"></span></span></span>';
+                            //console.log('timerDiv: ' + timerDiv);
+                            //console.log('spinASaleCcUrgencyTimeBarText: ' + spinASaleCcUrgencyTimeBarText);
+                            spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{time}}',timerDiv);
+                            spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{ time }}',timerDiv);
+                            //carecartSpinnerJquery('#couponwheel_notice_timer').html(timerDiv);
+                            carecartSpinnerJquery('#spin_a_sale_cc_urgency_time_bar_text').html(spinASaleCcUrgencyTimeBarText);
+                            //console.log('spinASaleCcUrgencyTimeBarText 2: ' + spinASaleCcUrgencyTimeBarText);
+                            carecartSpinnerJquery('#couponwheel_notice_content').show();
+                            //console.log('deadlineSpinAWheel deadlineSpinAWheel: ' + deadlineSpinAWheel);
+                            initializeClockSpinAWheel('cc-spin-a-sale-clock-div-preview', deadlineSpinAWheel);
+                            carecartSpinnerJquery('#spin_a_sale_cc_store_front_module_close_button').click();
+                        }
+                        else
+                        {
+                            console.log('cc-sas-spinner-copy-button-clicked is already triggered & urgency bar is hence closed')
+                        }
+                    }), i(), carecartSpinnerJquery(window).resize(function () {
+                        i()
+                    }), o.click(function (i) {
+                        i.preventDefault();
+                        var checkboxIsMandatory = 0;
+                        if(carecartSpinnerJquery('#cc-spin-a-sale-consent-checkbox').prop('required'))
+                        {
+                            checkboxIsMandatory = 1;
+                            //console.log("SAS Checkbox is Mandatory");
+                        }
+                        else {
+                            //console.log("SAS Checkbox is NOT Mandatory");
+                        }
+                        var t = s.val(),
+                            e = d.val(),
+                            x = 1,
+                            n = carecartSpinnerJquery(".textInfo"),
+                            a = carecartSpinnerJquery(".btn-submit-form"),
+                            o = carecartSpinnerJquery(".btn-submit-form-ok");
+                        s = carecartSpinnerJquery("#cc-spinner-full-name");
+                        w = carecartSpinnerJquery("#cc-spin-a-sale-consent-checkbox");
+                        d = carecartSpinnerJquery('#cc-spinner-email'),
+                            n.text("");
+
+                        if(checkboxIsMandatory == 1)
+                        {
+                            if(w.prop("checked") == true)
+                            {
+                                //console.log("SAS Checkbox is Mandatory & Checkbox Checked");
+                            }
+                            else
+                            {
+                                x = "";
+                                //console.log("SAS Checkbox is Mandatory & Checkbox is NOT Checked");
+                            }
+                            //console.log("SAS value of x : " + x);
+                        }
+                        else
+                        {
+                            //console.log("SAS x value should be 0 as NOT needed: " + x);
+                        }
+                        return "" == t ? (s.addClass("animated shake"), void setTimeout(function () {
+                            s.removeClass("animated shake")
+                        }, 1e3)) : "" == e ? (d.addClass("animated shake"), void setTimeout(function () {
+                            d.removeClass("animated shake")
+                        }, 1e3)) : isValidEmailAddress(e) ? (d.addClass("animated shake"), void setTimeout(function () {
+                            d.removeClass("animated shake")
+                        }, 1e3)) : "" == x ? (w.addClass("animated shake"), void setTimeout(function () {
+                            w.removeClass("animated shake")
+                        }, 1e3)) : o.click();
+                        /*
+                                                return "" == t ? (n.text("You should provide your fullname!"), n.addClass("animated shake"), void setTimeout(function () {
+                                                    n.removeClass("animated shake")
+                                                }, 1e3)) : "" == e ? (n.text("You should provide your email"), n.addClass("animated shake"), void setTimeout(function () {
+                                                    n.removeClass("animated shake")
+                                                }, 1e3)) : isValidEmailAddress(e) ? (n.text("Your email is not valid format"), n.addClass("animated shake"), void setTimeout(function () {
+                                                    n.removeClass("animated shake")
+                                                }, 1e3)) : o.click();
+                        */
+
+                        /*
+                                                void $.ajax({
+                                                type: "POST",
+                                                url: "https://sw.secomapp.com/api/subscribe/12/12",
+                                                data: {
+                                                    fullname: t,
+                                                    email: e
+                                                },
+                                                success: function (i) {
+                                                    var check = "0";
+                                                    if (check == "1") {
+                                                        a.css({
+                                                            display: "none"
+                                                        });
+                                                        o.css({
+                                                            "display": "block"
+                                                        });
+                                                    } else {
+                                                        o.click();
+                                                    }
+                                                },
+                                                error: function () {
+                                                }
+                                            })
+                        */
+                    })
+                }
+
+                function checkCachedTime() {
+                    //console.log("SAS in checkCachedTime");
+                    var globalSettingsDataCachedTime = window.localStorage.getItem('cc-sas-spinner-cached-time');
+                    if (globalSettingsDataCachedTime !== undefined && globalSettingsDataCachedTime !== null) {
+                        console.log("SAS globalSettingsDataCachedTime is NOT null & NOT undefined");
+                        var currentTime = new Date();
+                        var previousTime = new Date(globalSettingsDataCachedTime);
+                        var msec = parseInt(currentTime - previousTime);
+                        var minutes = parseInt(Math.floor(msec / 60000));
+                        console.log('SAS Time : ' + minutes);
+
+                        if (minutes <= 5) {
+                            return false;
+                        }
+                    }
+                    return true;
+
+                }
+//************** Reset Coupon Code display to Form enabling Re-Run The Wheel ***************************************
+                function checkSpinCouponLoadTime() {
+                    //console.log("SAS in checkSpinCouponLoadTime");
+                    var spinnerCouponLoadTime = window.localStorage.getItem('cc-sas-spinner-coupon-load-time');
+                    if (spinnerCouponLoadTime !== undefined && spinnerCouponLoadTime !== null) {
+                        //console.log("SAS spinnerCouponLoadTime is NOT null & NOT undefined");
+                        var currentTime = new Date();
+                        var previousTime = new Date(spinnerCouponLoadTime);
+                        var msec = parseInt(currentTime - previousTime);
+                        var minutes = parseInt(Math.floor(msec / 60000));
+                        console.log('SAS Time checkSpinCouponLoadTime: ' + minutes);
+
+                        if (minutes <= 59) {
+                            return false;
+                        }
+                        if (minutes > 60) {
+                            console.log('SAS Time checkSpinCouponLoadTime Now greater than 60 & about to reset: ' + minutes);
+                            window.localStorage.setItem('cc-sas-spinner-cached-coupon-code', null);
+                            window.localStorage.setItem('cc-sas-spinner-cached-coupon-code-message', null);
+                            //console.log("SAS cached-coupon-code & cached-coupon-code-message is now reset");
+                        }
+                    }
+                    return true;
+
+                }
+//*************** Set Start Timer to Calculate time since Wheel has been Spun to get Discount Code ************************
+                function setSpinCouponLoadTime()
+                {
+                    var timeNow = new Date();
+                    window.localStorage.setItem('cc-sas-spinner-coupon-load-time', timeNow);
+                    //console.log("SAS setSpinCouponLoadTime is NOW Set to current time");
+                }
+
+                function showSpinASaleModule(type = '') {
+                    //console.log('showSpinASaleModule type: ' + type);
+                    if (type && type == 'triggered') {
+                        // carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").show(1000);
+                        carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").fadeIn();
+                        init();
+                        applySASPlugin();
+                        postImpressionData();
+                    } else {
+                        if (checkCachedTime()) {
+                            // carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").show(1000);
+                            carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").fadeIn();
+                            init();
+                            applySASPlugin();
+                            //console.log('type Else: ' + type)
+                            if(type == 'triggered' || type == 'auto')
+                            {
+                                //console.log('Triggering: ' + type);
+                                postImpressionData();
+                            }
+                        }
+                    }
+                }
+
+                function hideSpinASaleModule() {
+                    ///carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").hide();
+                    carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").fadeOut();
+                }
+
+                function couponAndMsgAreSetThenLoad() {
+                    //console.log("SAS In couponAndMsgAreSetThenLoad");
+                    //console.log('cc-sas-spinner-timer-bar-set-html' + window.localStorage.getItem('cc-sas-spinner-timer-bar-set-html'));
+                    if(window.localStorage.getItem('cc-sas-spinner-timer-bar-set-html')	!== null && window.localStorage.getItem('cc-sas-spinner-hide-timer-bar') != 1)
+                    {
+                        carecartSpinnerJquery('#cc-spin-a-sale-clock-div-preview').html(window.localStorage.getItem('cc-sas-spinner-timer-bar-set-html'));
+                        carecartSpinnerJquery('#couponwheel_notice_content').show();
+                        var ccSpinASaleMinutes = carecartSpinnerJquery('.cc-spin-a-sale-minutes').html();
+                        var ccSpinASaleSeconds = carecartSpinnerJquery('.cc-spin-a-sale-seconds').html();
+                        //console.log('SAS ccSpinASaleMinutes: ' + ccSpinASaleMinutes);
+                        //console.log('SAS ccSpinASaleSeconds: ' + ccSpinASaleSeconds);
+
+                        //var deadlineSpinAWheel = new Date(Date.parse(new Date()) + ccSpinASaleMinutes * 60 * 1000);
+                        var updatedTime = (ccSpinASaleMinutes * 60 * 1000) + (ccSpinASaleSeconds * 1000);
+                        var deadlineSpinAWheel = new Date(Date.parse(new Date()) + updatedTime);
+
+                        initializeClockSpinAWheel('cc-spin-a-sale-clock-div-preview', deadlineSpinAWheel);
+                    }
+                    //if(window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1) {
+                    checkSpinCouponLoadTime();
+                    var coupon = window.localStorage.getItem('cc-sas-spinner-cached-coupon-code');
+                    var msg = window.localStorage.getItem('cc-sas-spinner-cached-coupon-code-message');
+                    //console.log("SAS coupon value: " + coupon);
+                    //console.log("SAS msg value: " + msg);
+
+                    if (coupon && msg) {
+                        if (coupon == null || msg == null || coupon == 'null' || msg == 'null') {
+                            console.log("SAS coupon or msg is null");
+                            //console.log("coupon: " + coupon);
+                            //console.log("msg: " + msg);
+                            return;
+                        }
+                        console.log("SAS coupon & msg are already set, so loading them");
+                        var t = carecartSpinnerJquery(".winContainer"),
+                            w = carecartSpinnerJquery(".wheelContainer"),
+                            l = carecartSpinnerJquery(".loseContainer"),
+                            e = carecartSpinnerJquery(".signupContainer"),
+                            n = carecartSpinnerJquery(".win_text"),
+                            a = carecartSpinnerJquery(".coupon");
+                        if (coupon) {
+                            e.fadeOut(), n.text(msg), a.text(coupon), t.find("input").val(coupon), t.css({
+                                paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                            }),
+                                carecartSpinnerJquery(window).resize(function () {
+                                    t.css({
+                                        // paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                                    })
+                                }),
+                                t.fadeIn()
+                            w.css('opacity', '0.3');
+                        } else {
+                            e.fadeOut(), n.text(msg), t.css({
+                                paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                            }),
+                                carecartSpinnerJquery(window).resize(function () {
+                                    t.css({
+                                        // paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                                    })
+                                }),
+                                l.fadeIn()
+                        }
+                        return;
+                    }
+                    //}
+                }
+                function displayCouponOverSpinner() {
+                    console.log("SAS In displayCouponOverSpinner");
+                    if (!checkCachedTime()) {
+                        //console.log("SAS checkCachedTime is NOT Set");
+                        var coupon = window.localStorage.getItem('cc-sas-spinner-cached-coupon-code');
+                        var msg = window.localStorage.getItem('cc-sas-spinner-cached-coupon-code-message');
+                        //console.log("SAS displayCouponOverSpinner coupon value: " + coupon);
+                        //console.log("SAS displayCouponOverSpinner msg value: " + msg);
+                        if(coupon == null || msg == null || coupon == 'null' || msg == 'null')
+                        {
+                            console.log("SAS Coupon Over Spinner coupon or msg is null");
+                            //console.log("displayCouponOverSpinner coupon: " + coupon);
+                            //console.log("SAS displayCouponOverSpinner msg: " + msg);
+                            return;
+                        }
+
+                        if(window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1)
+                        {
+                            if (coupon && msg) {
+                                var t = carecartSpinnerJquery(".winContainer"),
+                                    w = carecartSpinnerJquery(".wheelContainer"),
+                                    l = carecartSpinnerJquery(".loseContainer"),
+                                    e = carecartSpinnerJquery(".signupContainer"),
+                                    n = carecartSpinnerJquery(".win_text"),
+                                    a = carecartSpinnerJquery(".coupon");
+                                if (coupon) {
+                                    e.fadeOut(), n.text(msg), a.text(coupon), t.find("input").val(coupon), t.css({
+                                        paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                                    }),
+                                        carecartSpinnerJquery(window).resize(function () {
+                                            t.css({
+                                                // paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                                            })
+                                        }),
+                                        t.fadeIn()
+                                    w.css('opacity', '0.3');
+                                } else {
+                                    e.fadeOut(), n.text(msg), t.css({
+                                        paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                                    }),
+                                        carecartSpinnerJquery(window).resize(function () {
+                                            t.css({
+                                                // paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                                            })
+                                        }),
+                                        l.fadeIn()
+                                }
+
+                                carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").fadeIn();
+                                return;
+                            }
+                        }
+                    }
+                }
+
+                function pupulateData(response) {
+                    console.log('SAS AJAX Success ');
+                    if (response && response._metadata && response._metadata.outcome && response._metadata.outcome == "SUCCESS") {
+                        console.log('SAS Success Response');
+                        /* Check If Module is Active*/
+                        if (response.records && response.records.store_settings && response.records.store_settings.is_active) {
+                            console.log('SAS is active & enabled in Slices Menu');
+
+//console.log('response.records.store_settings.settings_data.display_home_page_enabled: ' + response.records.store_settings.settings_data.display_home_page_enabled);
+//console.log('response.records.store_settings.settings_data.display_collections_page_enabled: ' + response.records.store_settings.settings_data.display_collections_page_enabled);
+//console.log('response.records.store_settings.settings_data.display_blog_posts_page_enabled: ' + response.records.store_settings.settings_data.display_blog_posts_page_enabled);
+//console.log('response.records.store_settings.settings_data.display_products_page_enabled: ' + response.records.store_settings.settings_data.display_products_page_enabled);
+//console.log('response.records.store_settings.settings_data.display_cart_page_enabled: ' + response.records.store_settings.settings_data.display_cart_page_enabled);
+//console.log('response.records.store_settings.settings_data.display_thank_you_page_enabled: ' + response.records.store_settings.settings_data.display_thank_you_page_enabled);
+
+//****************************** If SAS is disabled on Homepage, it will NOT be loaded on Homepage *************************************
+                            if(response.records.store_settings.settings_data.display_home_page_enabled && parseInt(response.records.store_settings.settings_data.display_home_page_enabled) == 0){
+                                var thisStatus = checkHomePageCcSpinASale();
+                                //console.log('checkHomePageCcSpinASale Status: ' + thisStatus);
+                                if(thisStatus)
+                                {
+                                    console.log('SAS load on homepage is disabled');
+                                    return;
+                                }
+                            }
+//****************************** If SAS is disabled on Collections page, it will NOT be loaded on Collections page *************************************
+                            if(response.records.store_settings.settings_data.display_collections_page_enabled && parseInt(response.records.store_settings.settings_data.display_collections_page_enabled) == 0){
+                                var thisStatus = checkCollectionsCcSpinASale();
+                                //console.log('checkCollectionsCcSpinASale Status: ' + thisStatus);
+                                if(thisStatus)
+                                {
+                                    console.log('SAS load on Collections Page is disabled');
+                                    return;
+                                }
+                            }
+//****************************** If SAS is disabled on Blog Posts, it will NOT be loaded on Blog Posts *************************************
+                            if(response.records.store_settings.settings_data.display_blog_posts_page_enabled && parseInt(response.records.store_settings.settings_data.display_blog_posts_page_enabled) == 0){
+                                var thisStatus = checkBlogPageCcSpinASale();
+                                //console.log('checkBlogPageCcSpinASale Status: ' + thisStatus);
+                                if(thisStatus)
+                                {
+                                    console.log('SAS load on Blog Posts is disabled');
+                                    return;
+                                }
+                            }
+//****************************** If SAS is disabled on Products Page, it will NOT be loaded on Products Page *************************************
+                            if(response.records.store_settings.settings_data.display_products_page_enabled && parseInt(response.records.store_settings.settings_data.display_products_page_enabled) == 0){
+                                var thisStatus = checkProductCcSpinASale();
+                                //console.log('checkProductCcSpinASale Status: ' + thisStatus);
+                                if(thisStatus)
+                                {
+                                    console.log('SAS load on Products Page is disabled');
+                                    return;
+                                }
+                            }
+//****************************** If SAS is disabled on Cart Page, it will NOT be loaded on Cart Page *************************************
+                            if(response.records.store_settings.settings_data.display_cart_page_enabled && parseInt(response.records.store_settings.settings_data.display_cart_page_enabled) == 0){
+                                var thisStatus = checkCartCcSpinASale();
+                                //console.log('checkCartCcSpinASale Status: ' + thisStatus);
+                                if(thisStatus)
+                                {
+                                    console.log('SAS load on Cart Page is disabled');
+                                    return;
+                                }
+                            }
+//****************************** If SAS is disabled on Thank You Page, it will NOT be loaded on Thank You Page *************************************
+                            if(response.records.store_settings.settings_data.display_thank_you_page_enabled && parseInt(response.records.store_settings.settings_data.display_thank_you_page_enabled) == 0){
+                                var thisStatus = checkThanksYouCcSpinASale();
+                                //console.log('checkThanksYouCcSpinASale Status: ' + thisStatus);
+                                if(thisStatus)
+                                {
+                                    console.log('SAS load on Thank You Page is disabled');
+                                    return;
+                                }
+                            }
+
+                            var w = carecartSpinnerJquery(window).width();
+                            const is_enabled_on_mobile = (typeof response.records.store_settings.settings_data.is_mobile_enabled === 'undefined') ? 1 : parseInt(response.records.store_settings.settings_data.is_mobile_enabled);
+                            if(w < 600 && is_enabled_on_mobile === 0) {
+                                console.log('SAS is disabled on mobile');
+                                return;
+                            }
+
+                            /* Check If Module template exist*/
+                            if (response.records.store_front_template) {
+                                console.log('SAS front template exist');
+                                /* Append template*/
+                                carecartSpinnerJquery("body").append(response.records.store_front_template);
+
+                                /* Append triggered button */
+                                if (response.records.store_settings.settings_data.is_triggered_enable && parseInt(response.records.store_settings.settings_data.is_triggered_enable) == 1) {
+                                    carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
+                                    const settingsData = response.records.store_settings.settings_data;
+                                    var tBtn = carecartSpinnerJquery('body').find('#spin-trigger-cc');
+                                    if (settingsData.button_position === 'middle_right') {
+                                        tBtn.css({
+                                            bottom: '48vh'
+                                        });
+                                    } else if (settingsData.button_position === 'bottom_left') {
+                                        tBtn.css({
+                                            left: '20px'
+                                        });
+                                    } else if (settingsData.button_position === 'middle_left') {
+                                        tBtn.css({
+                                            left: '20px',
+                                            bottom: '48vh'
+                                        });
+                                    } else {}
+                                }
+                                else {
+                                    carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
+                                    var tBtn = carecartSpinnerJquery('body').find('#spin-trigger-cc');
+                                    tBtn.hide();
+                                    //console.log('SAS spinner trigger button should display');
+                                }
+                                /* ************************************** Display Spinner on Mouse Screen Exit - START *********************************************************** */
+                                if (response.records.store_settings.settings_data.is_exit_spinner_display_enabled && parseInt(response.records.store_settings.settings_data.is_exit_spinner_display_enabled) == 1) {
+                                    console.log("SAS Spinner will load after Mouse exit's screen");
+                                    carecartSpinnerJquery(document).mouseleave(function () {
+                                        //console.log('SAS out of screen');
+                                        if(carecartSpinnerJquery('#spin_a_sale_cc_store_front_module:visible').length == 0)
+                                        {
+                                            if(window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1)
+                                            {
+                                                //************* 60 Min (1 min = 60 * 1000 milliseconds) *******************
+                                                var timeInMin = 60 * 60 * 1000;
+                                                if(window.localStorage.getItem('screenExitDisplaySpinnerExpire') == 1)
+                                                {
+                                                    //console.log("screenExitDisplaySpinnerExpire is Defined");
+                                                }
+                                                else
+                                                {
+                                                    window.localStorage.setItem('screenExitDisplaySpinnerExpire',1);
+                                                    //carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").fadeIn();
+                                                    carecartSpinnerJquery("#spin-trigger-cc").click();
+//******************************************* Do NOT Trigger after First Exit From Screen Until 60 Min (1 min = 60 * 1000 milliseconds *****************************
+                                                    setTimeout(function () {
+                                                        //console.log("SAS Time Set to 60 min");
+                                                        window.localStorage.setItem('screenExitDisplaySpinnerExpire', null);
+                                                    }, timeInMin);
+                                                }
+                                                //alert("out of screen");
+                                            }
+                                            else
+                                            {
+                                                console.log('SAS Urgency bar is already triggered, Exit Intent will not trigger');
+                                            }
+                                        }
+                                    });
+                                }
+                                /* ************************************** Display Spinner on Mouse Screen Exit - END *********************************************************** */
+                                /* ************************************** Display Spinner if percentage scroll is enabled  - START *********************************************************** */
+                                if (response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled && parseInt(response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled) == 1){
+                                    //console.log("SAS is_scroll_spinner_percentage_enabled is ENABLED");
+                                    var scrollPercentageRequired = response.records.store_settings.settings_data.scroll_spinner_percentage ? response.records.store_settings.settings_data.scroll_spinner_percentage : 50;
+                                    //console.log('SAS scrollPercentageRequired: ' + scrollPercentageRequired);
+                                    console.log("SAS Scroll Spinner Percentage is ENABLED & Percentage Set is: " + scrollPercentageRequired);
+                                    //**************** Testing Scroll Page Percentage ****************************
+                                    var timeInMinScroll = 60 * 60 * 1000;
+                                    if(window.localStorage.getItem('scrollScreenDisplaySpinnerExpire') === null)
+                                    {
+                                        //console.log("SAS scrollScreenDisplaySpinnerExpire is NULL");
+                                        console.log("SAS Scroll Screen NOT yet done to load Spinner");
+                                        carecartSpinnerJquery(window).on('scroll', function(){
+                                            var s = carecartSpinnerJquery(window).scrollTop(),
+                                                d = carecartSpinnerJquery(document).height(),
+                                                c = carecartSpinnerJquery(window).height();
+
+                                            var scrolledPercentage = (s / (d - c)) * 100;
+
+                                            //console.clear();
+                                            //console.log('SAS scrolled percentage: ' + scrolledPercentage);
+                                            if(scrolledPercentage >= scrollPercentageRequired)
+                                            {
+                                                if(window.localStorage.getItem('scrollScreenDisplaySpinnerExpire') === null)
+                                                {
+                                                    if(carecartSpinnerJquery('#spin_a_sale_cc_store_front_module:visible').length == 0)
+                                                    {
+                                                        window.localStorage.setItem('scrollScreenDisplaySpinnerExpire', 1);
+                                                        console.log("SAS scrollScreenDisplaySpinnerExpire is NOW SET");
+                                                        console.log("SAS scrolledPercentage is: " +  scrolledPercentage + " >= scrollPercentageRequired: " + scrollPercentageRequired + " & Spiller Load is Due");
+                                                        if(window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1)
+                                                        {
+                                                            carecartSpinnerJquery("#spin-trigger-cc").click();
+                                                        }
+                                                        else
+                                                        {
+                                                            console.log("SAS scrollScreenDisplaySpinnerExpire WILL NOT Trigger as Urgency Bar is Triggered");
+                                                        }
+                                                        setTimeout(function () {
+                                                            //console.log("SAS Time Set to 60 min");
+                                                            window.localStorage.setItem('scrollScreenDisplaySpinnerExpire', null);
+                                                        }, timeInMinScroll);
+
+                                                        //console.log("SAS timeInMinScroll for reset: " + timeInMinScroll);
+                                                    }
+                                                }
+                                            }
+                                        });
+                                    }
+                                    else
+                                    {
+                                        //console.log("SAS scrollScreenDisplaySpinnerExpire is NOT NULL");
+                                        console.log("SAS Scroll Screen has already loaded Spinner once");
+                                    }
+                                }
+                                /* ************************************** Display Spinner if percentage scroll is enabled  - END *********************************************************** */
+                                setTimeout(function () {
+                                    var spinnerColors = response.records.store_slices_color;
+                                    if(spinnerColors.every(element => element === null))
+                                    {
+                                        spinnerColors = ["#000000", "#F1C40F", "#E67E22", "#E74C3C", "#95A5A6", "#16A085", "#27AE60", "#2980B9", "#8E44AD", "#2C3E50"];
+                                    }
+                                    var ccWheelStrokeColor = response.records.store_settings.wheel_stroke_color;
+                                    var ccCenterCircleStrokeColor = response.records.store_settings.center_circle_stroke_color;
+                                    var ccCenterCircleFillColor = response.records.store_settings.center_circle_fill_color;
+
+                                    if(ccWheelStrokeColor === null){
+                                        ccWheelStrokeColor = "#D0BD0C";
+                                    }
+                                    if(ccCenterCircleStrokeColor === null){
+                                        ccCenterCircleStrokeColor = "#F1DC15";
+                                    }
+                                    if(ccCenterCircleFillColor === null){
+                                        ccCenterCircleFillColor = "#EDEDED";
+                                    }
+                                    //console.log(SAS spinnerColors);
+                                    dataSpin = {
+                                        //colorArray: ["#364C62", "#F1C40F", "#E67E22", "#E74C3C", "#95A5A6", "#16A085", "#27AE60", "#2980B9", "#8E44AD", "#2C3E50", "#F39C12", "#D35400", "#C0392B", "#1ABC9C", "#2ECC71", "#E87AC2", "#3498DB", "#9B59B6", "#7F8C8D"],
+                                        //colorArray: ["#000000", "#F1C40F", "#E67E22", "#E74C3C", "#95A5A6", "#16A085", "#27AE60", "#2980B9", "#8E44AD", "#2C3E50"],
+                                        //colorArray: response.records.store_slices_color,
+                                        colorArray: spinnerColors,
+                                        segmentValuesArray: response.records.store_slices,
+                                        svgWidth: 1024,
+                                        svgHeight: 768,
+                                        //wheelStrokeColor: "#D0BD0C",
+                                        wheelStrokeColor: ccWheelStrokeColor,
+                                        wheelStrokeWidth: 20,
+                                        wheelSize: 1024,
+                                        wheelTextOffsetY: 60,
+                                        wheelTextColor: "#FFFFFF",
+                                        wheelTextSize: "30px",
+                                        wheelImageOffsetY: 100,
+                                        wheelImageSize: 200,
+                                        centerCircleSize: 220,
+                                        //centerCircleStrokeColor: "#F1DC15",
+                                        centerCircleStrokeColor: ccCenterCircleStrokeColor,
+                                        centerCircleStrokeWidth: 12,
+                                        //centerCircleFillColor: "#EDEDED",
+                                        centerCircleFillColor: ccCenterCircleFillColor,
+                                        segmentStrokeColor: "#E2E2E2",
+                                        segmentStrokeWidth: 3,
+                                        centerX: 512,
+                                        centerY: 384,
+                                        hasShadows: !0,
+                                        numSpins: 1,
+                                        spinDestinationArray: [],
+                                        minSpinDuration: 6,
+                                        gameOverText: "",
+                                        invalidSpinText: "INVALID SPIN. PLEASE SPIN AGAIN.",
+                                        introText: "",
+                                        hasSound: !1,
+                                        gameId: "9a0232ec06bc431114e2a7f3aea03bbe2164f1aa",
+                                        clickToSpin: !0
+                                    };
+
+                                }, 500);
+                                setTimeout(function () {
+                                    /* dataSpin = {
+                                         colorArray: ["#364C62", "#F1C40F", "#E67E22", "#E74C3C", "#95A5A6", "#16A085", "#27AE60", "#2980B9", "#8E44AD", "#2C3E50", "#F39C12", "#D35400", "#C0392B", "#1ABC9C", "#2ECC71", "#E87AC2", "#3498DB", "#9B59B6", "#7F8C8D"],
+                                         //colorArray: ["#000000", "#F1C40F", "#E67E22", "#E74C3C", "#95A5A6", "#16A085", "#27AE60", "#2980B9", "#8E44AD", "#2C3E50"],
+										 //colorArray: response.records.store_slices_color,
+                                         segmentValuesArray: response.records.store_slices,
+                                         svgWidth: 1024,
+                                         svgHeight: 768,
+                                         wheelStrokeColor: "#D0BD0C",
+                                         wheelStrokeWidth: 20,
+                                         wheelSize: 1024,
+                                         wheelTextOffsetY: 60,
+                                         wheelTextColor: "#FFFFFF",
+                                         wheelTextSize: "30px",
+                                         wheelImageOffsetY: 100,
+                                         wheelImageSize: 200,
+                                         centerCircleSize: 220,
+                                         centerCircleStrokeColor: "#F1DC15",
+                                         centerCircleStrokeWidth: 12,
+                                         centerCircleFillColor: "#EDEDED",
+                                         segmentStrokeColor: "#E2E2E2",
+                                         segmentStrokeWidth: 3,
+                                         centerX: 512,
+                                         centerY: 384,
+                                         hasShadows: !0,
+                                         numSpins: 1,
+                                         spinDestinationArray: [],
+                                         minSpinDuration: 6,
+                                         gameOverText: "",
+                                         invalidSpinText: "INVALID SPIN. PLEASE SPIN AGAIN.",
+                                         introText: "",
+                                         hasSound: !1,
+                                         gameId: "9a0232ec06bc431114e2a7f3aea03bbe2164f1aa",
+                                         clickToSpin: !0
+                                     };*/
+                                    var type = 'auto';
+                                    showSpinASaleModule(type);
+
+                                    couponAndMsgAreSetThenLoad();
+
+                                }, parseInt(response.records.store_settings.settings_data.delay_time) * 1000);
+                                /* *********************************************** Start - Display Urgency Timer Bar **********************************	*/
+                                if (response.records.store_settings.conversion_booster_settings != null && response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled != null && parseInt(response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled) == 1) {
+                                    window.localStorage.setItem('urgencyTimerBarEnabled', 1);
+                                    //console.log('SAS Urgency Bar is Active');
+                                    //carecartSpinnerJquery('#couponwheel_notice_content').show();
+                                    var spinASaleCcUrgencyTimeBarTextHtml = '<span class="cc-spin-a-sale-clock-div" id="cc-spin-a-sale-clock-div-preview">' + response.records.store_settings.conversion_booster_settings.urgency_timer_bar_text + '</span>';
+                                    carecartSpinnerJquery('#spin_a_sale_cc_urgency_time_bar_text').html(spinASaleCcUrgencyTimeBarTextHtml);
+                                    var spinASaleCcUrgencyTimeBarText = carecartSpinnerJquery('#spin_a_sale_cc_urgency_time_bar_text').html();
+                                    //var wonCouponCode = '<strong>' + window.localStorage.getItem('cc-sas-spinner-cached-coupon-code') + '</strong>';
+                                    //spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{coupon_code}}',wonCouponCode);
+                                    //console.log('spinASaleCcUrgencyTimeBarText ' + spinASaleCcUrgencyTimeBarText);
+                                    window.localStorage.setItem('urgencyTimerBarTimeInMin',response.records.store_settings.conversion_booster_settings.urgency_timer_bar_display_time_in_min);
+                                    var spinASaleCcUrgencyTimeBarInMin = window.localStorage.getItem('urgencyTimerBarTimeInMin');
+                                    //console.log('spinASaleCcUrgencyTimeBarInMin: ' + spinASaleCcUrgencyTimeBarInMin);
+                                    var deadlineSpinAWheel = new Date(Date.parse(new Date()) + spinASaleCcUrgencyTimeBarInMin * 60 * 1000);
+                                    var timerDiv = '<span style="font-weight: bold;"><span class="cc-spin-a-sale-minutes">' + spinASaleCcUrgencyTimeBarInMin + '</span>:<span class="cc-spin-a-sale-seconds">00</span></span>';
+                                    //console.log('timerDiv: ' + timerDiv);
+                                    //console.log('spinASaleCcUrgencyTimeBarText: ' + spinASaleCcUrgencyTimeBarText);
+                                    spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{time}}',timerDiv);
+                                    spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{ time }}',timerDiv);
+                                    var urgencyTimeBarBackgroundColor = '#FFD400';
+                                    if(response.records.store_settings.conversion_booster_settings.urgency_time_bar_background_color && response.records.store_settings.conversion_booster_settings.urgency_time_bar_background_color != null)
+                                    {
+                                        urgencyTimeBarBackgroundColor = response.records.store_settings.conversion_booster_settings.urgency_time_bar_background_color;
+                                    }
+                                    //console.log('urgencyTimeBarBackgroundColor: ' + urgencyTimeBarBackgroundColor);
+                                    carecartSpinnerJquery('#couponwheel_notice_content').css("background-color", urgencyTimeBarBackgroundColor);
+                                    var urgencyTimeBarTextColor = '#000000';
+                                    if(response.records.store_settings.conversion_booster_settings.urgency_time_bar_text_color && response.records.store_settings.conversion_booster_settings.urgency_time_bar_text_color != null)
+                                    {
+                                        urgencyTimeBarTextColor = response.records.store_settings.conversion_booster_settings.urgency_time_bar_text_color;
+                                    }
+                                    //console.log('urgencyTimeBarTextColor: ' + urgencyTimeBarTextColor);
+                                    carecartSpinnerJquery('#couponwheel_notice_content').css("color", urgencyTimeBarTextColor);
+                                    if(response.records.store_settings.conversion_booster_settings.urgency_timer_bar_position_top_or_bottom == 'top')
+                                    {
+                                        carecartSpinnerJquery('#couponwheel_notice_content').removeClass('bar-bottom').addClass('bar-top');
+                                    }
+                                    //console.log('spinASaleCcUrgencyTimeBarText after Timer Replacement: ' + spinASaleCcUrgencyTimeBarText);
+                                    //carecartSpinnerJquery('#couponwheel_notice_timer').html(timerDiv);
+                                    //carecartSpinnerJquery('#spin_a_sale_cc_urgency_time_bar_text').html(spinASaleCcUrgencyTimeBarText);
+                                    //console.log('spinASaleCcUrgencyTimeBarText: ' + spinASaleCcUrgencyTimeBarText);
+                                    //carecartSpinnerJquery('#couponwheel_notice_content').show();
+                                    //console.log('deadlineSpinAWheel deadlineSpinAWheel: ' + deadlineSpinAWheel);
+                                    //initializeClockSpinAWheel('cc-spin-a-sale-clock-div-preview', deadlineSpinAWheel);
+                                }
+                                /* *********************************************** End - Display Urgency Timer Bar **********************************	*/
+                                /* *********************************************** Start - Conversion Booster Progress Bar **********************************	*/
+                                if (response.records.store_settings.conversion_booster_settings != null && response.records.store_settings.conversion_booster_settings.conversion_booster_show_offers_claimed != null && parseInt(response.records.store_settings.conversion_booster_settings.conversion_booster_show_offers_claimed) == 1) {
+                                    console.log('SAS Conversion Booster Progress Bar is Active');
+                                    carecartSpinnerJquery('.cc-spin-a-sale-spinner-progress-bar').css("visibility", "visible");
+                                    carecartSpinnerJquery('.cc-spin-a-sale-spinner-progress-bar-inner').width(response.records.store_settings.conversion_booster_settings.conversion_booster_percentage_offers_claimed + '%');
+                                    carecartSpinnerJquery('.cc-spin-a-sale-spinner-progress-bar-inner').css("background-color", response.records.store_settings.conversion_booster_settings.conversion_booster_progress_bar_color);
+                                    carecartSpinnerJquery('.cc-spin-a-sale-couponwheel_offers_text').text(response.records.store_settings.conversion_booster_settings.conversion_booster_offers_claimed_text);
+                                }
+                                /* *********************************************** End - Conversion Booster Progress Bar **********************************	*/
+                            }
+                            var storeBgColor = response.records.store_settings.spinner_bg_color;
+                            carecartSpinnerJquery('#spin_a_sale_cc_store_front_module').css('background-color', storeBgColor);
+                            carecartSpinnerJquery('#spin-trigger-cc span').css('background-color', storeBgColor);
+                            carecartSpinnerJquery('#spin-trigger-cc img').css('background', storeBgColor);
+                            carecartSpinnerJquery('.content-spinner').css('background-color', storeBgColor);
+                            carecartSpinnerJquery('.content-spinner').css('background-size', 'cover');
+                            carecartSpinnerJquery('.content-spinner').css('background-repeat', 'no-repeat');
+                            carecartSpinnerJquery('.content-spinner').css('background-position', 'center');
+                            var closeCrossColor = response.records.store_settings.spinner_close_cross_color;
+                            carecartSpinnerJquery('#spin_a_sale_cc_store_front_module_close_button').find('i.fa-times').css('color', closeCrossColor);
+                            //#spin_a_sale_cc_store_front_module .content-spinner{background-color: black;}
+//************************************ Change Spinner Color if NOT default of Spinner i-e #FF0000 ****************************************
+                            var spinnerPegColor = response.records.store_settings.spinner_peg_color;
+                            if (response.records.store_settings.spinner_peg_color && spinnerPegColor != "" && spinnerPegColor != null && spinnerPegColor != "#FF0000"){
+                                carecartSpinnerJquery('.peg').css('fill', spinnerPegColor);
+                            }
+//************************************ Change Try Your Luck Background Color if NOT default i-e #FFFFFF ****************************************
+                            var tryYourLuckBgColor = response.records.store_settings.try_luck_bg_color;
+                            if (response.records.store_settings.try_luck_bg_color && tryYourLuckBgColor != "" && tryYourLuckBgColor != null && tryYourLuckBgColor != "#FFFFFF"){
+                                carecartSpinnerJquery('.btn-submit-form').css('background-color', tryYourLuckBgColor);
+                            }
+//************************************ Change Try Your Luck Text Color if NOT default i-e #384F66 ****************************************
+                            var tryYourLuckTextColor = response.records.store_settings.try_luck_text_color;
+                            if (response.records.store_settings.try_luck_text_color && tryYourLuckTextColor != "" && tryYourLuckTextColor != null && tryYourLuckTextColor != "#384F66"){
+                                carecartSpinnerJquery('.btn-submit-form').css('color', tryYourLuckTextColor);
+                            }
+                            /* ************************************** Display Background Image - Start *********************************************************** */
+                            if (response.records.store_settings.spinner_bg_image && response.records.store_settings.spinner_bg_image != "" && response.records.store_settings.spinner_bg_image != null){
+                                //var themeBgImageURL = API_URL + 'public/assets/themes/' + response.records.store_settings.spinner_bg_image;
+                                // Check For desktop/Mobile
+                                var spinnerBgImage = '';
+                                (function (a) {
+                                    (carecartSpinnerJquery.browser = carecartSpinnerJquery.browser || {}).mobile = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))
+                                })(navigator.userAgent || navigator.vendor || window.opera);
+
+                                if (carecartSpinnerJquery.browser.mobile) {
+                                    spinnerBgImage = response.records.store_settings.spinner_bg_mobile_image;
+                                } else {
+                                    spinnerBgImage = response.records.store_settings.spinner_bg_image;
+                                }
+                                //console.log('spinnerBgImage: ' + spinnerBgImage);
+                                var themeBgImageURL = API_URL + 'public/assets/themes/' + spinnerBgImage;
+                                //carecartSpinnerJquery('.content-spinner').css('background-image', 'url(' + API_URL + 'public/assets/themes/' + response.records.store_settings.spinner_bg_image + ')');
+                                carecartSpinnerJquery('.content-spinner').css('background-image', 'url(' + themeBgImageURL + ')');
+                                //console.log("SAS background_image_url is set: " + themeBgImageURL);
+                            }
+                            /* ************************************** Display Background Image - End *********************************************************** */
+                            if(Shopify.shop == 'srnsmart.myshopify.com'){
+                                carecartSpinnerJquery('#customer_login_link').append('<div class="customer-login-links-new"><a href="#." id="cc-spin-a-wheel-open-spinner-mate">Spin to win</a></div>');
+                                console.log('In srnsmart.myshopify.com');
+
+                                carecartSpinnerJquery("#cc-spin-a-wheel-open-spinner-mate").click(function(){
+                                    carecartSpinnerJquery('#spin-trigger-cc').click();
+                                });
+                            }
+                        }
+                    } else {
+                        console.log('SAS ' + response._metadata.message);
+                    }
+                }
+
+                /* Post Data to Server */
+
+                function postImpressionData() {
+                    carecartSpinnerJquery.ajax({
+                        url: API_URL + "store-front-api/post-impression-information",
+                        type: 'POST',
+                        data: {
+                            shop: Shopify.shop,
+                            postImpression: 'postImpression',
+                        },
+                        crossDomain: true,
+                        dataType: "json",
+                        success: function (response) {
+                            if (response.result) {
+                                console.log('SAS Impression is post successfully');
+                            }
+                        },
+                        error: function (error) {
+                            console.log('SAS Error in impression post');
+                            console.log('SAS Error: ' + error);
+                        }
+                    });
+                }
+
+                function postSubscribersInformation(coupon = null, result = null) {
+
+                    var customerName = carecartSpinnerJquery('#cc-spinner-full-name').val();
+                    var customerEmail = carecartSpinnerJquery('#cc-spinner-email').val();
+                    var isConsent = (carecartSpinnerJquery('#cc-spin-a-sale-consent-checkbox').prop('checked') == true) ? 'consent_accepted' : 'consent_rejected';
+                    var couponUsed = coupon;
+                    var winResult = result;
+
+                    var customerInformation = {
+                        name: customerName,
+                        email: customerEmail,
+                        isConsent: isConsent,
+                        couponUsed: couponUsed,
+                        winResult: winResult
+                    }
+                    console.log('SAS customerInformation: ' + customerInformation.customerName);
+                    setSpinCouponLoadTime();
+                    carecartSpinnerJquery.ajax({
+                        url: API_URL + "store-front-api/post-customer-information",
+                        type: 'POST',
+                        data: {
+                            shop: Shopify.shop,
+                            customerInformation: customerInformation,
+                        },
+                        crossDomain: true,
+                        dataType: "json",
+                        success: function (response) {
+                            if (response.result) {
+                                updateCachedTime();
+                                console.log('SAS User information is post successfully');
+                            }
+                        },
+                        error: function (error) {
+                            console.log('SAS Error in impression post');
+                            console.log('SAS Error: ' + error);
+                        }
+                    });
+                }
+                /*
+                                function checkCachedTimeForCoupon(){
+                                    var globalSettingsDataCachedTime = window.localStorage.getItem('spinnerCachedTime');
+                                    if(globalSettingsDataCachedTime!==undefined  && globalSettingsDataCachedTime!==null){
+                                        var currentTime = new Date();
+                                        var previousTime = new Date(globalSettingsDataCachedTime);
+                                        var msec = parseInt(currentTime - previousTime);
+                                        var minutes = parseInt(Math.floor(msec / 60000));
+                                        console.log('SAS Time : '+minutes);
+                                        if(minutes<=2){
+                                            return false;
+                                        }
+
+                                    }
+                                    return true;
+
+                                }
+                */
+
+                function updateCachedTime() {
+                    var timeNow = new Date();
+                    window.localStorage.setItem('cc-sas-spinner-cached-time', timeNow);
+                }
+
+                /* Post Data to Server END */
+
+                function ifCachedData() {
+                    var settingsCachedTime = window.localStorage.getItem('cc-sas-spinner-ajax-cached-time');
+                    var settingsCachedData = window.localStorage.getItem('cc-sas-spinner-ajax-cached-data');
+                    if (settingsCachedTime !== undefined && settingsCachedTime !== null && settingsCachedData !== undefined && settingsCachedData !== null) {
+                        console.log('SAS Settings cached data exist ');
+                        var previousTime = new Date(settingsCachedTime);
+                        var msec = parseInt(d - previousTime);
+                        var minutes = parseInt(Math.floor(msec / 60000));
+                        console.log('SAS Settings cached Time : ' + minutes);
+                        if (minutes <= 30) {
+                            console.log('SAS Get settings from cached data');
+                            console.log('SAS Remaining time: ' + (30 - minutes));
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+
+                function checkHomePageCcSpinASale() {
+                    //console.log('inside checkHomePageCcSpinASale');
+                    let status = (window.location.pathname == "/");
+                    return status;
+                }
+
+                function checkCollectionsCcSpinASale() {
+                    //console.log('inside checkCollectionsCcSpinASale');
+                    var is_page = !(!window.location.pathname.match("(.*)/collections/(.*)") && !window.location.pathname.match("(.*)/collections") || window.location.pathname.match("(.*)/products/(.*)") || window.location.pathname.match("(.*)/products"));
+                    return is_page;
+                }
+
+                function checkBlogPageCcSpinASale() {
+                    //console.log('inside checkBlogPageCcSpinASale');
+                    var is_page = !(!window.location.pathname.match("(.*)/blogs/(.*)") && !window.location.pathname.match("(.*)/blogs"));
+                    return is_page;
+                }
+
+                function checkProductCcSpinASale() {
+                    //console.log('inside checkProductCcSpinASale');
+                    var is_page = !!window.location.pathname.match("(.*)/products/(.*)");
+                    return is_page;
+                }
+
+                function checkCartCcSpinASale() {
+                    //console.log('inside checkCartCcSpinASale');
+                    var is_page = !(!window.location.pathname.match("(.*)/cart/(.*)") && !window.location.pathname.match("(.*)/cart"));
+                    return is_page;
+                }
+
+                function checkThanksYouCcSpinASale() {
+                    //console.log('inside checkThanksYouCcSpinASale');
+                    var is_page = !(!window.location.pathname.match("(.*)/orders/(.*)") && !window.location.pathname.match("(.*)/orders") || window.location.pathname.match("(.*)/checkouts/(.*)") || window.location.pathname.match("(.*)/thank_you"));
+                    //console.log(is_page);
+                    return is_page;
+                }
+
+                if (!getParameterByName('cc-show-spin-a-sale-test')) {
+
+                    if(Shopify.shop == 'the-happy-scalp.myshopify.com')
+                    {
+                        if(window.location.href != 'https://thehappyscalp.com/')
+                        {
+                            console.log("SAS Spinner Allowed ONLY on home page for thehappyscalp.com");
+                            return;
+                        }
+                    }
+
+                    /*
+                                        if (ifCachedData()) {
+                                            console.log('SAS In Cached Data:');
+                                            var cachedData = JSON.parse(window.localStorage.getItem('cc-sas-spinner-ajax-cached-data'));
+                                            pupulateData(cachedData);
+                                        } else {
+                    */
+
+                    carecartSpinnerJquery.ajax({
+                        url: API_URL + "store-front-api/get-store-information",
+                        type: 'GET',
+                        data: {
+                            shop: Shopify.shop,
+
+                        },
+                        crossDomain: true,
+                        contentType: "application/json",
+                        dataType: "json",
+                        success: function (response) {
+                            window.localStorage.setItem('cc-sas-spinner-ajax-cached-time', d);
+                            window.localStorage.setItem('cc-sas-spinner-ajax-cached-data', JSON.stringify(response));
+                            pupulateData(response);
+                        },
+                        error: function (error) {
+                            console.log('SAS Error in Spin A Sale request');
+                            console.log('SAS Error: ' + error);
+                        }
+                    });
+                    // }
+                }
+
+
+                carecartSpinnerJquery("body").on("click", "#spin_a_sale_cc_store_front_module_close_button", function () {
+                    if (!getParameterByName('cc-show-spin-a-sale-test')) {
+                        updateCachedTime();
+                    }
+                    hideSpinASaleModule();
+                });
+
+                carecartSpinnerJquery("body").on("click", "#spin-trigger-cc", function () {
+                    var type = 'triggered';
+                    showSpinASaleModule(type);
+                    displayCouponOverSpinner();
+                    //console.log('spin-trigger-cc Triggered');
+                    //showSpinASaleModule();
+                });
+
+                carecartSpinnerJquery("body").on("click", "#couponwheel_notice_close_btn", function () {
+                    //arecartSpinnerJquery("#couponwheel_notice_close_btn").click(function () {
+                    //console.log('couponwheel_notice_close_btn Clicked');
+                    carecartSpinnerJquery('#couponwheel_notice_content').hide();
+                    window.localStorage.setItem('cc-sas-spinner-hide-timer-bar', 1);
+                });
+
+                /* Test on your store flow
+                 * cc-show-spin-a-sale-test=yes
+                 * */
+                if (getParameterByName('cc-show-spin-a-sale-test')) {
+
+                    carecartSpinnerJquery("body").prepend('<div id="test-spin-loader-dev" style="\n' +
+                        '    z-index: 99999999;\n' +
+                        '    margin-top: 9%;\n' +
+                        '    /* position: fixed; */\n' +
+                        '    position: fixed;\n' +
+                        '    /* center the element */\n' +
+                        '    right: 0;\n' +
+                        '    left: 0;\n' +
+                        '    margin-right: auto;\n' +
+                        '    margin-left: auto;\n' +
+                        '    /* give it dimensions */\n' +
+                        '    min-height: 10em;\n' +
+                        '    width: 90%;\n' +
+                        '    "><img src="https://app-spinner.carecart.io/library/loader.gif?v1.0.0" style=" display: block; margin: auto; width: 50px; height: 50px;"><h4 style="text-align:center;"> Please wait</h4></div>');
+
+                    carecartSpinnerJquery.ajax({
+                        url: API_URL + "store-front-api/get-store-information-test",
+                        type: 'GET',
+                        data: {
+                            shop: Shopify.shop,
+                            type: 'test_spinner'
+                        },
+                        crossDomain: true,
+                        contentType: "application/json",
+                        dataType: "json",
+                        success: function (response) {
+                            console.log('SAS test on store Success ');
+                            if (response && response._metadata && response._metadata.outcome && response._metadata.outcome == "SUCCESS") {
+                                console.log('SAS TEST Success Response');
+                                // check if enalbed on mobile
+                                var w = carecartSpinnerJquery(window).width();
+                                const is_enabled_on_mobile = (typeof response.records.store_settings.settings_data.is_mobile_enabled === 'undefined') ? 1 : parseInt(response.records.store_settings.settings_data.is_mobile_enabled);
+                                if(w < 600 && is_enabled_on_mobile === 0) {
+                                    console.log('SAS is disabled on mobile');
+                                    carecartSpinnerJquery("#test-spin-loader-dev").remove();
+                                    return;
+                                }
+                                /* Check If Module template exist*/
+                                if (response.records.store_front_template) {
+                                    console.log('SAS front template exist');
+                                    /* Append template*/
+                                    carecartSpinnerJquery("body").append(response.records.store_front_template);
+                                    /* Append triggered button */
+                                    if(response.records.store_settings.settings_data.is_triggered_enable && parseInt(response.records.store_settings.settings_data.is_triggered_enable)==1){
+                                        carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
+                                        const settingsData = response.records.store_settings.settings_data;
+                                        var tBtn = carecartSpinnerJquery('body').find('#spin-trigger-cc');
+                                        if (settingsData.button_position === 'middle_right') {
+                                            tBtn.css({
+                                                bottom: '48vh'
+                                            });
+                                        } else if (settingsData.button_position === 'bottom_left') {
+                                            tBtn.css({
+                                                left: '20px'
+                                            });
+                                        } else if (settingsData.button_position === 'middle_left') {
+                                            tBtn.css({
+                                                left: '20px',
+                                                bottom: '48vh'
+                                            });
+                                        } else {}
+                                    }
+                                    else
+                                    {
+                                        carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
+                                        var tBtn = carecartSpinnerJquery('body').find('#spin-trigger-cc');
+                                        tBtn.hide();
+                                        //console.log('SAS spinner trigger button should display');
+                                    }
+                                    var storeBgColor = response.records.store_settings.spinner_bg_color;
+                                    carecartSpinnerJquery('#spin_a_sale_cc_store_front_module').css('background-color', storeBgColor);
+                                    carecartSpinnerJquery('#spin-trigger-cc span').css('background-color', storeBgColor);
+                                    carecartSpinnerJquery('#spin-trigger-cc img').css('background', storeBgColor);
+                                    carecartSpinnerJquery('.content-spinner').css('background-color', storeBgColor);
+                                    carecartSpinnerJquery('.content-spinner').css('background-size', 'cover');
+                                    carecartSpinnerJquery('.content-spinner').css('background-repeat', 'no-repeat');
+                                    carecartSpinnerJquery('.content-spinner').css('background-position', 'center');
+                                    var closeCrossColor = response.records.store_settings.spinner_close_cross_color;
+                                    carecartSpinnerJquery('#spin_a_sale_cc_store_front_module_close_button').find('i.fa-times').css('color', closeCrossColor);
+//************************************ Change Spinner Color if NOT default of Spinner i-e #FF0000 ****************************************
+                                    var spinnerPegColor = response.records.store_settings.spinner_peg_color;
+                                    if (response.records.store_settings.spinner_peg_color && spinnerPegColor != "" && spinnerPegColor != null && spinnerPegColor != "#FF0000"){
+                                        carecartSpinnerJquery('.peg').css('fill', spinnerPegColor);
+                                    }
+//************************************ Change Try Your Luck Background Color if NOT default i-e #FFFFFF ****************************************
+                                    var tryYourLuckBgColor = response.records.store_settings.try_luck_bg_color;
+                                    if (response.records.store_settings.try_luck_bg_color && tryYourLuckBgColor != "" && tryYourLuckBgColor != null && tryYourLuckBgColor != "#FFFFFF"){
+                                        carecartSpinnerJquery('.btn-submit-form').css('background-color', tryYourLuckBgColor);
+                                    }
+//************************************ Change Try Your Luck Text Color if NOT default i-e #384F66 ****************************************
+                                    var tryYourLuckTextColor = response.records.store_settings.try_luck_text_color;
+                                    if (response.records.store_settings.try_luck_text_color && tryYourLuckTextColor != "" && tryYourLuckTextColor != null && tryYourLuckTextColor != "#384F66"){
+                                        carecartSpinnerJquery('.btn-submit-form').css('color', tryYourLuckTextColor);
+                                    }
+                                    /* ************************************** Display Background Image - Start *********************************************************** */
+                                    if (response.records.store_settings.spinner_bg_image && response.records.store_settings.spinner_bg_image != "" && response.records.store_settings.spinner_bg_image != null){
+                                        //var themeBgImageURL = API_URL + 'public/assets/themes/' + response.records.store_settings.spinner_bg_image;
+                                        // Check For desktop/Mobile
+                                        var spinnerBgImage = '';
+                                        (function (a) {
+                                            (carecartSpinnerJquery.browser = carecartSpinnerJquery.browser || {}).mobile = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))
+                                        })(navigator.userAgent || navigator.vendor || window.opera);
+
+                                        if (carecartSpinnerJquery.browser.mobile) {
+                                            spinnerBgImage = response.records.store_settings.spinner_bg_mobile_image;
+                                        } else {
+                                            spinnerBgImage = response.records.store_settings.spinner_bg_image;
+                                        }
+                                        //console.log('spinnerBgImage: ' + spinnerBgImage);
+                                        var themeBgImageURL = API_URL + 'public/assets/themes/' + spinnerBgImage;
+                                        //carecartSpinnerJquery('.content-spinner').css('background-image', 'url(' + API_URL + 'public/assets/themes/' + response.records.store_settings.spinner_bg_image + ')');
+                                        carecartSpinnerJquery('.content-spinner').css('background-image', 'url(' + themeBgImageURL + ')');
+                                        //console.log("SAS background_image_url is set: " + themeBgImageURL);
+                                    }
+                                    /* ************************************** Display Background Image - End *********************************************************** */
+                                    /* ************************************** Display Spinner if percentage scroll is enabled  - START *********************************************************** */
+                                    if (response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled && parseInt(response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled) == 1){
+                                        //console.log("SAS is_scroll_spinner_percentage_enabled is ENABLED");
+                                        var scrollPercentageRequired = response.records.store_settings.settings_data.scroll_spinner_percentage ? response.records.store_settings.settings_data.scroll_spinner_percentage : 50;
+                                        //console.log('SAS scrollPercentageRequired: ' + scrollPercentageRequired);
+                                        console.log("SAS Scroll Spinner Percentage is ENABLED & Percentage Set is: " + scrollPercentageRequired);
+                                        //**************** Testing Scroll Page Percentage ****************************
+                                        var timeInMinScroll = 60 * 60 * 1000;
+                                        if(window.localStorage.getItem('scrollScreenDisplaySpinnerExpire') === null)
+                                        {
+                                            //console.log("SAS scrollScreenDisplaySpinnerExpire is NULL");
+                                            console.log("SAS Scroll Screen NOT yet done to load Spinner");
+                                            carecartSpinnerJquery(window).on('scroll', function(){
+                                                var s = carecartSpinnerJquery(window).scrollTop(),
+                                                    d = carecartSpinnerJquery(document).height(),
+                                                    c = carecartSpinnerJquery(window).height();
+
+                                                var scrolledPercentage = (s / (d - c)) * 100;
+
+                                                //console.clear();
+                                                //console.log('SAS scrolled percentage: ' + scrolledPercentage);
+                                                if(scrolledPercentage >= scrollPercentageRequired)
+                                                {
+                                                    if(window.localStorage.getItem('scrollScreenDisplaySpinnerExpire') === null)
+                                                    {
+                                                        window.localStorage.setItem('scrollScreenDisplaySpinnerExpire', 1);
+                                                        console.log("SAS scrollScreenDisplaySpinnerExpire is NOW SET");
+                                                        console.log("SAS scrolledPercentage is: " +  scrolledPercentage + " >= scrollPercentageRequired: " + scrollPercentageRequired + " & Spiller Load is Due");
+                                                        carecartSpinnerJquery("#spin-trigger-cc").click();
+
+                                                        setTimeout(function () {
+                                                            //console.log("SAS Time Set to 60 min");
+                                                            window.localStorage.setItem('scrollScreenDisplaySpinnerExpire', null);
+                                                        }, timeInMinScroll);
+
+                                                        //console.log("SAS timeInMinScroll for reset: " + timeInMinScroll);
+                                                    }
+                                                }
+                                            });
+                                        }
+                                        else
+                                        {
+                                            //console.log("SAS scrollScreenDisplaySpinnerExpire is NOT NULL");
+                                            console.log("SAS Scroll Screen has already loaded Spinner once");
+                                        }
+                                    }
+                                    /* ************************************** Display Spinner if percentage scroll is enabled  - END *********************************************************** */
+                                    setTimeout(function () {
+                                        var spinnerColors = response.records.store_slices_color;
+                                        if(spinnerColors.every(element => element === null))
+                                        {
+                                            spinnerColors = ["#000000", "#F1C40F", "#E67E22", "#E74C3C", "#95A5A6", "#16A085", "#27AE60", "#2980B9", "#8E44AD", "#2C3E50"];
+                                        }
+                                        var ccWheelStrokeColor = response.records.store_settings.wheel_stroke_color;
+                                        var ccCenterCircleStrokeColor = response.records.store_settings.center_circle_stroke_color;
+                                        var ccCenterCircleFillColor = response.records.store_settings.center_circle_fill_color;
+
+                                        if(ccWheelStrokeColor === null){
+                                            ccWheelStrokeColor = "#D0BD0C";
+                                        }
+                                        if(ccCenterCircleStrokeColor === null){
+                                            ccCenterCircleStrokeColor = "#F1DC15";
+                                        }
+                                        if(ccCenterCircleFillColor === null){
+                                            ccCenterCircleFillColor = "#EDEDED";
+                                        }
+                                        dataSpin = {
+                                            //colorArray: ["#364C62", "#F1C40F", "#E67E22", "#E74C3C", "#95A5A6", "#16A085", "#27AE60", "#2980B9", "#8E44AD", "#2C3E50", "#F39C12", "#D35400", "#C0392B", "#1ABC9C", "#2ECC71", "#E87AC2", "#3498DB", "#9B59B6", "#7F8C8D"],
+                                            //colorArray: ["#000000", "#F1C40F", "#E67E22", "#E74C3C", "#95A5A6", "#16A085", "#27AE60", "#2980B9", "#8E44AD", "#2C3E50"],
+                                            //colorArray: response.records.store_slices_color,
+                                            colorArray: spinnerColors,
+                                            segmentValuesArray: response.records.store_slices,
+                                            svgWidth: 1024,
+                                            svgHeight: 768,
+                                            //wheelStrokeColor: "#D0BD0C",
+                                            wheelStrokeColor: ccWheelStrokeColor,
+                                            wheelStrokeWidth: 20,
+                                            wheelSize: 1024,
+                                            wheelTextOffsetY: 60,
+                                            wheelTextColor: "#FFFFFF",
+                                            wheelTextSize: "30px",
+                                            wheelImageOffsetY: 100,
+                                            wheelImageSize: 200,
+                                            centerCircleSize: 220,
+                                            //centerCircleStrokeColor: "#F1DC15",
+                                            centerCircleStrokeColor: ccCenterCircleStrokeColor,
+                                            centerCircleStrokeWidth: 12,
+                                            //centerCircleFillColor: "#EDEDED",
+                                            centerCircleFillColor: ccCenterCircleFillColor,
+                                            segmentStrokeColor: "#E2E2E2",
+                                            segmentStrokeWidth: 3,
+                                            centerX: 512,
+                                            centerY: 384,
+                                            hasShadows: !0,
+                                            numSpins: 1,
+                                            spinDestinationArray: [],
+                                            minSpinDuration: 6,
+                                            gameOverText: "",
+                                            invalidSpinText: "INVALID SPIN. PLEASE SPIN AGAIN.",
+                                            introText: "",
+                                            hasSound: !1,
+                                            gameId: "9a0232ec06bc431114e2a7f3aea03bbe2164f1aa",
+                                            clickToSpin: !0
+                                        };
+                                        carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").show(1000);
+                                        var tb = document.querySelector(".btn-submit-form-ok");
+                                        (new Spin2WinWheel).init({
+                                            data: dataSpin,
+                                            onGameEnd: myGameEndTest,
+                                            spinTrigger: tb
+                                        })
+
+                                        function i() {
+                                            var i = carecartSpinnerJquery(window).width();
+                                            i < 680 && (t.css({
+                                                width: "100%",
+                                                padding: 0
+                                            }), v.css({
+                                                width: "100%",
+                                                padding: 0
+                                            }), e.css({
+                                                width: "100%",
+                                                position: "fixed",
+                                                bottom: "-30%",
+                                                left: 0,
+                                                right: 0,
+                                                transform: "translate(-51%)"
+                                            }), n.css({
+                                                width: "100%",
+                                                transform: "translateX(0)"
+                                            }), a.css({
+                                                maxWidth: "370"
+                                            })), i < 400 && e.css({
+                                                bottom: "-23%"
+                                            }), i >= 680 && t.css({
+                                                paddingTop: (carecartSpinnerJquery(window).height() - t.height()) / 2
+                                            })
+                                        }
+
+                                        var t = carecartSpinnerJquery(".signupContainer"),
+                                            v = carecartSpinnerJquery(".winContainer"),
+                                            e = carecartSpinnerJquery(".wheelContainer"),
+                                            n = carecartSpinnerJquery(".wheelSVG"),
+                                            a = carecartSpinnerJquery(".form-group input"),
+                                            o = carecartSpinnerJquery(".btn-submit-form"),
+                                            s = carecartSpinnerJquery('#cc-spinner-full-name'),
+                                            d = carecartSpinnerJquery('#cc-spinner-email'),
+                                            u = carecartSpinnerJquery("input[name='coupon']");
+                                        carecartSpinnerJquery(".copy-button").click(function () {
+                                            var copiedTextVal = carecartSpinnerJquery("#copied_text_only").text();
+                                            clipboard.writeText(u.val()), carecartSpinnerJquery(this).html('<i class="fa fa-clone" aria-hidden="true"></i> ' + copiedTextVal)
+
+                                        }), i(), carecartSpinnerJquery(window).resize(function () {
+                                            i()
+                                        }), o.click(function (i) {
+                                            i.preventDefault();
+                                            var checkboxIsMandatory = 0;
+                                            if(carecartSpinnerJquery('#cc-spin-a-sale-consent-checkbox').prop('required'))
+                                            {
+                                                checkboxIsMandatory = 1;
+                                                //console.log("SAS Checkbox is Mandatory");
+                                            }
+                                            else {
+                                                //console.log("SAS Checkbox is NOT Mandatory");
+                                            }
+                                            var t = s.val(),
+                                                e = d.val(),
+                                                x = 1,
+                                                n = carecartSpinnerJquery(".textInfo"),
+                                                a = carecartSpinnerJquery(".btn-submit-form"),
+                                                o = carecartSpinnerJquery(".btn-submit-form-ok");
+                                            s = carecartSpinnerJquery("#cc-spinner-full-name");
+                                            w = carecartSpinnerJquery("#cc-spin-a-sale-consent-checkbox");
+                                            d = carecartSpinnerJquery('#cc-spinner-email'),
+                                                n.text("");
+
+                                            if(checkboxIsMandatory == 1)
+                                            {
+                                                if(w.prop("checked") == true)
+                                                {
+                                                    //console.log("SAS Checkbox is Mandatory & Checkbox Checked");
+                                                }
+                                                else
+                                                {
+                                                    x = "";
+                                                    //console.log("SAS Checkbox is Mandatory & Checkbox is NOT Checked");
+                                                }
+                                                //console.log("SAS value of x : " + x);
+                                            }
+                                            else
+                                            {
+                                                //console.log("SAS x value should be 0 as NOT needed: " + x);
+                                            }
+                                            return "" == t ? (s.addClass("animated shake"), void setTimeout(function () {
+                                                s.removeClass("animated shake")
+                                            }, 1e3)) : "" == e ? (d.addClass("animated shake"), void setTimeout(function () {
+                                                d.removeClass("animated shake")
+                                            }, 1e3)) : isValidEmailAddress(e) ? (d.addClass("animated shake"), void setTimeout(function () {
+                                                d.removeClass("animated shake")
+                                            }, 1e3)) : "" == x ? (w.addClass("animated shake"), void setTimeout(function () {
+                                                w.removeClass("animated shake")
+                                            }, 1e3)) : o.click();
+                                            /*
+                                                                                        return "" == t ? (n.text("You should provide your fullname!"), n.addClass("animated shake"), void setTimeout(function () {
+                                                                                            n.removeClass("animated shake")
+                                                                                        }, 1e3)) : "" == e ? (n.text("You should provide your email"), n.addClass("animated shake"), void setTimeout(function () {
+                                                                                            n.removeClass("animated shake")
+                                                                                        }, 1e3)) : isValidEmailAddress(e) ? (n.text("You email is not valid format"), n.addClass("animated shake"), void setTimeout(function () {
+                                                                                            n.removeClass("animated shake")
+                                                                                        }, 1e3)) : o.click();
+                                            */
+                                        })
+
+                                        carecartSpinnerJquery("#test-spin-loader-dev").remove();
+
+                                    }, 2000);
+                                }
+
+
+                            } else {
+                                console.log('SAS ' + response._metadata.message);
+                                carecartSpinnerJquery("#test-spin-loader-dev").remove();
+                            }
+                        },
+                        error: function (error) {
+                            console.log('SAS Error in Spin A Sale requestTest');
+                            carecartSpinnerJquery("#test-spin-loader-dev").remove();
+                            console.log('SAS Error: ' + error);
+                        }
+                    });
+
+
+                }
+
+//***************** Start - Countdown Timer function min & sec ********************
+                function getTimeRemaining(endtime) {
+                    //console.log('Date.parse(endtime): ' + Date.parse(endtime));
+                    //console.log('Date.parse(new Date(): ' + Date.parse(new Date()));
+                    var t = Date.parse(endtime) - Date.parse(new Date());
+                    var minutes = Math.floor((t / 1000 / 60) % 60);
+                    var seconds = Math.floor((t / 1000) % 60);
+                    //console.log('t: ' + t);
+                    //console.log('minutes: ' + minutes);
+                    //console.log('seconds: ' + seconds);
+                    return {
+                        'total': t,
+                        'minutes': minutes,
+                        'seconds': seconds
+                    };
+                }
+
+                function initializeClockSpinAWheel(id, endtime=5) {
+                    //console.log('initializeClockSpinAWheel id: ' + id);
+                    //console.log('initializeClockSpinAWheel endtime: ' + endtime);
+                    //var clock = document.getElementById(id);
+                    //console.log('clock: ' + clock);
+
+                    var ccSpinASaleClock = document.getElementById(id);
+                    //console.log('ccSpinASaleClock: ' + ccSpinASaleClock);
+
+                    var ccSpinASaleMinutesSpan = ccSpinASaleClock.querySelector('.cc-spin-a-sale-minutes');
+                    //var minutesSpan = carecartSpinnerJquery('.cc-spin-a-sale-minutes');
+                    var ccSpinASaleSecondsSpan = ccSpinASaleClock.querySelector('.cc-spin-a-sale-seconds');
+                    //var secondsSpan = carecartSpinnerJquery('.cc-spin-a-sale-seconds');
+
+                    function updateClockSpinAWheel() {
+                        //console.log('inside updateClockSpinAWheel');
+                        var ccSpinASaleTimeRemaining = getTimeRemaining(endtime);
+                        //var ccSpinASalePreviewValue = window.localStorage.getItem('cc-sas-spinner-timer-bar-set-html');
+                        var ccSpinASalePreviewValue = '';
+
+                        ccSpinASaleMinutesSpan.innerHTML = ('0' + ccSpinASaleTimeRemaining.minutes).slice(-2);
+                        ccSpinASaleSecondsSpan.innerHTML = ('0' + ccSpinASaleTimeRemaining.seconds).slice(-2);
+                        //carecartSpinnerJquery('.cc-spin-a-sale-minutes').html(('0' + ccSpinASaleTimeRemaining.minutes).slice(-2));
+                        //carecartSpinnerJquery('.cc-spin-a-sale-seconds').html(('0' + ccSpinASaleTimeRemaining.seconds).slice(-2));
+
+                        //console.log('SAS Min: ' + ('0' + ccSpinASaleTimeRemaining.minutes).slice(-2));
+                        //console.log('SAS Sec: ' + ('0' + ccSpinASaleTimeRemaining.seconds).slice(-2));
+                        ccSpinASalePreviewValue = carecartSpinnerJquery('#cc-spin-a-sale-clock-div-preview').html();
+                        window.localStorage.setItem('cc-sas-spinner-timer-bar-set-html', ccSpinASalePreviewValue);
+                        ccSpinASalePreviewValue = window.localStorage.getItem('cc-sas-spinner-timer-bar-set-html');
+                        //console.log('ccSpinASalePreviewValue: ' + ccSpinASalePreviewValue);
+
+                        if (ccSpinASaleTimeRemaining.total <= 0) {
+                            console.log('SAS Urgency Bar will now close as count down timer is now complete');
+                            clearInterval(timeintervalSpinAWheel);
+                            carecartSpinnerJquery('#couponwheel_notice_content').hide();
+                            window.localStorage.setItem('cc-sas-spinner-hide-timer-bar', 1);
+                        }
+                    }
+
+                    updateClockSpinAWheel();
+                    var timeintervalSpinAWheel = setInterval(updateClockSpinAWheel, 1000);
+                }
+//***************** End - Countdown Timer function min & sec ********************
+//***************************** Store Specific Styling ***********************************************************
+//***************************** Fix Text Positioning of Store in Spinner Pop-up **********************************
+                if(Shopify.shop == 'portland-pickles-baseball.myshopify.com')
+                {
+                    carecartSpinnerJquery('head').append('<style type="text/css">#spin_a_sale_cc_store_front_module .signupContainer,#spin_a_sale_cc_store_front_module .winContainer, #spin_a_sale_cc_store_front_module .loseContainer{width: 55%;}</style>');
+                }
+                if(Shopify.shop == 'the-party-champions.myshopify.com')
+                {
+                    carecartSpinnerJquery('head').append('<style type="text/css">.signupContainer ::-webkit-input-placeholder { /* Chrome/Opera/Safari */ color: #aaaaaa;}</style>');
+                    //console.log("SAS https://partychampions.com/");
+                }
+                if(Shopify.shop == 'blackhawksurvival.myshopify.com')
+                {
+                    carecartSpinnerJquery('head').append('<style type="text/css">#spin_a_sale_cc_store_front_module .checkbox {padding: 5px 100px 15px 1px;text-align: left;text-indent: 5px;line-height: 1;background: transparent;border: none;width: 100%;height: auto;box-shadow: none;margin: 0 !important;}</style>');
+                    //console.log("SAS blackhawksurvival.myshopify.com");
+                }
+                if(Shopify.shop == 'beauty-box-by-tori-spelling.myshopify.com')
+                {
+                    carecartSpinnerJquery('head').append('<style type="text/css">#spin_a_sale_cc_store_front_module .signupContainer,#spin_a_sale_cc_store_front_module .winContainer, #spin_a_sale_cc_store_front_module .loseContainer{width: 52%; float: right; padding: 0 3%;}</style>');
+                }
+                if(Shopify.shop == 'petculiari.myshopify.com')
+                {
+                    carecartSpinnerJquery('head').append('<style type="text/css">#spin_a_sale_cc_store_front_module .signupContainer p { color: #000;} #spin_a_sale_cc_store_front_module p.text-description {color: #000;}span#cc-spin-a-sale-consent-text {color: #000 !important;}div#cc-spin-a-sale-powered-by-carecart { color: #000000;} #spin-trigger-cc img, #spin-trigger-cc span { color: #000 !important;}#spin_a_sale_cc_store_front_module .form-group input {border: 1px solid #000;}#spin_a_sale_cc_store_front_module .btn-submit-form, #spin_a_sale_cc_store_front_module .btn-submit-form-ok, #spin_a_sale_cc_store_front_module .copy-button {border: 1px solid #000;}#spin_a_sale_cc_store_front_module .closeButton i {font-size: 20px;color: #000;}#spin_a_sale_cc_store_front_module .text-heading {color: #000;}</style>');
+                }
+                if(Shopify.shop == 'store-e11even.myshopify.com'){
+                    carecartSpinnerJquery('head').append('<style type="text/css">@media only screen and (max-width: 568px) {#spin_a_sale_cc_store_front_module .signupContainer p{text-align: center;padding: 0px 30px;}#spin_a_sale_cc_store_front_module .content-spinner {padding: 38px 10px;}.signupContainer .checkbox label {display: flex;}.signupContainer .checkbox input {margin-right: 8px;}.signupContainer .btn-submit-form{margin-top: 22px;}#spin_a_sale_cc_store_front_module .checkbox {padding: 5px 30px 15px 1px;}}</style>');
+                }
+                if(Shopify.shop == 'greenrepublicau.myshopify.com'){
+                    carecartSpinnerJquery('head').append('<style type="text/css">#spin-trigger-cc, #spin-trigger-cc:active, #spin-trigger-cc:focus, #spin-trigger-cc:hover, #spin-trigger-cc:visited {bottom: 98px;}</style>');
+                }
+                if(Shopify.shop == 'rana-phulkari.myshopify.com'){
+                    carecartSpinnerJquery('head').append('<style type="text/css">.signupContainer .checkbox input {display: inline;vertical-align: baseline;margin-right: 6px;}</style>');
+                }
+                if(Shopify.shop == 'tinyfied.myshopify.com'){
+                    carecartSpinnerJquery('head').append('<style type="text/css">#spin-trigger-cc span {z-index: -1;}</style>');
+                }
+//************************ Make Placeholders black for store whose placeholders are showing white ********************************
+                if(Shopify.shop == 'sky-fit-store.myshopify.com' || Shopify.shop == 'loja-obtura.myshopify.com'){
+                    carecartSpinnerJquery('head').append('<style type="text/css">.form-group input::placeholder { color: black !important; }</style>');
+                }
+            });
+
+        }, 1000);
+    });
+})();
