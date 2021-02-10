@@ -1,6 +1,6 @@
 //******* @author: CareCart Wheelify *******************************************
-//****** Store Frontend JS - js-script.js GH v.1.0.0 - Build ver 1.0.0 *******
-//****** Updated at: 19-Nov-2020, 02:56 PM  **********************************
+//****** Store Frontend JS - js-script.js GH v.1.0.1 - Build ver 1.0.1 *******
+//****** Updated at: 10-Feb-2020, 12:43 PM  **********************************
 
 (function () {
     var d = new Date();
@@ -11,6 +11,8 @@
     //var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
     var CDN_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app_assets@1.5.7/';
+	
+    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.1';
 
     var dataSpin = false;
 
@@ -45,7 +47,8 @@
     }
 
     //cssFileInjection(API_URL +"public/app/css/front-store-spinner.css?v=" + new Date().toLocaleTimeString());
-    cssFileInjection(API_URL +"public/app/css/front-store-spinner.css?v=time()");
+    //cssFileInjection(API_URL +"public/app/css/front-store-spinner.css?v=time()");
+    cssFileInjection(CDN_WHEELIFY_URL +"front-store-spinner-min.css");
 
     scriptInjection("https://code.jquery.com/jquery-3.2.1.min.js", function () {
 
