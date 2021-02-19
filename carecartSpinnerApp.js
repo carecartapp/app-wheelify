@@ -163,7 +163,7 @@
                         Nt = function () {
                             var t = document.createElementNS(U, "g"),
                                 e = document.createElementNS(U, "image");
-                            t.appendChild(e), e.setAttribute("class", "wheelLogo"), e.setAttributeNS(null, "x", C - 60), e.setAttributeNS(null, "y", E - 60), e.setAttributeNS(Y, "xlink:href", "https://sw.secomapp.com/img/app_icon.png"), e.setAttributeNS(null, "width", 120), e.setAttributeNS(null, "height", 120), et.appendChild(t);
+                            t.appendChild(e), e.setAttribute("class", "wheelLogo"), e.setAttributeNS(null, "x", C - 60), e.setAttributeNS(null, "y", E - 60), e.setAttributeNS(Y, "xlink:href", API_URL +"public/assets/img/cc_spinner_app_icon.png"), e.setAttributeNS(null, "width", 120), e.setAttributeNS(null, "height", 120), et.appendChild(t);
                             for (var n = 0; n < x; n++) {
                                 var r = document.createElementNS(U, "g");
                                 if ("image" == y[n].type) {
@@ -1962,6 +1962,10 @@
                 if(Shopify.shop == 'sky-fit-store.myshopify.com' || Shopify.shop == 'loja-obtura.myshopify.com'){
                     carecartSpinnerJquery('head').append('<style type="text/css">.form-group input::placeholder { color: black !important; }</style>');
                 }
+//*********************** Move spinner 25px above from bottom (current 30px) ***************************************************
+		if(Shopify.shop == 'dev-messenger-15.myshopify.com'){
+			carecartSpinnerJquery('head').append('<style type="text/css">#spin-trigger-cc { bottom:55px !important;}</style>');
+		}		    
             });
 
         }, 1000);
