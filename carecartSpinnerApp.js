@@ -648,7 +648,7 @@
                         /*
                                                 void $.ajax({
                                                 type: "POST",
-                                                url: "https://sw.secomapp.com/api/subscribe/12/12",
+						url: "subscription_api_url",
                                                 data: {
                                                     fullname: t,
                                                     email: e
