@@ -1,6 +1,6 @@
 //******* @author: CareCart Wheelify *******************************************
 //****** Store Frontend JS - js-script.js GH v.1.0.5 - Build ver 1.0.5 *******
-//****** Updated at: 24-Feb-2021, 12:09 PM  **********************************
+//****** Updated at: 24-Feb-2021, 12:35 PM  **********************************
 
 (function () {
     var d = new Date();
