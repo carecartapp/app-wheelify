@@ -1959,7 +1959,7 @@
                     carecartSpinnerJquery('head').append('<style type="text/css">#spin-trigger-cc span {z-index: -1;}</style>');
                 }
 //************************ Make Placeholders black for store whose placeholders are showing white ********************************
-                if(Shopify.shop == 'sky-fit-store.myshopify.com' || Shopify.shop == 'loja-obtura.myshopify.com'){
+                if(Shopify.shop == 'sky-fit-store.myshopify.com' || Shopify.shop == 'loja-obtura.myshopify.com' || Shopify.shop == 'courtsidecases.myshopify.com'){
                     carecartSpinnerJquery('head').append('<style type="text/css">.form-group input::placeholder { color: black !important; }</style>');
                 }
 //*********************** Move spinner 25px above from bottom (current 30px) ***************************************************
