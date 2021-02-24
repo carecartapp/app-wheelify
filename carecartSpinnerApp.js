@@ -1963,7 +1963,7 @@
                     carecartSpinnerJquery('head').append('<style type="text/css">.form-group input::placeholder { color: black !important; }</style>');
                 }
 //*********************** Move spinner 25px above from bottom (current 30px) ***************************************************
-		if(Shopify.shop == 'dev-messenger-15.myshopify.com'){
+		if(Shopify.shop == 'kingsonsbags.myshopify.com'){
 			carecartSpinnerJquery('head').append('<style type="text/css">#spin-trigger-cc { bottom:55px !important;}</style>');
 		}		    
             });
