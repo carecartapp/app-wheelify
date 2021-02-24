@@ -949,6 +949,18 @@
                                 }
                             }
 
+//****************************** If SAS is enabled on Home Page, Collections, Blog post pages, Products, Cart & on Thank You Page, it will NOT be loaded on any other page **********************************
+			    if(response.records.store_settings.settings_data.display_all_other_pages_enabled && parseInt(response.records.store_settings.settings_data.display_all_other_pages_enabled) == 0)
+			    {
+				var thisStatus = checkIfAnyOtherPage();
+				//console.log('checkIfAnyOtherPage Status: ' + thisStatus);
+				if(!thisStatus)
+				{
+					console.log('SAS is disabled on all other pages');
+					return;
+				}
+			    }
+				
                             var w = carecartSpinnerJquery(window).width();
                             const is_enabled_on_mobile = (typeof response.records.store_settings.settings_data.is_mobile_enabled === 'undefined') ? 1 : parseInt(response.records.store_settings.settings_data.is_mobile_enabled);
                             if(w < 600 && is_enabled_on_mobile === 0) {
@@ -1425,7 +1437,7 @@
 
                 function checkProductCcSpinASale() {
                     //console.log('inside checkProductCcSpinASale');
-                    var is_page = !!window.location.pathname.match("(.*)/products/(.*)");
+                    var is_page = !(!window.location.pathname.match("(.*)/products/(.*)"));
                     return is_page;
                 }
 
@@ -1437,11 +1449,47 @@
 
                 function checkThanksYouCcSpinASale() {
                     //console.log('inside checkThanksYouCcSpinASale');
-                    var is_page = !(!window.location.pathname.match("(.*)/orders/(.*)") && !window.location.pathname.match("(.*)/orders") || window.location.pathname.match("(.*)/checkouts/(.*)") || window.location.pathname.match("(.*)/thank_you"));
-                    //console.log(is_page);
-                    return is_page;
+		    var is_page = !(!window.location.pathname.match("(.*)/orders/(.*)") && !window.location.pathname.match("(.*)/orders") || window.location.pathname.match("(.*)/checkouts/(.*)") || window.location.pathname.match("(.*)/thank_you"));
+		    //console.log(is_page);
+		    return is_page;
                 }
 
+		function checkIfAnyOtherPage(){
+			//console.log('inside checkIfAnyOtherPage');
+			if(checkHomePageCcSpinASale())
+			{
+				//console.log('SAS valid homepage');
+				return true;	
+			}
+			if(checkCollectionsCcSpinASale())
+			{
+				//console.log('SAS valid collections page');
+				return true;
+			}
+			if(checkBlogPageCcSpinASale())
+			{
+				//console.log('SAS valid blog page');
+				return true;
+			}
+			if(checkProductCcSpinASale())
+			{
+				//console.log('SAS valid products page');
+				return true;
+			}
+			if(checkCartCcSpinASale())
+			{
+				//console.log('SAS valid cart page');
+				return true;
+			}
+			if(checkThanksYouCcSpinASale())
+			{
+				//console.log('SAS valid thank you page');
+				return true;
+			}
+
+			return false;
+		}
+		    
                 if (!getParameterByName('cc-show-spin-a-sale-test')) {
 
                     if(Shopify.shop == 'the-happy-scalp.myshopify.com')
