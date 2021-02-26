@@ -1,6 +1,6 @@
 //******* @author: CareCart Wheelify *******************************************
 //****** Store Frontend JS - js-script.js GH v.1.0.6 - Build ver 1.0.6 *******
-//****** Updated at: 24-Feb-2021, 03:46 PM  **********************************
+//****** Updated at: 26-Feb-2021, 06:34 PM  **********************************
 
 (function () {
     var d = new Date();
@@ -11,7 +11,7 @@
     //var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
     var CDN_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app_assets@1.5.7/';
-	
+
     var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.6/';
 
     var dataSpin = false;
@@ -55,7 +55,7 @@
         window.carecartSpinnerJquery = jQuery.noConflict(true);
         setTimeout(function () {
             //scriptInjection(CDN_URL + "spinner.js?v=1.5.7", function () {
-	    scriptInjection(CDN_WHEELIFY_URL + "spinner.min.js", function () {
+            scriptInjection(CDN_WHEELIFY_URL + "spinner.min.js", function () {
 
 
                 function Spin2WinWheel() {
@@ -950,17 +950,17 @@
                             }
 
 //****************************** If SAS is enabled on Home Page, Collections, Blog post pages, Products, Cart & on Thank You Page, it will NOT be loaded on any other page **********************************
-			    if(response.records.store_settings.settings_data.display_all_other_pages_enabled && parseInt(response.records.store_settings.settings_data.display_all_other_pages_enabled) == 0)
-			    {
-				var thisStatus = checkIfAnyOtherPage();
-				//console.log('checkIfAnyOtherPage Status: ' + thisStatus);
-				if(!thisStatus)
-				{
-					console.log('SAS is disabled on all other pages');
-					return;
-				}
-			    }
-				
+                            if(response.records.store_settings.settings_data.display_all_other_pages_enabled && parseInt(response.records.store_settings.settings_data.display_all_other_pages_enabled) == 0)
+                            {
+                                var thisStatus = checkIfAnyOtherPage();
+                                //console.log('checkIfAnyOtherPage Status: ' + thisStatus);
+                                if(!thisStatus)
+                                {
+                                    console.log('SAS is disabled on all other pages');
+                                    return;
+                                }
+                            }
+
                             var w = carecartSpinnerJquery(window).width();
                             const is_enabled_on_mobile = (typeof response.records.store_settings.settings_data.is_mobile_enabled === 'undefined') ? 1 : parseInt(response.records.store_settings.settings_data.is_mobile_enabled);
                             if(w < 600 && is_enabled_on_mobile === 0) {
@@ -1278,7 +1278,6 @@
                             }
                             /* ************************************** Display Background Image - Start *********************************************************** */
                             if (response.records.store_settings.spinner_bg_image && response.records.store_settings.spinner_bg_image != "" && response.records.store_settings.spinner_bg_image != null){
-                                //var themeBgImageURL = API_URL + 'public/assets/themes/' + response.records.store_settings.spinner_bg_image;
                                 // Check For desktop/Mobile
                                 var spinnerBgImage = '';
                                 (function (a) {
@@ -1291,10 +1290,8 @@
                                     spinnerBgImage = response.records.store_settings.spinner_bg_image;
                                 }
                                 //console.log('spinnerBgImage: ' + spinnerBgImage);
-                                var themeBgImageURL = API_URL + 'public/assets/themes/' + spinnerBgImage;
-                                //carecartSpinnerJquery('.content-spinner').css('background-image', 'url(' + API_URL + 'public/assets/themes/' + response.records.store_settings.spinner_bg_image + ')');
+                                var themeBgImageURL = CDN_WHEELIFY_URL + spinnerBgImage;
                                 carecartSpinnerJquery('.content-spinner').css('background-image', 'url(' + themeBgImageURL + ')');
-                                //console.log("SAS background_image_url is set: " + themeBgImageURL);
                             }
                             /* ************************************** Display Background Image - End *********************************************************** */
                             if(Shopify.shop == 'srnsmart.myshopify.com'){
@@ -1449,47 +1446,47 @@
 
                 function checkThanksYouCcSpinASale() {
                     //console.log('inside checkThanksYouCcSpinASale');
-		    var is_page = !(!window.location.pathname.match("(.*)/orders/(.*)") && !window.location.pathname.match("(.*)/orders") || window.location.pathname.match("(.*)/checkouts/(.*)") || window.location.pathname.match("(.*)/thank_you"));
-		    //console.log(is_page);
-		    return is_page;
+                    var is_page = !(!window.location.pathname.match("(.*)/orders/(.*)") && !window.location.pathname.match("(.*)/orders") || window.location.pathname.match("(.*)/checkouts/(.*)") || window.location.pathname.match("(.*)/thank_you"));
+                    //console.log(is_page);
+                    return is_page;
                 }
 
-		function checkIfAnyOtherPage(){
-			//console.log('inside checkIfAnyOtherPage');
-			if(checkHomePageCcSpinASale())
-			{
-				//console.log('SAS valid homepage');
-				return true;	
-			}
-			if(checkCollectionsCcSpinASale())
-			{
-				//console.log('SAS valid collections page');
-				return true;
-			}
-			if(checkBlogPageCcSpinASale())
-			{
-				//console.log('SAS valid blog page');
-				return true;
-			}
-			if(checkProductCcSpinASale())
-			{
-				//console.log('SAS valid products page');
-				return true;
-			}
-			if(checkCartCcSpinASale())
-			{
-				//console.log('SAS valid cart page');
-				return true;
-			}
-			if(checkThanksYouCcSpinASale())
-			{
-				//console.log('SAS valid thank you page');
-				return true;
-			}
+                function checkIfAnyOtherPage(){
+                    //console.log('inside checkIfAnyOtherPage');
+                    if(checkHomePageCcSpinASale())
+                    {
+                        //console.log('SAS valid homepage');
+                        return true;
+                    }
+                    if(checkCollectionsCcSpinASale())
+                    {
+                        //console.log('SAS valid collections page');
+                        return true;
+                    }
+                    if(checkBlogPageCcSpinASale())
+                    {
+                        //console.log('SAS valid blog page');
+                        return true;
+                    }
+                    if(checkProductCcSpinASale())
+                    {
+                        //console.log('SAS valid products page');
+                        return true;
+                    }
+                    if(checkCartCcSpinASale())
+                    {
+                        //console.log('SAS valid cart page');
+                        return true;
+                    }
+                    if(checkThanksYouCcSpinASale())
+                    {
+                        //console.log('SAS valid thank you page');
+                        return true;
+                    }
 
-			return false;
-		}
-		    
+                    return false;
+                }
+
                 if (!getParameterByName('cc-show-spin-a-sale-test')) {
 
                     if(Shopify.shop == 'the-happy-scalp.myshopify.com')
@@ -1656,7 +1653,6 @@
                                     }
                                     /* ************************************** Display Background Image - Start *********************************************************** */
                                     if (response.records.store_settings.spinner_bg_image && response.records.store_settings.spinner_bg_image != "" && response.records.store_settings.spinner_bg_image != null){
-                                        //var themeBgImageURL = API_URL + 'public/assets/themes/' + response.records.store_settings.spinner_bg_image;
                                         // Check For desktop/Mobile
                                         var spinnerBgImage = '';
                                         (function (a) {
@@ -1668,9 +1664,7 @@
                                         } else {
                                             spinnerBgImage = response.records.store_settings.spinner_bg_image;
                                         }
-                                        //console.log('spinnerBgImage: ' + spinnerBgImage);
-                                        var themeBgImageURL = API_URL + 'public/assets/themes/' + spinnerBgImage;
-                                        //carecartSpinnerJquery('.content-spinner').css('background-image', 'url(' + API_URL + 'public/assets/themes/' + response.records.store_settings.spinner_bg_image + ')');
+                                        var themeBgImageURL = CDN_WHEELIFY_URL + spinnerBgImage;
                                         carecartSpinnerJquery('.content-spinner').css('background-image', 'url(' + themeBgImageURL + ')');
                                         //console.log("SAS background_image_url is set: " + themeBgImageURL);
                                     }
@@ -2011,9 +2005,13 @@
                     carecartSpinnerJquery('head').append('<style type="text/css">.form-group input::placeholder { color: black !important; }</style>');
                 }
 //*********************** Move spinner 25px above from bottom (current 30px) ***************************************************
-		if(Shopify.shop == 'kingsonsbags.myshopify.com' || Shopify.shop == 'cocolouisau.myshopify.com'){
-			carecartSpinnerJquery('head').append('<style type="text/css">#spin-trigger-cc { bottom:55px !important;}</style>');
-		}		    
+                if(Shopify.shop == 'kingsonsbags.myshopify.com' || Shopify.shop == 'cocolouisau.myshopify.com'){
+                    carecartSpinnerJquery('head').append('<style type="text/css">#spin-trigger-cc { bottom:55px !important;}</style>');
+                }
+//*********************** Custom Fix - longdan1.myshopify.com ***************************************************
+                if(Shopify.shop == 'longdan1.myshopify.com'){
+                    carecartSpinnerJquery('head').append('<style type="text/css">#spin_a_sale_cc_store_front_module .checkbox {width: 100%;background-color: transparent;height: auto;border: none;}</style>');
+                }
             });
 
         }, 1000);
