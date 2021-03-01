@@ -1,6 +1,6 @@
 //******* @author: CareCart Wheelify *******************************************
 //****** Store Frontend JS - js-script.js GH v.1.0.6 - Build ver 1.0.6 *******
-//****** Updated at: 26-Feb-2021, 06:34 PM  **********************************
+//****** Updated at: 01-Mar-2021, 11:36 PM  **********************************
 
 (function () {
     var d = new Date();
@@ -2012,6 +2012,10 @@
                 if(Shopify.shop == 'longdan1.myshopify.com'){
                     carecartSpinnerJquery('head').append('<style type="text/css">#spin_a_sale_cc_store_front_module .checkbox {width: 100%;background-color: transparent;height: auto;border: none;}</style>');
                 }
+//*********************** Custom Fix - sugar-ruff.myshopify.com ***** Make Slices Text Color Black **********************************
+		if(Shopify.shop == 'sugar-ruff.myshopify.com'){
+			carecartSpinnerJquery('head').append('<style type="text/css">#spin_a_sale_cc_store_front_module .wheelText {fill: #000;}</style>');
+		}		    
             });
 
         }, 1000);
