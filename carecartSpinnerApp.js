@@ -1,16 +1,16 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.0 - Build ver 1.0.7 ********************
-//****** Updated at: 17-Mar-2021, 04:55 PM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.0 - Build ver 1.0.8 ********************
+//****** Updated at: 18-Mar-2021, 12:05 PM  ********************************************************
 
 (function () {
     var d = new Date();
-    var version = d.getSeconds();
+    //var version = d.getSeconds();
 
     var API_URL = 'https://app-spinner.carecart.io' + '/';
 
 	//var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
-	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.7/';
+	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.8/';
 
     var dataSpin = false;
 
@@ -44,7 +44,8 @@
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
 
-    cssFileInjection(API_URL +"public/app/css/front-store-spinner.css?v=" + new Date().toLocaleTimeString());
+    //cssFileInjection(API_URL +"public/app/css/front-store-spinner.css?v=" + new Date().toLocaleTimeString());
+    cssFileInjection(CDN_WHEELIFY_URL +"front-store-spinner-min.css");
     //cssFileInjection(API_URL +"public/app/css/front-store-spinner.css?v=time()");
 	//cssFileInjection(CDN_WHEELIFY_URL +"front-store-spinner-min.css");
 
@@ -1450,8 +1451,8 @@
                             }
                         },
                         error: function (error) {
-                            console.log('SAS Error in impression post');
-                            console.log('SAS Error: ' + error);
+                            //console.log('SAS Error in impression post');
+                            //console.log('SAS Error: ' + error);
                         }
                     });
                 }
