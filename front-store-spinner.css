@@ -1,9 +1,9 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
 
-#spin_a_sale_cc_store_front_module .peg,
+/*#spin_a_sale_cc_store_front_module .peg,
 #spin_a_sale_cc_store_front_module .wheelSVG {
     visibility: hidden
-}
+}*/
 
 .animated {
     animation-duration: 1s;
@@ -55,11 +55,11 @@
     animation-name: shake
 }
 
-#spin_a_sale_cc_store_front_module .wheelContainer {
+/*#spin_a_sale_cc_store_front_module .wheelContainer {
     margin: 0;
     padding: 0;
     text-align: center
-}
+}*/
 
 #spin_a_sale_cc_store_front_module a:active,
 #spin_a_sale_cc_store_front_module a:hover,
@@ -81,9 +81,9 @@
     color: #384f66
 }
 
-#spin_a_sale_cc_store_front_module .wheelContainer {
+/*#spin_a_sale_cc_store_front_module .wheelContainer {
     float: left
-}
+}*/
 
 #spin_a_sale_cc_store_front_module .wheelText {
     text-anchor: middle;
@@ -95,25 +95,16 @@
     display: none
 }
 
-@media only screen and (max-height: 480px) {
-    #spin_a_sale_cc_store_front_module .wheelContainer {
-        top: 70px
-    }
-}
-
-#spin_a_sale_cc_store_front_module .signupContainer,
+/*#spin_a_sale_cc_store_front_module .signupContainer,
 #spin_a_sale_cc_store_front_module .winContainer, #spin_a_sale_cc_store_front_module .loseContainer {
     width: 64%;
     float: right;
     padding: 0 60px
-}
+}*/
 
 div#cc-spin-a-sale-powered-by-carecart {
     color: #ffffff;
     font-size: 14px;
-    display: block;
-    width: 100%;
-    float: right;
     text-align: center;
 }
 
@@ -140,17 +131,15 @@ div#cc-spin-a-sale-powered-by-carecart {
 
 #spin_a_sale_cc_store_front_module p.text-description {
     color: #fff;
-    font-size: 18px;
-    line-height: 22px;
     margin-top: 0;
     padding-top: 0;
 }
 
 #spin_a_sale_cc_store_front_module .form-group {
     margin: 0px auto 15px;
-    width: 100%;
+    /*width: 100%;
     max-width: 400px;
-    display: inline-flex
+    display: inline-flex*/
 }
 
 #spin_a_sale_cc_store_front_module .form-group input {
@@ -197,12 +186,12 @@ div#cc-spin-a-sale-powered-by-carecart {
     z-index: 1000
 }
 
-#spin_a_sale_cc_store_front_module .wheelContainer,
+/*#spin_a_sale_cc_store_front_module .wheelContainer,
 #spin_a_sale_cc_store_front_module .wheelSVG {
     overflow: visible !important;
     position: absolute;
     height: 100%
-}
+}*/
 
 #spin_a_sale_cc_store_front_module #overlay p {
     padding-top: 30%;
@@ -210,7 +199,7 @@ div#cc-spin-a-sale-powered-by-carecart {
 }
 
 #spin_a_sale_cc_store_front_module .wheelContainer {
-    max-width: 1000px;
+    /*max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
     top: 50%;
@@ -218,15 +207,28 @@ div#cc-spin-a-sale-powered-by-carecart {
     -webkit-transform: translate(-50%, -50%);
     z-index: -1;
     opacity: 1;
-    left: 3%;
+    width: 65%;*/
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    position: absolute;
     width: 65%;
-    margin-top: 0
+    left: 0;
+}
+
+#spin_a_sale_cc_store_front_module .ContentRight {
+    flex: 0 0 55%;
+    margin-left: auto;
+    margin-right: 40px;
 }
 
 #spin_a_sale_cc_store_front_module .wheelSVG {
-    padding: 5px;
+    overflow: visible;
+    transform: rotate(55deg);
+    position: absolute;
     width: 100%;
-    transform: rotate(55deg)
+    top: 0;
+    bottom: 0;
+    margin: auto;
 }
 
 #spin_a_sale_cc_store_front_module .wheelLogo {
@@ -254,23 +256,23 @@ div#cc-spin-a-sale-powered-by-carecart {
 }
 
 #spin_a_sale_cc_store_front_module.wrapper-spinner {
-    top: 0%;
     width: 40%;
-    min-width: 800px;
+    min-width: 768px;
     height: 100%;
-    overflow: visible;
-    display: table;
-    /*position: absolute;*/
-    position: fixed;
     box-shadow: 5px 0 100px 0 #251217;
     color: #fff;
     z-index: 999999999999999999999;
-    font-family: inherit;
+    position: fixed;
+    top: 0;
+    bottom: 0;
 }
 
 #spin_a_sale_cc_store_front_module .content-spinner {
     background-color: #2699fb;
-    overflow: hidden;
+    display: flex;
+    align-items: safe center;
+    height: 100%;
+    /*overflow: hidden;
     margin-left: auto;
     margin-right: auto;
     height: 100%;
@@ -280,8 +282,7 @@ div#cc-spin-a-sale-powered-by-carecart {
     width: 100%;
     display: table-cell;
     vertical-align: middle;
-    background-repeat: no-repeat;
-    /*top: -32px;*/
+    background-repeat: no-repeat;*/
 }
 
 #spin_a_sale_cc_store_front_module .closeButton {
@@ -301,7 +302,7 @@ div#cc-spin-a-sale-powered-by-carecart {
     padding: 5px 0 15px 1px;
     text-align: left;
     text-indent: 5px;
-    line-height: 1;
+    line-height: 1.2;
 }
 
 
@@ -373,43 +374,56 @@ img.content-spinner {
     background-size: contain !important
 }
 
-@media only screen and (max-width: 767px) {
-    #spin_a_sale_cc_store_front_module.wrapper-spinner {
-        width: 100% !important;
-        min-width: auto;
-    }
-    
-    #spin_a_sale_cc_store_front_module .content-spinner {
-        vertical-align: top;
-        padding: 50px 10px !important;
-    }
-    
-    #spin_a_sale_cc_store_front_module .btn-submit-form,
-    #spin_a_sale_cc_store_front_module .btn-submit-form-ok,
-    #spin_a_sale_cc_store_front_module .copy-button {
-        width: 100%;
-    }
-    
+.LoaderOnClick {
+    position: relative;
 }
 
-@media only screen and (min-width: 769px) {
+.loaderBox {
+    background-color: rgba(0, 0, 0, 0.85);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+@-webkit-keyframes spinner-border {
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg); } }
+
+@keyframes spinner-border {
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg); } }
+
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    vertical-align: text-bottom;
+    border: 0.25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    -webkit-animation: spinner-border .75s linear infinite;
+    animation: spinner-border .75s linear infinite; }
+
+/*@media only screen and (min-width: 769px) {
     div#cc-spin-a-sale-powered-by-carecart {
         padding: 0 0px 0px 30%;
     }
     
-}
-
-@media only screen and (min-width: 569px) and (max-width: 768px) {
-    #spin_a_sale_cc_store_front_module .closeButton {
-        margin-right: 40px;
-        margin-top: 10px;
-    }
-    
-    div#cc-spin-a-sale-powered-by-carecart {
-        width: 68%;
-    }
-    
-}
+}*/
 
 /* *************** Start - Urgency Timer Bar **************	*/
 #couponwheel_notice_content {
@@ -525,7 +539,7 @@ a#couponwheel_notice_close_btn:hover {
     align-self: baseline;
 }
 
-.btn-submit-form, .btn-submit-form-ok {
+/*.btn-submit-form, .btn-submit-form-ok {
     width: 100%;
     max-width: 370px;
     border: 0;
@@ -536,10 +550,94 @@ a#couponwheel_notice_close_btn:hover {
     max-width: 370px;
     border: 0;
 }
+*/
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 991px) {
+    #spin_a_sale_cc_store_front_module.wrapper-spinner {
+        width: 100%;
+        min-width: 100%;
+    }
+    
     #spin_a_sale_cc_store_front_module .content-spinner {
-        padding: 40px 15px !important;
+        padding: 35px 15px;
+        width: 100%;
+        min-width: 100%;
+        overflow: auto;
+    }
+    
+    #spin_a_sale_cc_store_front_module .wheelContainer {
+        position: absolute !important;
+        transform: translate(-50%, -50%) !important;
+        width: 45% !important;
+        bottom: inherit !important;
+        right: inherit !important;
+    }
+    
+    #spin_a_sale_cc_store_front_module .wheelSVG {
+        transform: translate(-50%) matrix(0.57358, 0.81915, -0.81915, 0.57358, 0, 0) !important;
+    }
+    
+    #spin_a_sale_cc_store_front_module .ContentRight {
+        flex: 0 0 65%;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    
+    #spin_a_sale_cc_store_front_module .closeButton {
+        margin-right: 10px;
+        margin-top: 5px;
+    }
+}
+
+/*@media only screen and (min-width: 576px) and (max-width: 767px) {
+    #spin_a_sale_cc_store_front_module .wheelContainer {
+        position: absolute !important;
+        transform: translate(-50%, -50%) !important;
+        width: 45% !important;
+        bottom: inherit !important;
+        right: inherit !important;
+    }
+    #spin_a_sale_cc_store_front_module .wheelSVG {
+        transform: translate(-50%) matrix(0.57358, 0.81915, -0.81915, 0.57358, 0, 0) !important;
+    }
+    #spin_a_sale_cc_store_front_module .ContentRight {
+        flex: 0 0 65%;
+    }
+    #spin_a_sale_cc_store_front_module .closeButton {
+        margin-right: 40px;
+        margin-top: 10px;
+    }
+}*/
+@media only screen and (max-width: 575px) {
+    #spin_a_sale_cc_store_front_module .ContentRight {
+        margin-right: auto;
+        order: 1;
+        max-width: 400px;
+        min-height: 530px;
+    }
+    
+    #spin_a_sale_cc_store_front_module .wheelContainer {
+        position: static !important;
+        order: 2;
+        transform: none !important;
+        width: 85% !important;
+        max-width: 400px;
+    }
+    
+    #spin_a_sale_cc_store_front_module .content-spinner {
+        flex-direction: column;
+        overflow: auto;
+    }
+    
+    #spin_a_sale_cc_store_front_module .wheelSVG {
+        position: static !important;
+        transform: translateY(-50px) !important;
+    }
+    
+    #spin_a_sale_cc_store_front_module .btn-submit-form,
+    #spin_a_sale_cc_store_front_module .btn-submit-form-ok,
+    #spin_a_sale_cc_store_front_module .copy-button {
+        width: 100%;
     }
     
     #spin_a_sale_cc_store_front_module .closeButton {
@@ -549,9 +647,7 @@ a#couponwheel_notice_close_btn:hover {
     .cc-spin-a-sale-couponwheel_offers_progressbar {
         margin-top: 0 !important
     }
-}
-
-@media only screen and (max-width: 568px) {
+    
     #spin_a_sale_cc_store_front_module .signupContainer p {
         padding-right: 0;
     }
@@ -562,16 +658,8 @@ a#couponwheel_notice_close_btn:hover {
 }
 
 @media only screen and (max-width: 320px) {
-    #spin_a_sale_cc_store_front_module .content-spinner {
-        padding: 15px 15px !important;
-    }
-    
     #spin_a_sale_cc_store_front_module .checkbox {
         padding: 0 0 5px 1px;
-    }
-    
-    div#cc-spin-a-sale-powered-by-carecart {
-        margin-top: -13px;
     }
 }
 
