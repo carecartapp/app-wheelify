@@ -1,5 +1,5 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.0 - Build ver 1.0.8 ********************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.0 - Build ver 1.0.9 ********************
 //****** Updated at: 18-Mar-2021, 12:05 PM  ********************************************************
 
 (function () {
@@ -10,7 +10,7 @@
 
 	//var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
-	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.8/';
+	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.9/';
 
     var dataSpin = false;
 
