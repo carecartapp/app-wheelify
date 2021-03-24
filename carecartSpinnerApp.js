@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.0 - Build ver 1.0.9 ********************
-//****** Updated at: 18-Mar-2021, 12:05 PM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.0 - Build ver 1.0.10 *******************
+//****** Updated at: 24-Mar-2021, 06:08 PM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -10,7 +10,7 @@
 
 	//var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
-	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.9/';
+	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.10/';
 
     var dataSpin = false;
 
@@ -44,10 +44,9 @@
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
 
-    //cssFileInjection(API_URL +"public/app/css/front-store-spinner.css?v=" + new Date().toLocaleTimeString());
+    //cssFileInjection(API_URL +"public/app/css/front-store-spinner-min.css?v=" + new Date().toLocaleTimeString());
     cssFileInjection(CDN_WHEELIFY_URL +"front-store-spinner-min.css");
     //cssFileInjection(API_URL +"public/app/css/front-store-spinner.css?v=time()");
-	//cssFileInjection(CDN_WHEELIFY_URL +"front-store-spinner-min.css");
 
     scriptInjection("https://code.jquery.com/jquery-3.2.1.min.js", function () {
 
@@ -97,10 +96,10 @@
                             return document.querySelector(t)
                         },
                         J = this,
-                        X = q(".wheelSVG"),
+                        X = q(".wheelify-wheelSVG"),
                         j = q(".wheel"),
                         K = q(".wheelOutline"),
-                        Q = q(".wheelContainer"),
+                        Q = q(".wheelify-wheelContainer"),
                         Z = q(".peg"),
                         $ = q(".pegContainer"),
                         tt = q(".mainContainer"),
@@ -124,7 +123,7 @@
                             r = t.wheelStrokeColor, o = t.wheelSize, a = o / 2, l = t.wheelTextColor, r = t.wheelStrokeColor, i = t.wheelStrokeWidth, s = t.wheelTextOffsetY, u = t.wheelImageOffsetY, c = t.wheelImageSize, h = t.wheelTextSize, p = t.centerCircleStrokeColor, f = t.centerCircleStrokeWidth, S = t.centerCircleFillColor, m = t.centerCircleSize, b = m / 2, w = t.segmentStrokeColor, T = t.segmentStrokeWidth, y = t.segmentValuesArray, x = y.length, N = -1 == t.numSpins ? 1e16 : parseInt(t.numSpins), I = t.minSpinDuration, P = t.gameOverText, O = t.invalidSpinText, R = t.introText, W = t.hasSound, B = t.gameId, G = t.clickToSpin, A = (v = 360 / x) / 2, C = t.centerX, E = t.centerY, k = t.colorArray, D = t.hasShadows, F = t.spinDestinationArray, D && (K.setAttributeNS(null, "filter", "url(#shadow)"), et.setAttributeNS(null, "filter", "url(#shadow)"), nt.setAttributeNS(null, "filter", "url(#shadow)"), $.setAttributeNS(null, "filter", "url(#shadow)"), rt.style.boxShadow = "0px 0px 20px rgba(21,21,21,0.5)")
                         },
                         bt = function () {
-                            TweenMax.set("#spin_a_sale_cc_store_front_module svg", {
+                            TweenMax.set("#wheelify-spin_a_sale_cc_store_front_module svg", {
                                 visibility: "visible"
                             }), TweenMax.set(j, {
                                 svgOrigin: C + " " + E,
@@ -146,7 +145,7 @@
                             }), TweenMax.set([rt], {
                                 xPercent: -50,
                                 left: "50%"
-                            }), TweenMax.set("#spin_a_sale_cc_store_front_module svg", {
+                            }), TweenMax.set("#wheelify-spin_a_sale_cc_store_front_module svg", {
                                 xPercent: -50,
                                 left: "50%"
                             })
@@ -463,9 +462,9 @@
                 }
 
                 function myGameEnd(i) {
-                    var t = carecartSpinnerJquery(".winContainer"),
-                        l = carecartSpinnerJquery(".loseContainer"),
-                        e = carecartSpinnerJquery(".signupContainer"),
+                    var t = carecartSpinnerJquery(".wheelify-winContainer"),
+                        l = carecartSpinnerJquery(".wheelify-loseContainer"),
+                        e = carecartSpinnerJquery(".wheelify-signupContainer"),
                         n = carecartSpinnerJquery(".win_text"),
                         a = carecartSpinnerJquery(".coupon");
 
@@ -497,9 +496,9 @@
                 }
 
                 function myGameEndTest(i) {
-                    var t = carecartSpinnerJquery(".winContainer"),
-                        l = carecartSpinnerJquery(".loseContainer"),
-                        e = carecartSpinnerJquery(".signupContainer"),
+                    var t = carecartSpinnerJquery(".wheelify-winContainer"),
+                        l = carecartSpinnerJquery(".wheelify-loseContainer"),
+                        e = carecartSpinnerJquery(".wheelify-signupContainer"),
                         n = carecartSpinnerJquery(".win_text"),
                         a = carecartSpinnerJquery(".coupon");
 
@@ -570,10 +569,10 @@
                         })
                     }
 
-                    var t = carecartSpinnerJquery(".signupContainer"),
-                        v = carecartSpinnerJquery(".winContainer"),
-                        e = carecartSpinnerJquery(".wheelContainer"),
-                        n = carecartSpinnerJquery(".wheelSVG"),
+                    var t = carecartSpinnerJquery(".wheelify-signupContainer"),
+                        v = carecartSpinnerJquery(".wheelify-winContainer"),
+                        e = carecartSpinnerJquery(".wheelify-wheelContainer"),
+                        n = carecartSpinnerJquery(".wheelify-wheelSVG"),
                         a = carecartSpinnerJquery(".form-group input"),
                         o = carecartSpinnerJquery(".btn-submit-form"),
                         s = carecartSpinnerJquery('#cc-spinner-full-name'),
@@ -589,7 +588,7 @@
 							//hideSpinASaleModule();
 							//console.log('check is spinner bar hidden: ' + window.localStorage.getItem('cc-sas-spinner-hide-timer-bar'));
 							window.localStorage.setItem('cc-sas-spinner-copy-button-clicked', 1);
-							var spinASaleCcUrgencyTimeBarText = carecartSpinnerJquery('#spin_a_sale_cc_urgency_time_bar_text').html();
+							var spinASaleCcUrgencyTimeBarText = carecartSpinnerJquery('#wheelify-spin_a_sale_cc_urgency_time_bar_text').html();
 							var wonCouponCode = '<strong>' + window.localStorage.getItem('cc-sas-spinner-cached-coupon-code') + '</strong>';
 							//console.log('wonCouponCode: ' + wonCouponCode);
 							spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{coupon_code}}',wonCouponCode);
@@ -603,10 +602,10 @@
 							//console.log('spinASaleCcUrgencyTimeBarText: ' + spinASaleCcUrgencyTimeBarText);
 							spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{time}}',timerDiv);
 							spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{ time }}',timerDiv);
-							//carecartSpinnerJquery('#couponwheel_notice_timer').html(timerDiv);
-							carecartSpinnerJquery('#spin_a_sale_cc_urgency_time_bar_text').html(spinASaleCcUrgencyTimeBarText);
+							//carecartSpinnerJquery('#wheelify-couponwheel_notice_timer').html(timerDiv);
+							carecartSpinnerJquery('#wheelify-spin_a_sale_cc_urgency_time_bar_text').html(spinASaleCcUrgencyTimeBarText);
 							//console.log('spinASaleCcUrgencyTimeBarText 2: ' + spinASaleCcUrgencyTimeBarText);
-							carecartSpinnerJquery('#couponwheel_notice_content').show();
+							carecartSpinnerJquery('#wheelify-couponwheel_notice_content').show();
 							//console.log('deadlineSpinAWheel deadlineSpinAWheel: ' + deadlineSpinAWheel);
 							initializeClockSpinAWheel('cc-spin-a-sale-clock-div-preview', deadlineSpinAWheel);
 							carecartSpinnerJquery('#spin_a_sale_cc_store_front_module_close_button').click();
@@ -632,12 +631,12 @@
                         var t = s.val(),
                             e = d.val(),
 							x = 1,
-                            n = carecartSpinnerJquery(".textInfo"),
+                            n = carecartSpinnerJquery(".wheelify-textInfo"),
                             a = carecartSpinnerJquery(".btn-submit-form"),
                             o = carecartSpinnerJquery(".btn-submit-form-ok");
                             s = carecartSpinnerJquery("#cc-spinner-full-name");
 							w = carecartSpinnerJquery("#cc-spin-a-sale-consent-checkbox");
-							q = carecartSpinnerJquery("#cc-spin-a-sale-already-used-spin-quota");
+							q = carecartSpinnerJquery("#wheelify-cc-spin-a-sale-already-used-spin-quota");
 							d = carecartSpinnerJquery('#cc-spinner-email'),
                         n.text("");
 
@@ -671,7 +670,7 @@
 
 							if(window.localStorage.getItem('cc-sas-spinner-anti-cheat-shield')	!== null && window.localStorage.getItem('cc-sas-spinner-anti-cheat-shield') == 1)
 							{
-								carecartSpinnerJquery('#cc-spin-a-sale-loader-on-click').show();
+								carecartSpinnerJquery('#wheelify-cc-spin-a-sale-loader-on-click').show();
 								console.log('SAS Try your luck clicked and about to spin');
 								//q.show();
 								//q.addClass("animated shake");
@@ -702,7 +701,7 @@
 										}
 									},
 									error: function () {
-										carecartSpinnerJquery('#cc-spin-a-sale-loader-on-click').hide();
+										carecartSpinnerJquery('#wheelify-cc-spin-a-sale-loader-on-click').hide();
 										q.show();
 										q.addClass("animated shake");
 										console.log('SAS Engine Error');
@@ -805,15 +804,15 @@
                 function showSpinASaleModule(type = '') {
                 	//console.log('showSpinASaleModule type: ' + type);
                     if (type && type == 'triggered') {
-                        // carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").show(1000);
-                        carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").fadeIn();
+                        // carecartSpinnerJquery("body").find("#wheelify-spin_a_sale_cc_store_front_module").show(1000);
+                        carecartSpinnerJquery("body").find("#wheelify-spin_a_sale_cc_store_front_module").fadeIn();
 						init();
 						applySASPlugin();
 						postImpressionData();
                     } else {
                         if (checkCachedTime()) {
-                            // carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").show(1000);
-                            carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").fadeIn();
+                            // carecartSpinnerJquery("body").find("#wheelify-spin_a_sale_cc_store_front_module").show(1000);
+                            carecartSpinnerJquery("body").find("#wheelify-spin_a_sale_cc_store_front_module").fadeIn();
 							init();
 							applySASPlugin();
 							//console.log('type Else: ' + type)
@@ -827,8 +826,8 @@
                 }
 
                 function hideSpinASaleModule() {
-                    ///carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").hide();
-                    carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").fadeOut();
+                    ///carecartSpinnerJquery("body").find("#wheelify-spin_a_sale_cc_store_front_module").hide();
+                    carecartSpinnerJquery("body").find("#wheelify-spin_a_sale_cc_store_front_module").fadeOut();
                 }
 
                 function couponAndMsgAreSetThenLoad() {
@@ -837,7 +836,7 @@
 					if(window.localStorage.getItem('cc-sas-spinner-timer-bar-set-html')	!== null && window.localStorage.getItem('cc-sas-spinner-hide-timer-bar') != 1)
 					{
 						carecartSpinnerJquery('#cc-spin-a-sale-clock-div-preview').html(window.localStorage.getItem('cc-sas-spinner-timer-bar-set-html'));
-						carecartSpinnerJquery('#couponwheel_notice_content').show();
+						carecartSpinnerJquery('#wheelify-couponwheel_notice_content').show();
 						var ccSpinASaleMinutes = carecartSpinnerJquery('.cc-spin-a-sale-minutes').html();
 						var ccSpinASaleSeconds = carecartSpinnerJquery('.cc-spin-a-sale-seconds').html();
 						//console.log('SAS ccSpinASaleMinutes: ' + ccSpinASaleMinutes);
@@ -864,10 +863,10 @@
 								return;
 							}
 							console.log("SAS coupon & msg are already set, so loading them");
-							var t = carecartSpinnerJquery(".winContainer"),
-								w = carecartSpinnerJquery(".wheelContainer"),
-								l = carecartSpinnerJquery(".loseContainer"),
-								e = carecartSpinnerJquery(".signupContainer"),
+							var t = carecartSpinnerJquery(".wheelify-winContainer"),
+								w = carecartSpinnerJquery(".wheelify-wheelContainer"),
+								l = carecartSpinnerJquery(".wheelify-loseContainer"),
+								e = carecartSpinnerJquery(".wheelify-signupContainer"),
 								n = carecartSpinnerJquery(".win_text"),
 								a = carecartSpinnerJquery(".coupon");
 							if (coupon) {
@@ -916,10 +915,10 @@
 						if(window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1)
 						{
 							if (coupon && msg) {
-							var t = carecartSpinnerJquery(".winContainer"),
-								w = carecartSpinnerJquery(".wheelContainer"),
-								l = carecartSpinnerJquery(".loseContainer"),
-								e = carecartSpinnerJquery(".signupContainer"),
+							var t = carecartSpinnerJquery(".wheelify-winContainer"),
+								w = carecartSpinnerJquery(".wheelify-wheelContainer"),
+								l = carecartSpinnerJquery(".wheelify-loseContainer"),
+								e = carecartSpinnerJquery(".wheelify-signupContainer"),
 								n = carecartSpinnerJquery(".win_text"),
 								a = carecartSpinnerJquery(".coupon");
 							if (coupon) {
@@ -945,7 +944,7 @@
 									l.fadeIn()
 							}
 
-							carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").fadeIn();
+							carecartSpinnerJquery("body").find("#wheelify-spin_a_sale_cc_store_front_module").fadeIn();
 							return;
 						}
 						}
@@ -999,6 +998,7 @@
 									return;
 								}
 							}
+
 //****************************************** End - Allow Spinner on ONLY Specific URL ******************************
 //console.log('response.records.store_settings.settings_data.display_home_page_enabled: ' + response.records.store_settings.settings_data.display_home_page_enabled);
 //console.log('response.records.store_settings.settings_data.display_collections_page_enabled: ' + response.records.store_settings.settings_data.display_collections_page_enabled);
@@ -1095,7 +1095,7 @@
                                 if (response.records.store_settings.settings_data.is_triggered_enable && parseInt(response.records.store_settings.settings_data.is_triggered_enable) == 1) {
                                     carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
                                     const settingsData = response.records.store_settings.settings_data;
-									var tBtn = carecartSpinnerJquery('body').find('#spin-trigger-cc');
+									var tBtn = carecartSpinnerJquery('body').find('#wheelify-spin-trigger-cc');
 									if (settingsData.button_position === 'middle_right') {
 										tBtn.css({
 											bottom: '48vh'
@@ -1113,7 +1113,7 @@
                                 }
                                 else {
 									carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
-									var tBtn = carecartSpinnerJquery('body').find('#spin-trigger-cc');
+									var tBtn = carecartSpinnerJquery('body').find('#wheelify-spin-trigger-cc');
 									tBtn.hide();
 									//console.log('SAS spinner trigger button should display');
 								}
@@ -1122,7 +1122,7 @@
 									console.log("SAS Spinner will load after Mouse exit's screen");
 									carecartSpinnerJquery(document).mouseleave(function () {
 										//console.log('SAS out of screen');
-										if(carecartSpinnerJquery('#spin_a_sale_cc_store_front_module:visible').length == 0)
+										if(carecartSpinnerJquery('#wheelify-spin_a_sale_cc_store_front_module:visible').length == 0)
 										{
 											if(window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1)
 											{
@@ -1135,8 +1135,8 @@
 												else
 												{
 													window.localStorage.setItem('screenExitDisplaySpinnerExpire',1);
-													//carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").fadeIn();
-													carecartSpinnerJquery("#spin-trigger-cc").click();
+													//carecartSpinnerJquery("body").find("#wheelify-spin_a_sale_cc_store_front_module").fadeIn();
+													carecartSpinnerJquery("#wheelify-spin-trigger-cc").click();
 //******************************************* Do NOT Trigger after First Exit From Screen Until 60 Min (1 min = 60 * 1000 milliseconds *****************************
 													setTimeout(function () {
 														//console.log("SAS Time Set to 60 min");
@@ -1178,14 +1178,14 @@
 											{
 												if(window.localStorage.getItem('scrollScreenDisplaySpinnerExpire') === null)
 												{
-													if(carecartSpinnerJquery('#spin_a_sale_cc_store_front_module:visible').length == 0)
+													if(carecartSpinnerJquery('#wheelify-spin_a_sale_cc_store_front_module:visible').length == 0)
 													{
 														window.localStorage.setItem('scrollScreenDisplaySpinnerExpire', 1);
 														console.log("SAS scrollScreenDisplaySpinnerExpire is NOW SET");
 														console.log("SAS scrolledPercentage is: " +  scrolledPercentage + " >= scrollPercentageRequired: " + scrollPercentageRequired + " & Spiller Load is Due");
 														if(window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1)
 														{
-															carecartSpinnerJquery("#spin-trigger-cc").click();
+															carecartSpinnerJquery("#wheelify-spin-trigger-cc").click();
 														}
 														else
 														{
@@ -1314,10 +1314,10 @@
 								if (response.records.store_settings.conversion_booster_settings != null && response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled != null && parseInt(response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled) == 1) {
 									window.localStorage.setItem('urgencyTimerBarEnabled', 1);
 									//console.log('SAS Urgency Bar is Active');
-									//carecartSpinnerJquery('#couponwheel_notice_content').show();
+									//carecartSpinnerJquery('#wheelify-couponwheel_notice_content').show();
 									var spinASaleCcUrgencyTimeBarTextHtml = '<span class="cc-spin-a-sale-clock-div" id="cc-spin-a-sale-clock-div-preview">' + response.records.store_settings.conversion_booster_settings.urgency_timer_bar_text + '</span>';
-									carecartSpinnerJquery('#spin_a_sale_cc_urgency_time_bar_text').html(spinASaleCcUrgencyTimeBarTextHtml);
-									var spinASaleCcUrgencyTimeBarText = carecartSpinnerJquery('#spin_a_sale_cc_urgency_time_bar_text').html();
+									carecartSpinnerJquery('#wheelify-spin_a_sale_cc_urgency_time_bar_text').html(spinASaleCcUrgencyTimeBarTextHtml);
+									var spinASaleCcUrgencyTimeBarText = carecartSpinnerJquery('#wheelify-spin_a_sale_cc_urgency_time_bar_text').html();
 									//var wonCouponCode = '<strong>' + window.localStorage.getItem('cc-sas-spinner-cached-coupon-code') + '</strong>';
 									//spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{coupon_code}}',wonCouponCode);
 									//console.log('SAS spinASaleCcUrgencyTimeBarText ' + spinASaleCcUrgencyTimeBarText);
@@ -1336,23 +1336,23 @@
 										urgencyTimeBarBackgroundColor = response.records.store_settings.conversion_booster_settings.urgency_time_bar_background_color;
 									}
 									//console.log('SAS urgencyTimeBarBackgroundColor: ' + urgencyTimeBarBackgroundColor);
-									carecartSpinnerJquery('#couponwheel_notice_content').css("background-color", urgencyTimeBarBackgroundColor);
+									carecartSpinnerJquery('#wheelify-couponwheel_notice_content').css("background-color", urgencyTimeBarBackgroundColor);
 									var urgencyTimeBarTextColor = '#000000';
 									if(response.records.store_settings.conversion_booster_settings.urgency_time_bar_text_color && response.records.store_settings.conversion_booster_settings.urgency_time_bar_text_color != null)
 									{
 										urgencyTimeBarTextColor = response.records.store_settings.conversion_booster_settings.urgency_time_bar_text_color;
 									}
 									//console.log('SAS urgencyTimeBarTextColor: ' + urgencyTimeBarTextColor);
-									carecartSpinnerJquery('#couponwheel_notice_content').css("color", urgencyTimeBarTextColor);
+									carecartSpinnerJquery('#wheelify-couponwheel_notice_content').css("color", urgencyTimeBarTextColor);
 									if(response.records.store_settings.conversion_booster_settings.urgency_timer_bar_position_top_or_bottom == 'top')
 									{
-										carecartSpinnerJquery('#couponwheel_notice_content').removeClass('bar-bottom').addClass('bar-top');
+										carecartSpinnerJquery('#wheelify-couponwheel_notice_content').removeClass('bar-bottom').addClass('bar-top');
 									}
 									//console.log('SAS spinASaleCcUrgencyTimeBarText after Timer Replacement: ' + spinASaleCcUrgencyTimeBarText);
-									//carecartSpinnerJquery('#couponwheel_notice_timer').html(timerDiv);
-									//carecartSpinnerJquery('#spin_a_sale_cc_urgency_time_bar_text').html(spinASaleCcUrgencyTimeBarText);
+									//carecartSpinnerJquery('#wheelify-couponwheel_notice_timer').html(timerDiv);
+									//carecartSpinnerJquery('#wheelify-spin_a_sale_cc_urgency_time_bar_text').html(spinASaleCcUrgencyTimeBarText);
 									//console.log('SAS spinASaleCcUrgencyTimeBarText: ' + spinASaleCcUrgencyTimeBarText);
-									//carecartSpinnerJquery('#couponwheel_notice_content').show();
+									//carecartSpinnerJquery('#wheelify-couponwheel_notice_content').show();
 									//console.log('SAS deadlineSpinAWheel deadlineSpinAWheel: ' + deadlineSpinAWheel);
 									//initializeClockSpinAWheel('cc-spin-a-sale-clock-div-preview', deadlineSpinAWheel);
 								}
@@ -1360,10 +1360,10 @@
 /* *********************************************** Start - Conversion Booster Progress Bar **********************************	*/
 								if (response.records.store_settings.conversion_booster_settings != null && response.records.store_settings.conversion_booster_settings.conversion_booster_show_offers_claimed != null && parseInt(response.records.store_settings.conversion_booster_settings.conversion_booster_show_offers_claimed) == 1) {
 									console.log('SAS Conversion Booster Progress Bar is Active');
-									carecartSpinnerJquery('.cc-spin-a-sale-spinner-progress-bar').css("visibility", "visible");
-									carecartSpinnerJquery('.cc-spin-a-sale-spinner-progress-bar-inner').width(response.records.store_settings.conversion_booster_settings.conversion_booster_percentage_offers_claimed + '%');
-									carecartSpinnerJquery('.cc-spin-a-sale-spinner-progress-bar-inner').css("background-color", response.records.store_settings.conversion_booster_settings.conversion_booster_progress_bar_color);
-									carecartSpinnerJquery('.cc-spin-a-sale-couponwheel_offers_text').text(response.records.store_settings.conversion_booster_settings.conversion_booster_offers_claimed_text);
+									carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar').css("visibility", "visible");
+									carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar-inner').width(response.records.store_settings.conversion_booster_settings.conversion_booster_percentage_offers_claimed + '%');
+									carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar-inner').css("background-color", response.records.store_settings.conversion_booster_settings.conversion_booster_progress_bar_color);
+									carecartSpinnerJquery('.wheelify-cc-spin-a-sale-couponwheel_offers_text').text(response.records.store_settings.conversion_booster_settings.conversion_booster_offers_claimed_text);
 								}
 /* *********************************************** End - Conversion Booster Progress Bar **********************************	*/
 /* *********************************************** Start - Anti-Cheat Shield Settings **********************************	*/
@@ -1371,22 +1371,22 @@
 									window.localStorage.setItem('cc-sas-spinner-anti-cheat-shield', 1);
 									console.log('SAS  Anti-Cheat Shield is Active');
 									//console.log(response.records.store_settings.anti_cheat_engine_settings.anti_cheat_engine_spin_limit_quota_text);
-									carecartSpinnerJquery('#cc-spin-a-sale-already-used-spin-quota p').text(response.records.store_settings.anti_cheat_engine_settings.anti_cheat_engine_spin_limit_quota_text);
+									carecartSpinnerJquery('#wheelify-cc-spin-a-sale-already-used-spin-quota p').text(response.records.store_settings.anti_cheat_engine_settings.anti_cheat_engine_spin_limit_quota_text);
 								}
 /* *********************************************** End - Anti-Cheat Shield Settings **********************************	*/
 
                             }
                             var storeBgColor = response.records.store_settings.spinner_bg_color;
-							carecartSpinnerJquery('#spin_a_sale_cc_store_front_module').css('background-color', storeBgColor);
-							carecartSpinnerJquery('#spin-trigger-cc span').css('background-color', storeBgColor);
-							carecartSpinnerJquery('#spin-trigger-cc img').css('background', storeBgColor);
-							carecartSpinnerJquery('.content-spinner').css('background-color', storeBgColor);
-							carecartSpinnerJquery('.content-spinner').css('background-size', 'cover');
-							carecartSpinnerJquery('.content-spinner').css('background-repeat', 'no-repeat');
-							carecartSpinnerJquery('.content-spinner').css('background-position', 'center');
+							carecartSpinnerJquery('#wheelify-spin_a_sale_cc_store_front_module').css('background-color', storeBgColor);
+							carecartSpinnerJquery('#wheelify-spin-trigger-cc span').css('background-color', storeBgColor);
+							carecartSpinnerJquery('#wheelify-spin-trigger-cc img').css('background', storeBgColor);
+							carecartSpinnerJquery('.wheelify-content-spinner').css('background-color', storeBgColor);
+							carecartSpinnerJquery('.wheelify-content-spinner').css('background-size', 'cover');
+							carecartSpinnerJquery('.wheelify-content-spinner').css('background-repeat', 'no-repeat');
+							carecartSpinnerJquery('.wheelify-content-spinner').css('background-position', 'center');
 							var closeCrossColor = response.records.store_settings.spinner_close_cross_color;
 							carecartSpinnerJquery('#spin_a_sale_cc_store_front_module_close_button').find('i.fa-times').css('color', closeCrossColor);
-							//#spin_a_sale_cc_store_front_module .content-spinner{background-color: black;}
+							//#wheelify-spin_a_sale_cc_store_front_module .wheelify-content-spinner{background-color: black;}
 //************************************ Change Spinner Color if NOT default of Spinner i-e #FF0000 ****************************************
 							var spinnerPegColor = response.records.store_settings.spinner_peg_color;
 							if (response.records.store_settings.spinner_peg_color && spinnerPegColor != "" && spinnerPegColor != null && spinnerPegColor != "#FF0000"){
@@ -1416,7 +1416,7 @@
 									spinnerBgImage = response.records.store_settings.spinner_bg_image;
 								}
 								var themeBgImageURL = CDN_WHEELIFY_URL + spinnerBgImage;
-								carecartSpinnerJquery('.content-spinner').css('background-image', 'url(' + themeBgImageURL + ')');
+								carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + themeBgImageURL + ')');
 							}
 /* ************************************** Display Background Image - End *********************************************************** */
 							if(Shopify.shop == 'srnsmart.myshopify.com'){
@@ -1424,7 +1424,7 @@
 								//console.log('SAS In srnsmart.myshopify.com');
 
 								carecartSpinnerJquery("#cc-spin-a-wheel-open-spinner-mate").click(function(){
-									carecartSpinnerJquery('#spin-trigger-cc').click();
+									carecartSpinnerJquery('#wheelify-spin-trigger-cc').click();
 								});
 							}
                         }
@@ -1472,7 +1472,7 @@
                         couponUsed: couponUsed,
                         winResult: winResult
                     }
-					carecartSpinnerJquery('#cc-spin-a-sale-loader-on-click').hide();
+					carecartSpinnerJquery('#wheelify-cc-spin-a-sale-loader-on-click').hide();
                     console.log('SAS customerInformation: ' + customerInformation.customerName);
 					setSpinCouponLoadTime();
                     carecartSpinnerJquery.ajax({
@@ -1582,7 +1582,7 @@
 					if(checkHomePageCcSpinASale())
 					{
 						//console.log('SAS valid homepage');
-						return true;	
+						return true;
 					}
 					if(checkCollectionsCcSpinASale())
 					{
@@ -1681,18 +1681,18 @@
                     hideSpinASaleModule();
                 });
 
-                carecartSpinnerJquery("body").on("click", "#spin-trigger-cc", function () {
+                carecartSpinnerJquery("body").on("click", "#wheelify-spin-trigger-cc", function () {
                     var type = 'triggered';
                     showSpinASaleModule(type);
 					displayCouponOverSpinner();
-					//console.log('spin-trigger-cc Triggered');
+					//console.log('wheelify-spin-trigger-cc Triggered');
                     //showSpinASaleModule();
                 });
 
-				carecartSpinnerJquery("body").on("click", "#couponwheel_notice_close_btn", function () {
-				//arecartSpinnerJquery("#couponwheel_notice_close_btn").click(function () {
-					//console.log('couponwheel_notice_close_btn Clicked');
-					carecartSpinnerJquery('#couponwheel_notice_content').hide();
+				carecartSpinnerJquery("body").on("click", "#wheelify-couponwheel_notice_close_btn", function () {
+				//arecartSpinnerJquery("#wheelify-couponwheel_notice_close_btn").click(function () {
+					//console.log('wheelify-couponwheel_notice_close_btn Clicked');
+					carecartSpinnerJquery('#wheelify-couponwheel_notice_content').hide();
 					window.localStorage.setItem('cc-sas-spinner-hide-timer-bar', 1);
 				});
 
@@ -1747,7 +1747,7 @@
                                     if(response.records.store_settings.settings_data.is_triggered_enable && parseInt(response.records.store_settings.settings_data.is_triggered_enable)==1){
                                          carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
 											const settingsData = response.records.store_settings.settings_data;
-											var tBtn = carecartSpinnerJquery('body').find('#spin-trigger-cc');
+											var tBtn = carecartSpinnerJquery('body').find('#wheelify-spin-trigger-cc');
 											if (settingsData.button_position === 'middle_right') {
 												tBtn.css({
 													bottom: '48vh'
@@ -1766,18 +1766,18 @@
                                     else
 									{
 										carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
-										var tBtn = carecartSpinnerJquery('body').find('#spin-trigger-cc');
+										var tBtn = carecartSpinnerJquery('body').find('#wheelify-spin-trigger-cc');
 										tBtn.hide();
 										//console.log('SAS spinner trigger button should display');
 									}
 									var storeBgColor = response.records.store_settings.spinner_bg_color;
-									carecartSpinnerJquery('#spin_a_sale_cc_store_front_module').css('background-color', storeBgColor);
-									carecartSpinnerJquery('#spin-trigger-cc span').css('background-color', storeBgColor);
-									carecartSpinnerJquery('#spin-trigger-cc img').css('background', storeBgColor);
-									carecartSpinnerJquery('.content-spinner').css('background-color', storeBgColor);
-									carecartSpinnerJquery('.content-spinner').css('background-size', 'cover');
-									carecartSpinnerJquery('.content-spinner').css('background-repeat', 'no-repeat');
-									carecartSpinnerJquery('.content-spinner').css('background-position', 'center');
+									carecartSpinnerJquery('#wheelify-spin_a_sale_cc_store_front_module').css('background-color', storeBgColor);
+									carecartSpinnerJquery('#wheelify-spin-trigger-cc span').css('background-color', storeBgColor);
+									carecartSpinnerJquery('#wheelify-spin-trigger-cc img').css('background', storeBgColor);
+									carecartSpinnerJquery('.wheelify-content-spinner').css('background-color', storeBgColor);
+									carecartSpinnerJquery('.wheelify-content-spinner').css('background-size', 'cover');
+									carecartSpinnerJquery('.wheelify-content-spinner').css('background-repeat', 'no-repeat');
+									carecartSpinnerJquery('.wheelify-content-spinner').css('background-position', 'center');
 									var closeCrossColor = response.records.store_settings.spinner_close_cross_color;
 									carecartSpinnerJquery('#spin_a_sale_cc_store_front_module_close_button').find('i.fa-times').css('color', closeCrossColor);
 //************************************ Change Spinner Color if NOT default of Spinner i-e #FF0000 ****************************************
@@ -1809,7 +1809,7 @@
 											spinnerBgImage = response.records.store_settings.spinner_bg_image;
 										}
 										var themeBgImageURL = CDN_WHEELIFY_URL + spinnerBgImage;
-										carecartSpinnerJquery('.content-spinner').css('background-image', 'url(' + themeBgImageURL + ')');
+										carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + themeBgImageURL + ')');
 									}
 /* ************************************** Display Background Image - End *********************************************************** */
 /* ************************************** Display Spinner if percentage scroll is enabled  - START *********************************************************** */
@@ -1840,7 +1840,7 @@
 														window.localStorage.setItem('scrollScreenDisplaySpinnerExpire', 1);
 														console.log("SAS scrollScreenDisplaySpinnerExpire is NOW SET");
 														console.log("SAS scrolledPercentage is: " +  scrolledPercentage + " >= scrollPercentageRequired: " + scrollPercentageRequired + " & Spiller Load is Due");
-														carecartSpinnerJquery("#spin-trigger-cc").click();
+														carecartSpinnerJquery("#wheelify-spin-trigger-cc").click();
 
 														setTimeout(function () {
 															//console.log("SAS Time Set to 60 min");
@@ -1916,7 +1916,7 @@
                                             gameId: "9a0232ec06bc431114e2a7f3aea03bbe2164f1aa",
                                             clickToSpin: !0
                                         };
-                                        carecartSpinnerJquery("body").find("#spin_a_sale_cc_store_front_module").show(1000);
+                                        carecartSpinnerJquery("body").find("#wheelify-spin_a_sale_cc_store_front_module").show(1000);
                                         var tb = document.querySelector(".btn-submit-form-ok");
                                         (new Spin2WinWheel).init({
                                             data: dataSpin,
@@ -1951,10 +1951,10 @@
                                             })
                                         }
 
-                                        var t = carecartSpinnerJquery(".signupContainer"),
-                                            v = carecartSpinnerJquery(".winContainer"),
-                                            e = carecartSpinnerJquery(".wheelContainer"),
-                                            n = carecartSpinnerJquery(".wheelSVG"),
+                                        var t = carecartSpinnerJquery(".wheelify-signupContainer"),
+                                            v = carecartSpinnerJquery(".wheelify-winContainer"),
+                                            e = carecartSpinnerJquery(".wheelify-wheelContainer"),
+                                            n = carecartSpinnerJquery(".wheelify-wheelSVG"),
                                             a = carecartSpinnerJquery(".form-group input"),
 											o = carecartSpinnerJquery(".btn-submit-form"),
 											s = carecartSpinnerJquery('#cc-spinner-full-name'),
@@ -1980,7 +1980,7 @@
 											var t = s.val(),
 												e = d.val(),
 												x = 1,
-												n = carecartSpinnerJquery(".textInfo"),
+												n = carecartSpinnerJquery(".wheelify-textInfo"),
 												a = carecartSpinnerJquery(".btn-submit-form"),
 												o = carecartSpinnerJquery(".btn-submit-form-ok");
 												s = carecartSpinnerJquery("#cc-spinner-full-name");
@@ -2098,7 +2098,7 @@
 						if (ccSpinASaleTimeRemaining.total <= 0) {
 							console.log('SAS Urgency Bar will now close as count down timer is now complete');
 							clearInterval(timeintervalSpinAWheel);
-							carecartSpinnerJquery('#couponwheel_notice_content').hide();
+							carecartSpinnerJquery('#wheelify-couponwheel_notice_content').hide();
 							window.localStorage.setItem('cc-sas-spinner-hide-timer-bar', 1);
 						}
 					}
@@ -2111,37 +2111,37 @@
 //***************************** Fix Text Positioning of Store in Spinner Pop-up **********************************
                 if(Shopify.shop == 'portland-pickles-baseball.myshopify.com')
                 {
-					carecartSpinnerJquery('head').append('<style type="text/css">#spin_a_sale_cc_store_front_module .signupContainer,#spin_a_sale_cc_store_front_module .winContainer, #spin_a_sale_cc_store_front_module .loseContainer{width: 55%;}</style>');
+					carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .wheelify-signupContainer,#wheelify-spin_a_sale_cc_store_front_module .wheelify-winContainer, #wheelify-spin_a_sale_cc_store_front_module .wheelify-loseContainer{width: 55%;}</style>');
                 }
 				if(Shopify.shop == 'the-party-champions.myshopify.com')
 				{
-					carecartSpinnerJquery('head').append('<style type="text/css">.signupContainer ::-webkit-input-placeholder { /* Chrome/Opera/Safari */ color: #aaaaaa;}</style>');
+					carecartSpinnerJquery('head').append('<style type="text/css">.wheelify-signupContainer ::-webkit-input-placeholder { /* Chrome/Opera/Safari */ color: #aaaaaa;}</style>');
 					//console.log("SAS https://partychampions.com/");
 				}
 				if(Shopify.shop == 'blackhawksurvival.myshopify.com')
 				{
-					carecartSpinnerJquery('head').append('<style type="text/css">#spin_a_sale_cc_store_front_module .checkbox {padding: 5px 100px 15px 1px;text-align: left;text-indent: 5px;line-height: 1;background: transparent;border: none;width: 100%;height: auto;box-shadow: none;margin: 0 !important;}</style>');
+					carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .checkbox {padding: 5px 100px 15px 1px;text-align: left;text-indent: 5px;line-height: 1;background: transparent;border: none;width: 100%;height: auto;box-shadow: none;margin: 0 !important;}</style>');
 					//console.log("SAS blackhawksurvival.myshopify.com");
 				}
 				if(Shopify.shop == 'beauty-box-by-tori-spelling.myshopify.com')
 				{
-					carecartSpinnerJquery('head').append('<style type="text/css">#spin_a_sale_cc_store_front_module .signupContainer,#spin_a_sale_cc_store_front_module .winContainer, #spin_a_sale_cc_store_front_module .loseContainer{width: 52%; float: right; padding: 0 3%;}</style>');
+					carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .wheelify-signupContainer,#wheelify-spin_a_sale_cc_store_front_module .wheelify-winContainer, #wheelify-spin_a_sale_cc_store_front_module .wheelify-loseContainer{width: 52%; float: right; padding: 0 3%;}</style>');
 				}
 				if(Shopify.shop == 'petculiari.myshopify.com')
 				{
-					carecartSpinnerJquery('head').append('<style type="text/css">#spin_a_sale_cc_store_front_module .signupContainer p { color: #000;} #spin_a_sale_cc_store_front_module p.text-description {color: #000;}span#cc-spin-a-sale-consent-text {color: #000 !important;}div#cc-spin-a-sale-powered-by-carecart { color: #000000;} #spin-trigger-cc img, #spin-trigger-cc span { color: #000 !important;}#spin_a_sale_cc_store_front_module .form-group input {border: 1px solid #000;}#spin_a_sale_cc_store_front_module .btn-submit-form, #spin_a_sale_cc_store_front_module .btn-submit-form-ok, #spin_a_sale_cc_store_front_module .copy-button {border: 1px solid #000;}#spin_a_sale_cc_store_front_module .closeButton i {font-size: 20px;color: #000;}#spin_a_sale_cc_store_front_module .text-heading {color: #000;}</style>');
+					carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .wheelify-signupContainer p { color: #000;} #wheelify-spin_a_sale_cc_store_front_module p.wheelify-text-description {color: #000;}span#cc-spin-a-sale-consent-text {color: #000 !important;}div#wheelify-cc-spin-a-sale-powered-by-carecart { color: #000000;} #wheelify-spin-trigger-cc img, #wheelify-spin-trigger-cc span { color: #000 !important;}#wheelify-spin_a_sale_cc_store_front_module .form-group input {border: 1px solid #000;}#wheelify-spin_a_sale_cc_store_front_module .btn-submit-form, #wheelify-spin_a_sale_cc_store_front_module .btn-submit-form-ok, #wheelify-spin_a_sale_cc_store_front_module .copy-button {border: 1px solid #000;}#wheelify-spin_a_sale_cc_store_front_module .wheelify-closeButton i {font-size: 20px;color: #000;}#wheelify-spin_a_sale_cc_store_front_module .wheelify-text-heading {color: #000;}</style>');
 				}
 				if(Shopify.shop == 'store-e11even.myshopify.com'){
-					carecartSpinnerJquery('head').append('<style type="text/css">@media only screen and (max-width: 568px) {#spin_a_sale_cc_store_front_module .signupContainer p{text-align: center;padding: 0px 30px;}#spin_a_sale_cc_store_front_module .content-spinner {padding: 38px 10px;}.signupContainer .checkbox label {display: flex;}.signupContainer .checkbox input {margin-right: 8px;}.signupContainer .btn-submit-form{margin-top: 22px;}#spin_a_sale_cc_store_front_module .checkbox {padding: 5px 30px 15px 1px;}}</style>');
+					carecartSpinnerJquery('head').append('<style type="text/css">@media only screen and (max-width: 568px) {#wheelify-spin_a_sale_cc_store_front_module .wheelify-signupContainer p{text-align: center;padding: 0px 30px;}#wheelify-spin_a_sale_cc_store_front_module .wheelify-content-spinner {padding: 38px 10px;}.wheelify-signupContainer .checkbox label {display: flex;}.wheelify-signupContainer .checkbox input {margin-right: 8px;}.wheelify-signupContainer .btn-submit-form{margin-top: 22px;}#wheelify-spin_a_sale_cc_store_front_module .checkbox {padding: 5px 30px 15px 1px;}}</style>');
 				}
 				if(Shopify.shop == 'greenrepublicau.myshopify.com'){
-					carecartSpinnerJquery('head').append('<style type="text/css">#spin-trigger-cc, #spin-trigger-cc:active, #spin-trigger-cc:focus, #spin-trigger-cc:hover, #spin-trigger-cc:visited {bottom: 98px;}</style>');
+					carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc, #wheelify-spin-trigger-cc:active, #wheelify-spin-trigger-cc:focus, #wheelify-spin-trigger-cc:hover, #wheelify-spin-trigger-cc:visited {bottom: 98px;}</style>');
 				}
 				if(Shopify.shop == 'rana-phulkari.myshopify.com'){
-					carecartSpinnerJquery('head').append('<style type="text/css">.signupContainer .checkbox input {display: inline;vertical-align: baseline;margin-right: 6px;}</style>');
+					carecartSpinnerJquery('head').append('<style type="text/css">.wheelify-signupContainer .checkbox input {display: inline;vertical-align: baseline;margin-right: 6px;}</style>');
 				}
 				if(Shopify.shop == 'tinyfied.myshopify.com'){
-					carecartSpinnerJquery('head').append('<style type="text/css">#spin-trigger-cc span {z-index: -1;}</style>');
+					carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc span {z-index: -1;}</style>');
 				}
 //************************ Make Placeholders black for store whose placeholders are showing white ********************************
 				if(Shopify.shop == 'sky-fit-store.myshopify.com' || Shopify.shop == 'loja-obtura.myshopify.com' || Shopify.shop == 'courtsidecases.myshopify.com'){
@@ -2149,15 +2149,33 @@
 				}
 //*********************** Move spinner 25px above from bottom (current 30px) ***************************************************
 				if(Shopify.shop == 'kingsonsbags.myshopify.com' || Shopify.shop == 'cocolouisau.myshopify.com'){
-					carecartSpinnerJquery('head').append('<style type="text/css">#spin-trigger-cc { bottom:55px !important;}</style>');
+					carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc { bottom:55px !important;}</style>');
 				}
 //*********************** Custom Fix - longdan1.myshopify.com ***************************************************
 				if(Shopify.shop == 'longdan1.myshopify.com'){
-					carecartSpinnerJquery('head').append('<style type="text/css">#spin_a_sale_cc_store_front_module .checkbox {width: 100%;background-color: transparent;height: auto;border: none;}</style>');
+					carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .checkbox {width: 100%;background-color: transparent;height: auto;border: none;}</style>');
 				}
 //*********************** Custom Fix - sugar-ruff.myshopify.com ***** Make Slices Text Color Black **********************************
 				if(Shopify.shop == 'sugar-ruff.myshopify.com'){
-					carecartSpinnerJquery('head').append('<style type="text/css">#spin_a_sale_cc_store_front_module .wheelText {fill: #000;}</style>');
+					carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .wheelText {fill: #000;}</style>');
+				}
+//********************** In mobile view, hide the Spinner Trigger Text and display ONLY the wheel ***********************************
+				if(Shopify.shop == 'pawmerang-pet-store.myshopify.com')
+				{
+					(function (a) {
+						(carecartSpinnerJquery.browser = carecartSpinnerJquery.browser || {}).mobile = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))
+					})(navigator.userAgent || navigator.vendor || window.opera);
+
+					if (carecartSpinnerJquery.browser.mobile) {
+						console.log('SAS pawmerang-pet-store.myshopify.com opened in mobile');
+						carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc span {display: none;}</style>');
+						console.log('SAS spinner text should be hidden now');
+					} else {
+						console.log('SAS pawmerang-pet-store.myshopify.com opened in desktop');
+						//tBtnText.show();
+						carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc span {display: block;}</style>');
+						console.log('SAS spinner text should be displayed now');
+					}
 				}
             });
 
