@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.0 - Build ver 1.0.10 *******************
-//****** Updated at: 24-Mar-2021, 06:08 PM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.0 - Build ver 1.0.11 *******************
+//****** Updated at: 29-Mar-2021, 11:55 AM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -10,7 +10,7 @@
 
 	//var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
-	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.10/';
+	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.11/';
 
     var dataSpin = false;
 
@@ -47,6 +47,7 @@
     //cssFileInjection(API_URL +"public/app/css/front-store-spinner-min.css?v=" + new Date().toLocaleTimeString());
     cssFileInjection(CDN_WHEELIFY_URL +"front-store-spinner-min.css");
     //cssFileInjection(API_URL +"public/app/css/front-store-spinner.css?v=time()");
+	//cssFileInjection(CDN_WHEELIFY_URL +"front-store-spinner-min.css");
 
     scriptInjection("https://code.jquery.com/jquery-3.2.1.min.js", function () {
 
@@ -998,7 +999,6 @@
 									return;
 								}
 							}
-
 //****************************************** End - Allow Spinner on ONLY Specific URL ******************************
 //console.log('response.records.store_settings.settings_data.display_home_page_enabled: ' + response.records.store_settings.settings_data.display_home_page_enabled);
 //console.log('response.records.store_settings.settings_data.display_collections_page_enabled: ' + response.records.store_settings.settings_data.display_collections_page_enabled);
