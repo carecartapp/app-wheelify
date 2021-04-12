@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.0 - Build ver 1.0.13 *******************
-//****** Updated at: 12-Apr-2021, 05:24 PM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.0 - Build ver 1.0.14 *******************
+//****** Updated at: 12-Apr-2021, 06:30 PM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -10,7 +10,7 @@
 
 	//var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
-	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.13/';
+	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.14/';
 
     var dataSpin = false;
 
@@ -45,9 +45,8 @@
     }
 
     //cssFileInjection(API_URL +"public/app/css/front-store-spinner-min.css?v=" + new Date().toLocaleTimeString());
-    //cssFileInjection(CDN_WHEELIFY_URL +"front-store-spinner-min.css");
+    cssFileInjection(CDN_WHEELIFY_URL +"front-store-spinner-min.css");
     //cssFileInjection(API_URL +"public/app/css/front-store-spinner.css?v=time()");
-    cssFileInjection(API_URL +"public/app/css/front-store-spinner-min.css?v=time()");
 	//cssFileInjection(CDN_WHEELIFY_URL +"front-store-spinner-min.css");
 
     scriptInjection("https://code.jquery.com/jquery-3.2.1.min.js", function () {
@@ -2171,9 +2170,13 @@
 					carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc span {z-index: -1;}</style>');
 				}
 //************************ Make Placeholders black for store whose placeholders are showing white ********************************
-				if(Shopify.shop == 'sky-fit-store.myshopify.com' || Shopify.shop == 'loja-obtura.myshopify.com' || Shopify.shop == 'courtsidecases.myshopify.com'){
-					carecartSpinnerJquery('head').append('<style type="text/css">.form-group input::placeholder { color: black !important; }</style>');
+/*
+				if(Shopify.shop == 'sky-fit-store.myshopify.com' || Shopify.shop == 'loja-obtura.myshopify.com' || Shopify.shop == 'courtsidecases.myshopify.com' || Shopify.shop == 'period-poo-boutique.myshopify.com'){
+					//carecartSpinnerJquery('head').append('<style type="text/css">.form-group input::placeholder { color: black !important; }</style>');
+					carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .form-group input::-webkit-input-placeholder {color: #000;}#wheelify-spin_a_sale_cc_store_front_module .form-group input:-ms-input-placeholder {color: #000;}#wheelify-spin_a_sale_cc_store_front_module .form-group input::placeholder{color: #000;}</style>');
+					console.log('SAS Make Placeholders black');
 				}
+*/
 //*********************** Move spinner 25px above from bottom (current 30px) ***************************************************
 				if(Shopify.shop == 'kingsonsbags.myshopify.com' || Shopify.shop == 'cocolouisau.myshopify.com'){
 					carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc { bottom:55px !important;}</style>');
