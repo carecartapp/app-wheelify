@@ -540,6 +540,19 @@ a#couponwheel_notice_close_btn:hover {
     align-self: baseline;
 }
 
+/* --------------- START - Placeholder black color for all stores by default	*/
+#wheelify-spin_a_sale_cc_store_front_module .form-group input::-webkit-input-placeholder {
+	color: #000;
+}
+
+#wheelify-spin_a_sale_cc_store_front_module .form-group input:-ms-input-placeholder {
+	color: #000;
+}
+
+#wheelify-spin_a_sale_cc_store_front_module .form-group input::placeholder {
+	color: #000;
+}
+/* --------------- END - Placeholder black color for all stores by default	*/
 /*.btn-submit-form, .btn-submit-form-ok {
     width: 100%;
     max-width: 370px;
