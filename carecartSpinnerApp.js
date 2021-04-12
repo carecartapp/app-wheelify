@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.0 - Build ver 1.0.11 *******************
-//****** Updated at: 29-Mar-2021, 11:55 AM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.0 - Build ver 1.0.13 *******************
+//****** Updated at: 12-Apr-2021, 05:24 PM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -10,7 +10,7 @@
 
 	//var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
-	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.11/';
+	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.13/';
 
     var dataSpin = false;
 
@@ -45,8 +45,9 @@
     }
 
     //cssFileInjection(API_URL +"public/app/css/front-store-spinner-min.css?v=" + new Date().toLocaleTimeString());
-    cssFileInjection(CDN_WHEELIFY_URL +"front-store-spinner-min.css");
+    //cssFileInjection(CDN_WHEELIFY_URL +"front-store-spinner-min.css");
     //cssFileInjection(API_URL +"public/app/css/front-store-spinner.css?v=time()");
+    cssFileInjection(API_URL +"public/app/css/front-store-spinner-min.css?v=time()");
 	//cssFileInjection(CDN_WHEELIFY_URL +"front-store-spinner-min.css");
 
     scriptInjection("https://code.jquery.com/jquery-3.2.1.min.js", function () {
@@ -989,6 +990,32 @@
 
 							if(Shopify.shop == 'little-miss-juliette.myshopify.com'){
 								var thisStatus = checkStoreSpecificUrlCcSpinASale("https://www.littlemissjuliette.com/pages/spin-win");
+								//console.log('checkStoreSpecificUrlCcSpinASale Status: ' + thisStatus);
+								if(thisStatus)
+								{
+									console.log('SAS Custom Page Matched for store: ' + Shopify.shop);
+								}
+								else{
+									console.log('SAS Custom Page NOT Matched for store: ' + Shopify.shop);
+									return;
+								}
+							}
+
+							if(Shopify.shop == 'beebielove-webshop.myshopify.com'){
+								var thisStatus = checkStoreSpecificUrlCcSpinASale("https://www.beebielove.com/pages/spin-win");
+								//console.log('checkStoreSpecificUrlCcSpinASale Status: ' + thisStatus);
+								if(thisStatus)
+								{
+									console.log('SAS Custom Page Matched for store: ' + Shopify.shop);
+								}
+								else{
+									console.log('SAS Custom Page NOT Matched for store: ' + Shopify.shop);
+									return;
+								}
+							}
+
+							if(Shopify.shop == 'jumping-the-couch.myshopify.com'){
+								var thisStatus = checkStoreSpecificUrlCcSpinASale("https://jumpingthecouch.com/pages/spin-win");
 								//console.log('checkStoreSpecificUrlCcSpinASale Status: ' + thisStatus);
 								if(thisStatus)
 								{
