@@ -382,7 +382,8 @@ img.wheelify-content-spinner {
 }
 
 .bar-top {
-	top: 0 !important
+	top: 0 !important;
+	bottom: auto;
 }
 
 a#couponwheel_notice_close_btn:hover {
