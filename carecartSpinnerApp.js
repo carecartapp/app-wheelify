@@ -1334,7 +1334,7 @@
 
 									couponAndMsgAreSetThenLoad();
 
-                                }, parseInt(response.records.store_settings.settings_data.delay_time) * 1000);
+                                },  1000);
 /* *********************************************** Start - Display Urgency Timer Bar **********************************	*/
 								if (response.records.store_settings.conversion_booster_settings != null && response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled != null && parseInt(response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled) == 1) {
 									window.localStorage.setItem('urgencyTimerBarEnabled', 1);
@@ -1686,9 +1686,11 @@
                             contentType: "application/json",
                             dataType: "json",
                             success: function (response) {
-                                window.localStorage.setItem('cc-sas-spinner-ajax-cached-time', d);
-                                window.localStorage.setItem('cc-sas-spinner-ajax-cached-data', JSON.stringify(response));
-                                pupulateData(response);
+                                setTimeout(function () {
+                                    window.localStorage.setItem('cc-sas-spinner-ajax-cached-time', d);
+                                    window.localStorage.setItem('cc-sas-spinner-ajax-cached-data', JSON.stringify(response));
+                                    pupulateData(response);
+                                }, parseInt(response.records.store_settings.settings_data.delay_time) * 1000);
                             },
                             error: function (error) {
                                 console.log('SAS Error in Spin A Sale request');
