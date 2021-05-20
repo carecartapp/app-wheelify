@@ -237,7 +237,6 @@ div#wheelify-cc-spin-a-sale-powered-by-carecart {
 
 #wheelify-spin-trigger-cc, #wheelify-spin-trigger-cc:active, #wheelify-spin-trigger-cc:focus, #wheelify-spin-trigger-cc:hover, #wheelify-spin-trigger-cc:visited {
 	bottom: 30px;
-	right: 40px;
 	position: fixed;
 	text-decoration: none;
 	opacity: 1;
