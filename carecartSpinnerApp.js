@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.0 - Build ver 1.0.15 *******************
-//****** Updated at: 15-Apr-2021, 11:15 AM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.1 - Build ver 1.0.18 *******************
+//****** Updated at: 20-May-2021, 11:59 AM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -10,7 +10,7 @@
 
 	//var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
-	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.15/';
+	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.18/';
 
     var dataSpin = false;
 
@@ -1082,17 +1082,17 @@
 									return;
 								}
 							}
-//****************************** If SAS is disabled on Thank You Page, it will NOT be loaded on Thank You Page *************************************
+//****************************** If SAS is disabled on Thank You page, it will NOT be loaded on Thank You Page *************************************
 							if(response.records.store_settings.settings_data.display_thank_you_page_enabled && parseInt(response.records.store_settings.settings_data.display_thank_you_page_enabled) == 0){
 								var thisStatus = checkThanksYouCcSpinASale();
 								//console.log('checkThanksYouCcSpinASale Status: ' + thisStatus);
 								if(thisStatus)
 								{
-									console.log('SAS load on Thank You Page is disabled');
+									console.log('SAS load on Thank You page is disabled');
 									return;
 								}
 							}
-//****************************** If SAS is enabled on Home Page, Collections, Blog post pages, Products, Cart & on Thank You Page, it will NOT be loaded on any other page **********************************
+//****************************** If SAS is enabled on Home page, Collections, Blog post pages, Products, Cart & on Thank You page, it will NOT be loaded on any other page **********************************
 							if(response.records.store_settings.settings_data.display_all_other_pages_enabled && parseInt(response.records.store_settings.settings_data.display_all_other_pages_enabled) == 0)
 							{
 								var thisStatus = checkIfAnyOtherPage();
@@ -1631,7 +1631,7 @@
 					}
 					if(checkThanksYouCcSpinASale())
 					{
-						//console.log('SAS valid thank you page');
+						//console.log('SAS valid Thank You page');
 						return true;
 					}
 
