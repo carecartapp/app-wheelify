@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.1 - Build ver 1.0.18 *******************
-//****** Updated at: 20-May-2021, 11:59 AM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.1 - Build ver 1.0.19 *******************
+//****** Updated at: 24-May-2021, 02:27 PM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -10,7 +10,7 @@
 
 	//var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
-	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.18/';
+	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.19/';
 
     var dataSpin = false;
 
@@ -54,7 +54,7 @@
         setTimeout(function () {
             scriptInjection(CDN_WHEELIFY_URL + "spinner.min.js", function () {
 
-            	if(window.localStorage.getItem('cc-sas-spinner-user-ip-address') == null){
+            	if(window.localStorage.getItem('cc-sas-spinner-user-ip-address') === null){
 					var ccCareCartSpinnerUserIPAddress = null;
 					carecartSpinnerJquery.getJSON("https://api.ipify.org/?format=json", function(e) {
 						ccCareCartSpinnerUserIPAddress = e.ip;
@@ -69,7 +69,7 @@
 				}
 
 
-				if(window.localStorage.getItem('cc-sas-spinner-cookies-data') == null)
+				if(window.localStorage.getItem('cc-sas-spinner-cookies-data') === null)
 				{
 					var ccCareCartSpinnerUserCookieInfo = document.cookie;
 
@@ -79,12 +79,13 @@
 					var secondBracket = ccCareCartSpinnerUserCookieInfo.indexOf(';', firstBracket+1);
 					ccCareCartSpinnerUserCookieInfo = ccCareCartSpinnerUserCookieInfo.substring(0, secondBracket);
 					ccCareCartSpinnerUserCookieInfo = ccCareCartSpinnerUserCookieInfo.split(';')[1];
-					window.localStorage.setItem('cc-sas-spinner-cookies-data', ccCareCartSpinnerUserCookieInfo);
-					//console.log('ccCareCartSpinnerUserCookieInfo Updated: ' + window.localStorage.getItem('cc-sas-spinner-cookies-data'));
+					ccCareCartSpinnerUserCookieInfo = carecartSpinnerJquery.trim(ccCareCartSpinnerUserCookieInfo);
+					window.localStorage.setItem('cc-sas-spinner-cookies-data', 'cc-sas-spinner-coo-' + ccCareCartSpinnerUserCookieInfo);
+					console.log('ccCareCartSpinner Data Updated: ' + window.localStorage.getItem('cc-sas-spinner-cookies-data'));
 				}
 				else
 				{
-					//console.log('ccCareCartSpinnerUserCookieInfo Already Exists: ' + window.localStorage.getItem('cc-sas-spinner-cookies-data'));
+					console.log('ccCareCartSpinner Data Already Exists: ' + window.localStorage.getItem('cc-sas-spinner-cookies-data'));
 				}
 
                 function Spin2WinWheel() {
@@ -639,6 +640,7 @@
 							q = carecartSpinnerJquery("#wheelify-cc-spin-a-sale-already-used-spin-quota");
 							d = carecartSpinnerJquery('#cc-spinner-email'),
                         n.text("");
+							var emailError = carecartSpinnerJquery('#wheelify-cc-spin-invalid-email');
 
 						if(checkboxIsMandatory == 1)
 						{
@@ -667,11 +669,14 @@
 								w.removeClass("animated shake");
 							},
 							1e3), carecartSpinnerJquery('.btn-submit-form').prop('disabled', false)) : "" != e ? void setTimeout(function () {
-
-							if(window.localStorage.getItem('cc-sas-spinner-anti-cheat-shield')	!== null && window.localStorage.getItem('cc-sas-spinner-anti-cheat-shield') == 1)
+							var sendCall = true;
+							if(sendCall || window.localStorage.getItem('cc-sas-spinner-anti-cheat-shield')	!== null && window.localStorage.getItem('cc-sas-spinner-anti-cheat-shield') == 1)
 							{
 								carecartSpinnerJquery('#wheelify-cc-spin-a-sale-loader-on-click').show();
 								console.log('SAS Try your luck clicked and about to spin');
+								
+								emailError.hide();
+								emailError.removeClass("animated shake");
 								//q.show();
 								//q.addClass("animated shake");
 								//console.log("SAS validation Success");
@@ -687,14 +692,20 @@
 									crossDomain: true,
 									dataType: "json",
 									success: function (response) {
+									    carecartSpinnerJquery('.btn-submit-form').prop('disabled', false);
+									    carecartSpinnerJquery('#wheelify-cc-spin-a-sale-loader-on-click').hide();
 										if (response && response._metadata && response._metadata.outcome && response._metadata.outcome == "SUCCESS") {
 											//console.log('response._metadata.outcome: ' + response._metadata.outcome);
 											q.hide();
 											q.removeClass("animated shake");
 											console.log('SAS post engine successfully');
 											o.click();
-										}
-										else {
+										}else if(response && response._metadata && response._metadata.outcome && response._metadata.outcome == "INVALID_EMAIL_DOMAIN"){
+										    q.hide();
+										    q.removeClass("animated shake");
+										    emailError.show();
+										    emailError.addClass("animated shake");
+										} else {
 											console.log('SAS Engine Block response: ' + response);
 											q.show();
 											q.addClass("animated shake");
@@ -702,6 +713,7 @@
 									},
 									error: function () {
 										carecartSpinnerJquery('#wheelify-cc-spin-a-sale-loader-on-click').hide();
+										carecartSpinnerJquery('.btn-submit-form').prop('disabled', false);
 										q.show();
 										q.addClass("animated shake");
 										console.log('SAS Engine Error');
