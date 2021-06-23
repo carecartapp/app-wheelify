@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.1 - Build ver 1.0.19 *******************
-//****** Updated at: 24-May-2021, 02:27 PM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.1 - Build ver 1.0.20 *******************
+//****** Updated at: 23-Jun-2021, 12:03 PM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -8,9 +8,13 @@
 
     var API_URL = 'https://app-spinner.carecart.io' + '/';
 
+	//var API_URL = 'https://uat-spinner.carecart.io' + '/';
+
+	//var API_URL = 'https://new-ui-spinner.carecart.io' + '/';
+
 	//var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
-	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.19/';
+	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.20/';
 
     var dataSpin = false;
 
@@ -706,7 +710,7 @@
 										    emailError.show();
 										    emailError.addClass("animated shake");
 										} else {
-											console.log('SAS Engine Block response: ' + response);
+											console.log('SAS Engine Block response: ' + response._metadata.outcome);
 											q.show();
 											q.addClass("animated shake");
 										}
@@ -1132,21 +1136,29 @@
                                 if (response.records.store_settings.settings_data.is_triggered_enable && parseInt(response.records.store_settings.settings_data.is_triggered_enable) == 1) {
                                     carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
                                     const settingsData = response.records.store_settings.settings_data;
-									var tBtn = carecartSpinnerJquery('body').find('#wheelify-spin-trigger-cc');
-									if (settingsData.button_position === 'middle_right') {
-										tBtn.css({
-											bottom: '48vh'
-										});
-									} else if (settingsData.button_position === 'bottom_left') {
-										tBtn.css({
-											left: '20px'
-										});
-									} else if (settingsData.button_position === 'middle_left') {
-										tBtn.css({
-											left: '20px',
-											bottom: '48vh'
-										});
-									} else {}
+                                    var tBtn = carecartSpinnerJquery('body').find('#wheelify-spin-trigger-cc');
+                                    if (settingsData.button_position === 'middle_right') {
+                                        tBtn.css({
+                                            bottom: '48vh',
+                                            right:'20px'
+                                        });
+                                    }
+                                    else if (settingsData.button_position === 'bottom_right') {
+                                        tBtn.css({
+                                            bottom: '8vh',
+                                            right:'20px'
+                                        });
+                                    }//new added
+                                    else if (settingsData.button_position === 'bottom_left') {
+                                        tBtn.css({
+                                            left: '20px'
+                                        });
+                                    } else if (settingsData.button_position === 'middle_left') {
+                                        tBtn.css({
+                                            left: '20px',
+                                            bottom: '48vh'
+                                        });
+                                    }
                                 }
                                 else {
 									carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
@@ -1510,7 +1522,7 @@
                         winResult: winResult
                     }
 					carecartSpinnerJquery('#wheelify-cc-spin-a-sale-loader-on-click').hide();
-                    console.log('SAS customerInformation: ' + customerInformation.customerName);
+                    console.log('SAS customerInformation: ' + customerInformation.name + ' ' + customerInformation.email);
 					setSpinCouponLoadTime();
                     carecartSpinnerJquery.ajax({
                         url: API_URL + "store-front-api/post-customer-information",
@@ -1532,6 +1544,30 @@
                             console.log('SAS Error: ' + error);
                         }
                     });
+                    if(carecartSpinnerJquery('#cc-spin-a-sale-consent-checkbox').prop('checked') == true){
+                    	console.log('Trigger Mailchimp list');
+						carecartSpinnerJquery.ajax({
+							url: API_URL + "store-front-api/post-mailchimp-email-post-list",
+							type: 'POST',
+							data: {
+								shop: Shopify.shop,
+								customerEmail: customerInformation.email,
+							},
+							crossDomain: true,
+							dataType: "json",
+							success: function (response) {
+								//if (response.result) {
+								if (response._metadata.message) {
+									//console.log('SAS User information posted successfully to Mailchimp');
+									console.log('SAS ' + response._metadata.message);
+								}
+							},
+							error: function (error) {
+								console.log('SAS Mailchimp data not posted');
+								//console.log('SAS Error: ' + error);
+							}
+						});
+					}
                 }
 /*
 				function checkCachedTimeForCoupon(){
@@ -1784,24 +1820,32 @@
                                     carecartSpinnerJquery("body").append(response.records.store_front_template);
                                     /* Append triggered button */
                                     if(response.records.store_settings.settings_data.is_triggered_enable && parseInt(response.records.store_settings.settings_data.is_triggered_enable)==1){
-                                         carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
-											const settingsData = response.records.store_settings.settings_data;
-											var tBtn = carecartSpinnerJquery('body').find('#wheelify-spin-trigger-cc');
-											if (settingsData.button_position === 'middle_right') {
-												tBtn.css({
-													bottom: '48vh'
-												});
-											} else if (settingsData.button_position === 'bottom_left') {
-												tBtn.css({
-													left: '20px'
-												});
-											} else if (settingsData.button_position === 'middle_left') {
-												tBtn.css({
-													left: '20px',
-													bottom: '48vh'
-												});
-											} else {}
-                                     }
+                                        carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
+                                        const settingsData = response.records.store_settings.settings_data;
+                                        var tBtn = carecartSpinnerJquery('body').find('#wheelify-spin-trigger-cc');
+                                        if (settingsData.button_position === 'middle_right') {
+                                            tBtn.css({
+                                                bottom: '48vh',
+                                                right:'20px'
+                                            });
+                                        }
+                                        else if (settingsData.button_position === 'bottom_right') {
+                                            tBtn.css({
+                                                bottom: '8vh',
+                                                right:'20px'
+                                            });
+                                        }//new added
+                                        else if (settingsData.button_position === 'bottom_left') {
+                                            tBtn.css({
+                                                left: '20px'
+                                            });
+                                        } else if (settingsData.button_position === 'middle_left') {
+                                            tBtn.css({
+                                                left: '20px',
+                                                bottom: '48vh'
+                                            });
+                                        }
+                                    }
                                     else
 									{
 										carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
