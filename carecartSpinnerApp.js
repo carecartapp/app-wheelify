@@ -1,20 +1,20 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.1 - Build ver 1.0.22 *******************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.1 - Build ver 1.0.23 *******************
 //****** Updated at: 02-Jul-2021, 19:11 PM  ********************************************************
 
 (function () {
     var d = new Date();
     //var version = d.getSeconds();
 
-    var API_URL = 'https://app-spinner.carecart.io' + '/';
+    //var API_URL = 'https://app-spinner.carecart.io' + '/';
 
 	//var API_URL = 'https://uat-spinner.carecart.io' + '/';
 
 	//var API_URL = 'https://new-ui-spinner.carecart.io' + '/';
 
-	//var API_URL = 'https://dev-spinner.carecart.io' + '/';
+	var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
-	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.22/';
+	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.23/';
 
     var dataSpin = false;
 
@@ -1411,7 +1411,7 @@
 									console.log('SAS Conversion Booster Progress Bar is Active');
 									carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar').css("visibility", "visible");
 									carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar-inner').width(response.records.store_settings.conversion_booster_settings.conversion_booster_percentage_offers_claimed + '%');
-									carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar-inner').css("background-color", response.records.store_settings.conversion_booster_settings.conversion_booster_progress_bar_color);
+									carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar-inner').css({"background-color": response.records.store_settings.conversion_booster_settings.conversion_booster_progress_bar_color, "display":"block"});
 									carecartSpinnerJquery('.wheelify-cc-spin-a-sale-couponwheel_offers_text').text(response.records.store_settings.conversion_booster_settings.conversion_booster_offers_claimed_text);
 								}
 /* *********************************************** End - Conversion Booster Progress Bar **********************************	*/
@@ -2309,7 +2309,7 @@
 						console.log('SAS spinner text should be displayed now');
 					}
 				}
-                carecartSpinnerJquery('head').append('<style type="text/css"> :empty{display: block; !important;}</style>');
+                //carecartSpinnerJquery('head').append('<style type="text/css"> :empty{display: block; !important;}</style>');
 
 //*********************** Custom Fix - gammalifestyle.myshopify.com - Urgency Bar Top Styling Fix ************************
 /*
