@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.1 - Build ver 1.0.21 *******************
-//****** Updated at: 02-Jul-2021, 15:20 PM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.1 - Build ver 1.0.22 *******************
+//****** Updated at: 02-Jul-2021, 19:11 PM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -14,7 +14,7 @@
 
 	//var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
-	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.21/';
+	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.22/';
 
     var dataSpin = false;
 
@@ -2309,6 +2309,8 @@
 						console.log('SAS spinner text should be displayed now');
 					}
 				}
+                carecartSpinnerJquery('head').append('<style type="text/css"> :empty{display: block; !important;}</style>');
+
 //*********************** Custom Fix - gammalifestyle.myshopify.com - Urgency Bar Top Styling Fix ************************
 /*
 				if(Shopify.shop == 'gammalifestyle.myshopify.com' || Shopify.shop == 'almowear.myshopify.com'){
