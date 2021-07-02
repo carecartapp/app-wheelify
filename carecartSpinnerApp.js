@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.1 - Build ver 1.0.20 *******************
-//****** Updated at: 23-Jun-2021, 12:03 PM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.1 - Build ver 1.0.21 *******************
+//****** Updated at: 02-Jul-2021, 15:20 PM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -14,7 +14,7 @@
 
 	//var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
-	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.20/';
+	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.21/';
 
     var dataSpin = false;
 
@@ -1544,7 +1544,52 @@
                             console.log('SAS Error: ' + error);
                         }
                     });
-                    if(carecartSpinnerJquery('#cc-spin-a-sale-consent-checkbox').prop('checked') == true){
+
+					/******** Klaviyo Integration ***********/
+
+					if(carecartSpinnerJquery('#cc-spin-a-sale-consent-checkbox').prop('checked') == true){
+						carecartSpinnerJquery.ajax({
+							url: API_URL + "store-front-api/klaviyo/check-klaviyo-status",
+							type: 'POST',
+							data: {
+								shop: Shopify.shop,
+							},
+							crossDomain: true,
+							dataType: "json",
+							success: function (response) {
+								if (response.records == 1) {
+									var kCustomerName = carecartSpinnerJquery('#cc-spinner-full-name').val();
+									var kCustomerEmail = carecartSpinnerJquery('#cc-spinner-email').val();
+									carecartSpinnerJquery.ajax({
+										url: API_URL + "store-front-api/klaviyo/add-member-to-list",
+										type: 'POST',
+										data: {
+											name: kCustomerName,
+											email: kCustomerEmail,
+											shop: Shopify.shop
+										},
+										crossDomain: true,
+										dataType: "json",
+										success: function (response) {
+											console.log('Success');
+										},
+										error: function (error) {
+											console.log('SAS Error in impression post');
+											console.log('SAS Error: ' + error);
+										}
+									});
+								}
+							},
+							error: function (error) {
+								console.log('SAS Error in impression post');
+								console.log('SAS Error: ' + error);
+							}
+						});
+					}
+
+					/***** Klaviyo Itegration ******/
+
+					if(carecartSpinnerJquery('#cc-spin-a-sale-consent-checkbox').prop('checked') == true){
                     	console.log('Trigger Mailchimp list');
 						carecartSpinnerJquery.ajax({
 							url: API_URL + "store-front-api/post-mailchimp-email-post-list",
