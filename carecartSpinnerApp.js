@@ -1,20 +1,20 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.1 - Build ver 1.0.23 *******************
-//****** Updated at: 02-Jul-2021, 19:11 PM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.5.0.1 - Build ver 1.0.24 *******************
+//****** Updated at: 02-Jul-2021, 11:52 AM  ********************************************************
 
 (function () {
     var d = new Date();
     //var version = d.getSeconds();
 
-    //var API_URL = 'https://app-spinner.carecart.io' + '/';
+    var API_URL = 'https://app-spinner.carecart.io' + '/';
 
 	//var API_URL = 'https://uat-spinner.carecart.io' + '/';
 
 	//var API_URL = 'https://new-ui-spinner.carecart.io' + '/';
 
-	var API_URL = 'https://dev-spinner.carecart.io' + '/';
+	//var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
-	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.23/';
+	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.24/';
 
     var dataSpin = false;
 
@@ -673,8 +673,8 @@
 								w.removeClass("animated shake");
 							},
 							1e3), carecartSpinnerJquery('.btn-submit-form').prop('disabled', false)) : "" != e ? void setTimeout(function () {
-							var sendCall = true;
-							if(sendCall || window.localStorage.getItem('cc-sas-spinner-anti-cheat-shield')	!== null && window.localStorage.getItem('cc-sas-spinner-anti-cheat-shield') == 1)
+							//var sendCall = true;
+							if(window.localStorage.getItem('cc-sas-spinner-anti-cheat-shield')	!== null && window.localStorage.getItem('cc-sas-spinner-anti-cheat-shield') == 1)
 							{
 								carecartSpinnerJquery('#wheelify-cc-spin-a-sale-loader-on-click').show();
 								console.log('SAS Try your luck clicked and about to spin');
