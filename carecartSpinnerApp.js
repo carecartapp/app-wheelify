@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 1.0.25 *******************
-//****** Updated at: 08-Aug-2021, 03:00 PM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 1.0.26 *******************
+//****** Updated at: 16-Aug-2021, 03:35 PM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -14,7 +14,7 @@
 
     //var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
-    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.25/';
+    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.26/';
 
     var dataSpin = false;
 
@@ -589,7 +589,11 @@
                         u = carecartSpinnerJquery("input[name='coupon']");
                     carecartSpinnerJquery(".copy-button").click(function () {
                         var copiedTextVal = carecartSpinnerJquery("#copied_text_only").text();
-                        carecartSpinnerJquery(this).html('<i class="fa fa-clone" aria-hidden="true"></i> ' + copiedTextVal);
+						if(Shopify.shop == 'organicforeverybody.myshopify.com'){
+							carecartSpinnerJquery(this).html('<i class="fa fa-clone" aria-hidden="true"></i> ' + copiedTextVal);
+						} else {
+							clipboard.writeText(u.val()), carecartSpinnerJquery(this).html('<i class="fa fa-clone" aria-hidden="true"></i> ' + copiedTextVal);
+						}
                         if(window.localStorage.getItem('urgencyTimerBarEnabled') == 1 && window.localStorage.getItem('cc-sas-spinner-hide-timer-bar') != 1 && window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1){
                             //if (!getParameterByName('cc-show-spin-a-sale-test')) {
                             //updateCachedTime();
@@ -1375,7 +1379,7 @@
                                     showSpinASaleModule(type);
                                     couponAndMsgAreSetThenLoad();
                                 }, parseInt(response.records.store_settings.settings_data.delay_time) * 1000);
-                                /* *********************************************** Start - Display Urgency Timer Bar **********************************	*/
+/* *********************************************** Start - Display Urgency Timer Bar **********************************	*/
                                 if (response.records.store_settings.conversion_booster_settings != null && response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled != null && parseInt(response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled) == 1) {
                                     window.localStorage.setItem('urgencyTimerBarEnabled', 1);
                                     //console.log('SAS Urgency Bar is Active');
@@ -1467,7 +1471,7 @@
                             if (response.records.store_settings.try_luck_text_color && tryYourLuckTextColor != "" && tryYourLuckTextColor != null && tryYourLuckTextColor != "#384F66"){
                                 carecartSpinnerJquery('.btn-submit-form').css('color', tryYourLuckTextColor);
                             }
-                            /* ************************************** Display Background Image - Start *********************************************************** */
+/* ************************************** Display Background Image - Start *********************************************************** */
                             if (response.records.store_settings.spinner_bg_image && response.records.store_settings.spinner_bg_image != "" && response.records.store_settings.spinner_bg_image != null){
                                 // Check For desktop/Mobile
                                 var spinnerBgImage = '';
@@ -1483,7 +1487,7 @@
                                 var themeBgImageURL = CDN_WHEELIFY_URL + spinnerBgImage;
                                 carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + themeBgImageURL + ')');
                             }
-                            /* ************************************** Display Background Image - End *********************************************************** */
+/* ************************************** Display Background Image - End *********************************************************** */
                             if(Shopify.shop == 'srnsmart.myshopify.com'){
                                 carecartSpinnerJquery('#customer_login_link').append('<div class="customer-login-links-new"><a href="#." id="cc-spin-a-wheel-open-spinner-mate">Spin to win</a></div>');
                                 //console.log('SAS In srnsmart.myshopify.com');
@@ -1963,8 +1967,8 @@
                                         var themeBgImageURL = CDN_WHEELIFY_URL + spinnerBgImage;
                                         carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + themeBgImageURL + ')');
                                     }
-                                    /* ************************************** Display Background Image - End *********************************************************** */
-                                    /* ************************************** Display Spinner if percentage scroll is enabled  - START *********************************************************** */
+/* ************************************** Display Background Image - End *********************************************************** */
+/* ************************************** Display Spinner if percentage scroll is enabled  - START *********************************************************** */
                                     if (response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled && parseInt(response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled) == 1){
                                         //console.log("SAS is_scroll_spinner_percentage_enabled is ENABLED");
                                         var scrollPercentageRequired = response.records.store_settings.settings_data.scroll_spinner_percentage ? response.records.store_settings.settings_data.scroll_spinner_percentage : 50;
@@ -2010,7 +2014,7 @@
                                             console.log("SAS Scroll Screen has already loaded Spinner once");
                                         }
                                     }
-                                    /* ************************************** Display Spinner if percentage scroll is enabled  - END *********************************************************** */
+/* ************************************** Display Spinner if percentage scroll is enabled  - END *********************************************************** */
                                     setTimeout(function () {
                                         var spinnerColors = response.records.store_slices_color;
                                         if(spinnerColors.every(element => element === null))
