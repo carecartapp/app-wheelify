@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 1.0.26 *******************
-//****** Updated at: 16-Aug-2021, 03:35 PM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 1.0.27 *******************
+//****** Updated at: 17-Aug-2021, 04:20 PM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -14,7 +14,7 @@
 
     //var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
-    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.26/';
+    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.27/';
 
     var dataSpin = false;
 
@@ -675,7 +675,7 @@
                             s.removeClass("animated shake")
                         }, 1e3), carecartSpinnerJquery('.btn-submit-form').prop('disabled', false)) : "" == e ? (d.addClass("animated shake"), void setTimeout(function () {
                             d.removeClass("animated shake")
-                        }, 1e3), carecartSpinnerJquery('.btn-submit-form').prop('disabled', false)) : isValidEmailAddress(e) ? (d.addClass("animated shake"), void setTimeout(function () {
+                        }, 1e3), carecartSpinnerJquery('.btn-submit-form').prop('disabled', false)) : isValidEmailAddress(e) ? (d.addClass("animated shake"), emailError.addClass("animated shake"),emailError.show(), void setTimeout(function () {
                             d.removeClass("animated shake")
                         }, 1e3), carecartSpinnerJquery('.btn-submit-form').prop('disabled', false)) : "" == x ? (w.addClass("animated shake"), void setTimeout(function () {
                                 w.removeClass("animated shake");
@@ -1721,41 +1721,42 @@
                     return is_page;
                 }
 
-                function checkIfAnyOtherPage(){
-                    //console.log('SAS inside checkIfAnyOtherPage');
-                    if(checkHomePageCcSpinASale())
-                    {
-                        //console.log('SAS valid homepage');
-                        return true;
-                    }
-                    if(checkCollectionsCcSpinASale())
-                    {
-                        //console.log('SAS valid collections page');
-                        return true;
-                    }
-                    if(checkBlogPageCcSpinASale())
-                    {
-                        //console.log('SAS valid blog page');
-                        return true;
-                    }
-                    if(checkProductCcSpinASale())
-                    {
-                        //console.log('SAS valid products page');
-                        return true;
-                    }
-                    if(checkCartCcSpinASale())
-                    {
-                        //console.log('SAS valid cart page');
-                        return true;
-                    }
-                    if(checkThanksYouCcSpinASale())
-                    {
-                        //console.log('SAS valid Thank You page');
-                        return true;
-                    }
+				function checkIfAnyOtherPage() {
+					//console.log('SAS inside checkIfAnyOtherPage');
+					let status = false;
+					if (checkHomePageCcSpinASale()) {
+						console.log('SAS valid homepage');
+						//return true;
+						status = true;
+					}
+					if (checkCollectionsCcSpinASale()) {
+						console.log('SAS valid collections page');
+						//return true;
+						status = true;
+					}
+					if (checkBlogPageCcSpinASale()) {
+						console.log('SAS valid blog page');
+						//return true;
+						status = true;
+					}
+					if (checkProductCcSpinASale()) {
+						console.log('SAS valid products page');
+						//return true;
+						status = true;
+					}
+					if (checkCartCcSpinASale()) {
+						console.log('SAS valid cart page');
+						//return true;
+						status = true;
+					}
+					if (checkThanksYouCcSpinASale()) {
+						console.log('SAS valid Thank You page');
+						//return true;
+						status = true
+					}
 
-                    return false;
-                }
+					return status;
+				}
 
                 function checkStoreSpecificUrlCcSpinASale(url) {
                     //console.log('SAS inside checkStoreSpecificUrlCcSpinASale');
