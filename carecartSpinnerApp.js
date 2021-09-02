@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 1.0.28 *******************
-//****** Updated at: 17-Aug-2021, 05:46 PM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0-new-ui - Build ver 1.0.29 ************
+//****** Updated at: 09-Sept-2021, 11:26 AM  *******************************************************
 
 (function () {
     var d = new Date();
@@ -14,7 +14,7 @@
 
     //var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
-    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.28/';
+    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.29/';
 
     var dataSpin = false;
 
@@ -70,30 +70,25 @@
                         window.localStorage.setItem('cc-sas-spinner-user-ip-address', ccCareCartSpinnerUserIPAddress);
                         //console.log('User IP Address Updated: ' + window.localStorage.getItem('cc-sas-spinner-user-ip-address'));
                     });
-                }
-                else
-                {
+                } else {
                     //console.log('User IP Address Already Exists: ' + window.localStorage.getItem('cc-sas-spinner-user-ip-address'));
                 }
 
 
-                if(window.localStorage.getItem('cc-sas-spinner-cookies-data') === null)
-                {
+                if (window.localStorage.getItem('cc-sas-spinner-cookies-data') === null) {
                     var ccCareCartSpinnerUserCookieInfo = document.cookie;
 
                     //console.log('ccCareCartSpinnerUserCookieInfo: ' + ccCareCartSpinnerUserCookieInfo);
 
                     var firstBracket = ccCareCartSpinnerUserCookieInfo.indexOf(';');
-                    var secondBracket = ccCareCartSpinnerUserCookieInfo.indexOf(';', firstBracket+1);
+                    var secondBracket = ccCareCartSpinnerUserCookieInfo.indexOf(';', firstBracket + 1);
                     ccCareCartSpinnerUserCookieInfo = ccCareCartSpinnerUserCookieInfo.substring(0, secondBracket);
                     ccCareCartSpinnerUserCookieInfo = ccCareCartSpinnerUserCookieInfo.split(';')[1];
                     ccCareCartSpinnerUserCookieInfo = carecartSpinnerJquery.trim(ccCareCartSpinnerUserCookieInfo);
                     window.localStorage.setItem('cc-sas-spinner-cookies-data', 'cc-sas-spinner-coo-' + ccCareCartSpinnerUserCookieInfo);
-                    //console.log('ccCareCartSpinner Data Updated: ' + window.localStorage.getItem('cc-sas-spinner-cookies-data'));
-                }
-                else
-                {
-                    //console.log('ccCareCartSpinner Data Already Exists: ' + window.localStorage.getItem('cc-sas-spinner-cookies-data'));
+                    console.log('ccCareCartSpinner Data Updated: ' + window.localStorage.getItem('cc-sas-spinner-cookies-data'));
+                } else {
+                    console.log('ccCareCartSpinner Data Already Exists: ' + window.localStorage.getItem('cc-sas-spinner-cookies-data'));
                 }
 
                 function Spin2WinWheel() {
@@ -589,12 +584,12 @@
                         u = carecartSpinnerJquery("input[name='coupon']");
                     carecartSpinnerJquery(".copy-button").click(function () {
                         var copiedTextVal = carecartSpinnerJquery("#copied_text_only").text();
-						if(Shopify.shop == 'organicforeverybody.myshopify.com'){
-							carecartSpinnerJquery(this).html('<i class="fa fa-clone" aria-hidden="true"></i> ' + copiedTextVal);
-						} else {
-							clipboard.writeText(u.val()), carecartSpinnerJquery(this).html('<i class="fa fa-clone" aria-hidden="true"></i> ' + copiedTextVal);
-						}
-                        if(window.localStorage.getItem('urgencyTimerBarEnabled') == 1 && window.localStorage.getItem('cc-sas-spinner-hide-timer-bar') != 1 && window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1){
+                        if (Shopify.shop == 'organicforeverybody.myshopify.com') {
+                            carecartSpinnerJquery(this).html('<i class="fa fa-clone" aria-hidden="true"></i> ' + copiedTextVal);
+                        } else {
+                            clipboard.writeText(u.val()), carecartSpinnerJquery(this).html('<i class="fa fa-clone" aria-hidden="true"></i> ' + copiedTextVal);
+                        }
+                        if (window.localStorage.getItem('urgencyTimerBarEnabled') == 1 && window.localStorage.getItem('cc-sas-spinner-hide-timer-bar') != 1 && window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1) {
                             //if (!getParameterByName('cc-show-spin-a-sale-test')) {
                             //updateCachedTime();
                             //}
@@ -604,7 +599,7 @@
                             var spinASaleCcUrgencyTimeBarText = carecartSpinnerJquery('#wheelify-spin_a_sale_cc_urgency_time_bar_text').html();
                             var wonCouponCode = '<strong>' + window.localStorage.getItem('cc-sas-spinner-cached-coupon-code') + '</strong>';
                             //console.log('wonCouponCode: ' + wonCouponCode);
-                            spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{coupon_code}}',wonCouponCode);
+                            spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{coupon_code}}', wonCouponCode);
                             //console.log('spinASaleCcUrgencyTimeBarText ' + spinASaleCcUrgencyTimeBarText);
                             var spinASaleCcUrgencyTimeBarInMin = window.localStorage.getItem('urgencyTimerBarTimeInMin');
                             //console.log('spinASaleCcUrgencyTimeBarInMin: ' + spinASaleCcUrgencyTimeBarInMin);
@@ -613,8 +608,8 @@
                             //var spinASaleCcUrgencyTimeBarText = '<span class="cc-spin-a-sale-clock-div" id="cc-spin-a-sale-clock-div-preview"><span style="font-weight: bold;"><span class="cc-spin-a-sale-minutes"></span>:<span class="cc-spin-a-sale-seconds"></span></span></span>';
                             //console.log('timerDiv: ' + timerDiv);
                             //console.log('spinASaleCcUrgencyTimeBarText: ' + spinASaleCcUrgencyTimeBarText);
-                            spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{time}}',timerDiv);
-                            spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{ time }}',timerDiv);
+                            spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{time}}', timerDiv);
+                            spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{ time }}', timerDiv);
                             //carecartSpinnerJquery('#wheelify-couponwheel_notice_timer').html(timerDiv);
                             carecartSpinnerJquery('#wheelify-spin_a_sale_cc_urgency_time_bar_text').html(spinASaleCcUrgencyTimeBarText);
                             //console.log('spinASaleCcUrgencyTimeBarText 2: ' + spinASaleCcUrgencyTimeBarText);
@@ -622,9 +617,7 @@
                             //console.log('deadlineSpinAWheel deadlineSpinAWheel: ' + deadlineSpinAWheel);
                             initializeClockSpinAWheel('cc-spin-a-sale-clock-div-preview', deadlineSpinAWheel);
                             carecartSpinnerJquery('#spin_a_sale_cc_store_front_module_close_button').click();
-                        }
-                        else
-                        {
+                        } else {
                             console.log('SAS copy-button-clicked is already triggered & urgency bar is hence closed')
                         }
                     }), i(), carecartSpinnerJquery(window).resize(function () {
@@ -633,12 +626,10 @@
                         carecartSpinnerJquery('.btn-submit-form').prop('disabled', true);
                         i.preventDefault();
                         var checkboxIsMandatory = 0;
-                        if(carecartSpinnerJquery('#cc-spin-a-sale-consent-checkbox').prop('required'))
-                        {
+                        if (carecartSpinnerJquery('#cc-spin-a-sale-consent-checkbox').prop('required')) {
                             checkboxIsMandatory = 1;
                             //console.log("SAS Checkbox is Mandatory");
-                        }
-                        else {
+                        } else {
                             //console.log("SAS Checkbox is NOT Mandatory");
                         }
                         var t = s.val(),
@@ -654,38 +645,31 @@
                             n.text("");
                         var emailError = carecartSpinnerJquery('#wheelify-cc-spin-invalid-email');
 
-                        if(checkboxIsMandatory == 1)
-                        {
-                            if(w.prop("checked") == true)
-                            {
+                        if (checkboxIsMandatory == 1) {
+                            if (w.prop("checked") == true) {
                                 //console.log("SAS Checkbox is Mandatory & Checkbox Checked");
-                            }
-                            else
-                            {
+                            } else {
                                 x = "";
                                 //console.log("SAS Checkbox is Mandatory & Checkbox is NOT Checked");
                             }
                             //console.log("SAS value of x : " + x);
-                        }
-                        else
-                        {
+                        } else {
                             //console.log("SAS x value should be 0 as NOT needed: " + x);
                         }
                         return "" == t ? (s.addClass("animated shake"), void setTimeout(function () {
                             s.removeClass("animated shake")
                         }, 1e3), carecartSpinnerJquery('.btn-submit-form').prop('disabled', false)) : "" == e ? (d.addClass("animated shake"), void setTimeout(function () {
                             d.removeClass("animated shake")
-                        }, 1e3), carecartSpinnerJquery('.btn-submit-form').prop('disabled', false)) : isValidEmailAddress(e) ? (d.addClass("animated shake"), emailError.addClass("animated shake"),emailError.show(), void setTimeout(function () {
+                        }, 1e3), carecartSpinnerJquery('.btn-submit-form').prop('disabled', false)) : isValidEmailAddress(e) ? (d.addClass("animated shake"),emailError.addClass("animated shake"),emailError.show(), void setTimeout(function () {
                             d.removeClass("animated shake")
-                        }, 1e3), carecartSpinnerJquery('.btn-submit-form').prop('disabled', false)) : "" == x ? (w.addClass("animated shake"), void setTimeout(function () {
+                        }, 1e3), carecartSpinnerJquery('.btn-submit-form').prop('disabled', false),emailError.addClass("animated shake")) : "" == x ? (w.addClass("animated shake"), void setTimeout(function () {
                                 w.removeClass("animated shake");
                             },
                             1e3), carecartSpinnerJquery('.btn-submit-form').prop('disabled', false)) : "" != e ? void setTimeout(function () {
                             //var sendCall = true;
-                            if(window.localStorage.getItem('cc-sas-spinner-anti-cheat-shield')	!== null && window.localStorage.getItem('cc-sas-spinner-anti-cheat-shield') == 1)
-                            {
+                            if (window.localStorage.getItem('cc-sas-spinner-anti-cheat-shield') !== null && window.localStorage.getItem('cc-sas-spinner-anti-cheat-shield') == 1) {
                                 carecartSpinnerJquery('#wheelify-cc-spin-a-sale-loader-on-click').show();
-                                console.log('SAS Try your luck clicked and about to spin');
+                                console.log('SAS Try your luck clicked and about to spin 2');
 
                                 emailError.hide();
                                 emailError.removeClass("animated shake");
@@ -712,7 +696,7 @@
                                             q.removeClass("animated shake");
                                             console.log('SAS post engine successfully');
                                             o.click();
-                                        }else if(response && response._metadata && response._metadata.outcome && response._metadata.outcome == "INVALID_EMAIL_DOMAIN"){
+                                        } else if (response && response._metadata && response._metadata.outcome && response._metadata.outcome == "INVALID_EMAIL_DOMAIN") {
                                             q.hide();
                                             q.removeClass("animated shake");
                                             emailError.show();
@@ -734,43 +718,43 @@
                                 return;
                             }
                             o.click();
-                        },(w.removeClass("animated shake"),
+                        }, (w.removeClass("animated shake"),
                             1e3)) : o.click();
-/*
-						return "" == t ? (n.text("You should provide your fullname!"), n.addClass("animated shake"), void setTimeout(function () {
-							n.removeClass("animated shake")
-						}, 1e3)) : "" == e ? (n.text("You should provide your email"), n.addClass("animated shake"), void setTimeout(function () {
-							n.removeClass("animated shake")
-						}, 1e3)) : isValidEmailAddress(e) ? (n.text("Your email is not valid format"), n.addClass("animated shake"), void setTimeout(function () {
-							n.removeClass("animated shake")
-						}, 1e3)) : o.click();
-*/
+                        /*
+                                                return "" == t ? (n.text("You should provide your fullname!"), n.addClass("animated shake"), void setTimeout(function () {
+                                                    n.removeClass("animated shake")
+                                                }, 1e3)) : "" == e ? (n.text("You should provide your email"), n.addClass("animated shake"), void setTimeout(function () {
+                                                    n.removeClass("animated shake")
+                                                }, 1e3)) : isValidEmailAddress(e) ? (n.text("Your email is not valid format"), n.addClass("animated shake"), void setTimeout(function () {
+                                                    n.removeClass("animated shake")
+                                                }, 1e3)) : o.click();
+                        */
 
-/*
-						void $.ajax({
-						type: "POST",
-						url: "subscription_api_url",
-						data: {
-							fullname: t,
-							email: e
-						},
-						success: function (i) {
-							var check = "0";
-							if (check == "1") {
-								a.css({
-									display: "none"
-								});
-								o.css({
-									"display": "block"
-								});
-							} else {
-								o.click();
-							}
-						},
-						error: function () {
-						}
-					})
-*/
+                        /*
+                                                void $.ajax({
+                                                type: "POST",
+                                                url: "subscription_api_url",
+                                                data: {
+                                                    fullname: t,
+                                                    email: e
+                                                },
+                                                success: function (i) {
+                                                    var check = "0";
+                                                    if (check == "1") {
+                                                        a.css({
+                                                            display: "none"
+                                                        });
+                                                        o.css({
+                                                            "display": "block"
+                                                        });
+                                                    } else {
+                                                        o.click();
+                                                    }
+                                                },
+                                                error: function () {
+                                                }
+                                            })
+                        */
                     })
                 }
 
@@ -792,6 +776,7 @@
                     return true;
 
                 }
+
 //************** Reset Coupon Code display to Form enabling Re-Run The Wheel ***************************************
                 function checkSpinCouponLoadTime() {
                     //console.log("SAS in checkSpinCouponLoadTime");
@@ -817,9 +802,9 @@
                     return true;
 
                 }
+
 //*************** Set Start Timer to Calculate time since Wheel has been Spun to get Discount Code ************************
-                function setSpinCouponLoadTime()
-                {
+                function setSpinCouponLoadTime() {
                     var timeNow = new Date();
                     window.localStorage.setItem('cc-sas-spinner-coupon-load-time', timeNow);
                     //console.log("SAS setSpinCouponLoadTime is NOW Set to current time");
@@ -837,12 +822,10 @@
                         carecartSpinnerJquery("body").find("#wheelify-spin_a_sale_cc_store_front_module").fadeIn();
                         init();
                         applySASPlugin();
-                        if(type == 'triggered' || type == 'auto')
-                        {
+                        if (type == 'triggered' || type == 'auto') {
                             postImpressionData();
                         }
-/*
-                        if (checkCachedTime()) {
+                        /*if (checkCachedTime()) {
                             // carecartSpinnerJquery("body").find("#wheelify-spin_a_sale_cc_store_front_module").show(1000);
                             carecartSpinnerJquery("body").find("#wheelify-spin_a_sale_cc_store_front_module").fadeIn();
                             init();
@@ -853,21 +836,18 @@
                                 //console.log('Triggering: ' + type);
                                 postImpressionData();
                             }
-                        }
-*/
+                        }*/
                     }
                     /*Custom fix*/
-                    if(Shopify.shop == 'presha-luxury.myshopify.com'){
+                    if (Shopify.shop == 'presha-luxury.myshopify.com') {
                         carecartSpinnerJquery("#NewsletterPopup-newsletter-popup").removeAttr("tabindex");
                     }
-/*
-                    if(Shopify.shop == 'dorsila.myshopify.com'){
+                    /*if(Shopify.shop == 'dorsila.myshopify.com'){
                         let selector = carecartSpinnerJquery(".wheelify-wheelContainer svg").find('g.valueContainer').children();
                         for (let i = 1; i < selector.length; i++) {
                             let textTag = $(selector[i]).find('text').attr("transform","rotate(90, 440, -2)");
                         }
-                    }
-*/
+                    }*/
                 }
 
                 function hideSpinASaleModule() {
@@ -878,8 +858,7 @@
                 function couponAndMsgAreSetThenLoad() {
                     //console.log("SAS In couponAndMsgAreSetThenLoad");
                     //console.log('cc-sas-spinner-timer-bar-set-html' + window.localStorage.getItem('cc-sas-spinner-timer-bar-set-html'));
-                    if(window.localStorage.getItem('cc-sas-spinner-timer-bar-set-html')	!== null && window.localStorage.getItem('cc-sas-spinner-hide-timer-bar') != 1)
-                    {
+                    if (window.localStorage.getItem('cc-sas-spinner-timer-bar-set-html') !== null && window.localStorage.getItem('cc-sas-spinner-hide-timer-bar') != 1) {
                         carecartSpinnerJquery('#cc-spin-a-sale-clock-div-preview').html(window.localStorage.getItem('cc-sas-spinner-timer-bar-set-html'));
                         carecartSpinnerJquery('#wheelify-couponwheel_notice_content').show();
                         var ccSpinASaleMinutes = carecartSpinnerJquery('.cc-spin-a-sale-minutes').html();
@@ -949,16 +928,14 @@
                         var msg = window.localStorage.getItem('cc-sas-spinner-cached-coupon-code-message');
                         //console.log("SAS displayCouponOverSpinner coupon value: " + coupon);
                         //console.log("SAS displayCouponOverSpinner msg value: " + msg);
-                        if(coupon == null || msg == null || coupon == 'null' || msg == 'null')
-                        {
+                        if (coupon == null || msg == null || coupon == 'null' || msg == 'null') {
                             console.log("SAS Coupon Over Spinner coupon or msg is null");
                             //console.log("displayCouponOverSpinner coupon: " + coupon);
                             //console.log("SAS displayCouponOverSpinner msg: " + msg);
                             return;
                         }
 
-                        if(window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1)
-                        {
+                        if (window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1) {
                             if (coupon && msg) {
                                 var t = carecartSpinnerJquery(".wheelify-winContainer"),
                                     w = carecartSpinnerJquery(".wheelify-wheelContainer"),
@@ -1004,76 +981,68 @@
                         if (response.records && response.records.store_settings && response.records.store_settings.is_active) {
                             console.log('SAS is active & enabled in Slices Menu');
 //****************************************** Start - Allow Spinner on ONLY Specific URL ******************************
-/*
-							if(Shopify.shop == 'dev-messenger-15.myshopify.com'){
-								var thisStatus = checkStoreSpecificUrlCcSpinASale("https://dev-messenger-15.myshopify.com/abc");
-								console.log('checkStoreSpecificUrlCcSpinASale Status: ' + thisStatus);
-								if(thisStatus)
-								{
-									console.log('SAS Custom Page Matched for store: ' + Shopify.shop);
-								}
-								else{
-									console.log('SAS Custom Page NOT Matched for store: ' + Shopify.shop);
-									return;
-								}
-							}
-*/
-                            if(Shopify.shop == 'geniani-products.myshopify.com'){
+                            /*
+                                                        if(Shopify.shop == 'dev-messenger-15.myshopify.com'){
+                                                            var thisStatus = checkStoreSpecificUrlCcSpinASale("https://dev-messenger-15.myshopify.com/abc");
+                                                            console.log('checkStoreSpecificUrlCcSpinASale Status: ' + thisStatus);
+                                                            if(thisStatus)
+                                                            {
+                                                                console.log('SAS Custom Page Matched for store: ' + Shopify.shop);
+                                                            }
+                                                            else{
+                                                                console.log('SAS Custom Page NOT Matched for store: ' + Shopify.shop);
+                                                                return;
+                                                            }
+                                                        }
+                            */
+                            if (Shopify.shop == 'geniani-products.myshopify.com') {
                                 var thisStatus = checkStoreSpecificUrlCcSpinASale("https://geniani.com/pages/geniani-rewards-club");
                                 //console.log('checkStoreSpecificUrlCcSpinASale Status: ' + thisStatus);
-                                if(thisStatus)
-                                {
+                                if (thisStatus) {
                                     console.log('SAS Custom Page Matched for store: ' + Shopify.shop);
-                                }
-                                else{
+                                } else {
                                     console.log('SAS Custom Page NOT Matched for store: ' + Shopify.shop);
                                     return;
                                 }
                             }
 
-                            if(Shopify.shop == 'little-miss-juliette.myshopify.com'){
+                            if (Shopify.shop == 'little-miss-juliette.myshopify.com') {
                                 var thisStatus = checkStoreSpecificUrlCcSpinASale("https://www.littlemissjuliette.com/pages/spin-win");
                                 //console.log('checkStoreSpecificUrlCcSpinASale Status: ' + thisStatus);
-                                if(thisStatus)
-                                {
+                                if (thisStatus) {
                                     console.log('SAS Custom Page Matched for store: ' + Shopify.shop);
-                                }
-                                else{
+                                } else {
                                     console.log('SAS Custom Page NOT Matched for store: ' + Shopify.shop);
                                     return;
                                 }
                             }
 
-                            if(Shopify.shop == 'beebielove-webshop.myshopify.com'){
+                            if (Shopify.shop == 'beebielove-webshop.myshopify.com') {
                                 var thisStatus = checkStoreSpecificUrlCcSpinASale("https://www.beebielove.com/pages/spin-win");
                                 //console.log('checkStoreSpecificUrlCcSpinASale Status: ' + thisStatus);
-                                if(thisStatus)
-                                {
+                                if (thisStatus) {
                                     console.log('SAS Custom Page Matched for store: ' + Shopify.shop);
-                                }
-                                else{
+                                } else {
                                     console.log('SAS Custom Page NOT Matched for store: ' + Shopify.shop);
                                     return;
                                 }
                             }
 
-                            if(Shopify.shop == 'jumping-the-couch.myshopify.com'){
+                            if (Shopify.shop == 'jumping-the-couch.myshopify.com') {
                                 var thisStatus = checkStoreSpecificUrlCcSpinASale("https://jumpingthecouch.com/pages/spin-win");
                                 //console.log('checkStoreSpecificUrlCcSpinASale Status: ' + thisStatus);
-                                if(thisStatus)
-                                {
+                                if (thisStatus) {
                                     console.log('SAS Custom Page Matched for store: ' + Shopify.shop);
-                                }
-                                else{
+                                } else {
                                     console.log('SAS Custom Page NOT Matched for store: ' + Shopify.shop);
                                     return;
                                 }
                             }
                             /* New custom fixes added from here */
-                            if(Shopify.shop == 'tweetprintshop.myshopify.com'){
+                            if (Shopify.shop == 'tweetprintshop.myshopify.com') {
                                 carecartSpinnerJquery("body").append('<style type="text/css"> .wheelify-content-spinner {background-color: #008affd1 !important;} #wheelify-spin-trigger-cc img {opacity: 1}</style>');
                             }
-                            if(Shopify.shop == 'hho-kit.myshopify.com'){
+                            if (Shopify.shop == 'hho-kit.myshopify.com') {
                                 carecartSpinnerJquery("body").append('<style type="text/css">.pegContainer {transform-origin: 0px 0px 0px;transform: matrix(1.70666, 0, 0, 1.70666, -374.604, 62.2927)}</style>');
                             }
                             if ("mist-jewels.myshopify.com" == Shopify.shop) {
@@ -1082,7 +1051,13 @@
                             if ("our-little-hero.myshopify.com" == Shopify.shop) {
                                 carecartSpinnerJquery("body").append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module.wheelify-wrapper-spinner {top: 0;left: 0;transform: translate(calc(50vw - 50%), calc(50vh - 50%));width: 40%;min-width: 700px;height: 63%;} .medium-up--one-quarter {width:15%;} .medium-up--one-half {width:70%;}</style>');
                                 carecartSpinnerJquery(".site-nav").append('<li><a id="wheelify-spin-trigger-2" onclick="displaySpinnerOnTigger()" href="javascript:void(0)" class="site-nav__link site-nav__link--main"><span class="site-nav__label">Spin to Win</span></a></li>');
-                                carecartSpinnerJquery("#wheelify-spin-trigger-cc").css("display","none");
+                                carecartSpinnerJquery("#wheelify-spin-trigger-cc").css("display", "none");
+                            }
+                            if ("santhigram.myshopify.com" == Shopify.shop) {
+                                carecartSpinnerJquery("body").append('<style type="text/css">.wheelify-winContainer .copy-button {color: #384f66 !important} .wheelify-signupContainer .btn-submit-form{background-color: rgb(255 255 255) !important;color: black!important;}</style>');
+                            }
+                            if ("celovis.myshopify.com" == Shopify.shop) {
+                                carecartSpinnerJquery("body").append('<style type="text/css">@media only screen and (max-width: 575px){#wheelify-spin_a_sale_cc_store_front_module .wheelify-ContentRight {min-height: 370px;}#wheelify-spin_a_sale_cc_store_front_module .wheelify-content-spinner {padding: 60px 15px;}}</style>');
                             }
 
 //****************************************** End - Allow Spinner on ONLY Specific URL ******************************
@@ -1094,67 +1069,62 @@
 //console.log('response.records.store_settings.settings_data.display_thank_you_page_enabled: ' + response.records.store_settings.settings_data.display_thank_you_page_enabled);
 
 //****************************** If SAS is disabled on Homepage, it will NOT be loaded on Homepage *************************************
-                            if(response.records.store_settings.settings_data.display_home_page_enabled && parseInt(response.records.store_settings.settings_data.display_home_page_enabled) == 0){
+                            if (response.records.store_settings.settings_data.display_home_page_enabled && parseInt(response.records.store_settings.settings_data.display_home_page_enabled) == 0) {
                                 var thisStatus = checkHomePageCcSpinASale();
                                 //console.log('checkHomePageCcSpinASale Status: ' + thisStatus);
-                                if(thisStatus)
-                                {
-                                    carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display","none");
+                                if (thisStatus) {
+                                    carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display", "none");
                                     console.log('SAS load on homepage is disabled');
                                     return;
                                 }
                             }
 //****************************** If SAS is disabled on Collections page, it will NOT be loaded on Collections page *************************************
-                            if(response.records.store_settings.settings_data.display_collections_page_enabled && parseInt(response.records.store_settings.settings_data.display_collections_page_enabled) == 0){
+                            if (response.records.store_settings.settings_data.display_collections_page_enabled && parseInt(response.records.store_settings.settings_data.display_collections_page_enabled) == 0) {
                                 var thisStatus = checkCollectionsCcSpinASale();
                                 //console.log('checkCollectionsCcSpinASale Status: ' + thisStatus);
-                                if(thisStatus)
-                                {
-                                    carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display","none");
+                                if (thisStatus) {
+                                    carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display", "none");
                                     console.log('SAS load on Collections Page is disabled');
                                     return;
                                 }
                             }
 //****************************** If SAS is disabled on Blog Posts, it will NOT be loaded on Blog Posts *************************************
-                            if(response.records.store_settings.settings_data.display_blog_posts_page_enabled && parseInt(response.records.store_settings.settings_data.display_blog_posts_page_enabled) == 0){
+                            if (response.records.store_settings.settings_data.display_blog_posts_page_enabled && parseInt(response.records.store_settings.settings_data.display_blog_posts_page_enabled) == 0) {
                                 var thisStatus = checkBlogPageCcSpinASale();
                                 //console.log('checkBlogPageCcSpinASale Status: ' + thisStatus);
-                                if(thisStatus)
-                                {
-                                    carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display","none");
+                                if (thisStatus) {
+                                    carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display", "none");
                                     console.log('SAS load on Blog Posts is disabled');
                                     return;
                                 }
                             }
 //****************************** If SAS is disabled on Products Page, it will NOT be loaded on Products Page *************************************
-                            if(response.records.store_settings.settings_data.display_products_page_enabled && parseInt(response.records.store_settings.settings_data.display_products_page_enabled) == 0){
+                            if (response.records.store_settings.settings_data.display_products_page_enabled && parseInt(response.records.store_settings.settings_data.display_products_page_enabled) == 0) {
                                 var thisStatus = checkProductCcSpinASale();
                                 //console.log('checkProductCcSpinASale Status: ' + thisStatus);
-                                if(thisStatus)
-                                {
-                                    carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display","none");
+                                if (thisStatus) {
+                                    carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display", "none");
                                     console.log('SAS load on Products Page is disabled');
                                     return;
                                 }
                             }
 //****************************** If SAS is disabled on Cart Page, it will NOT be loaded on Cart Page *************************************
-                            if(response.records.store_settings.settings_data.display_cart_page_enabled && parseInt(response.records.store_settings.settings_data.display_cart_page_enabled) == 0){
+                            if (response.records.store_settings.settings_data.display_cart_page_enabled && parseInt(response.records.store_settings.settings_data.display_cart_page_enabled) == 0) {
                                 var thisStatus = checkCartCcSpinASale();
                                 //console.log('checkCartCcSpinASale Status: ' + thisStatus);
-                                if(thisStatus)
-                                {
-                                    carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display","none");
+                                if (thisStatus) {
+                                    carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display", "none");
                                     console.log('SAS load on Cart Page is disabled');
                                     return;
                                 }
                             }
 //****************************** If SAS is disabled on Thank You page, it will NOT be loaded on Thank You Page *************************************
-                            if(response.records.store_settings.settings_data.display_thank_you_page_enabled && parseInt(response.records.store_settings.settings_data.display_thank_you_page_enabled) == 0){
+                            carecartSpinnerJquery("body").append('<style type="text/css">wheelify-text-description{font-size:15px;} *, ::after, ::before {box-sizing: border-box!important;}button, input, optgroup, select, textarea{-webkit-appearance: auto;-moz-appearance: auto;appearance: auto;}</style>');
+                            if (response.records.store_settings.settings_data.display_thank_you_page_enabled && parseInt(response.records.store_settings.settings_data.display_thank_you_page_enabled) == 0) {
                                 var thisStatus = checkThanksYouCcSpinASale();
-                                //console.log('checkThanksYouCcSpinASale Status: ' + thisStatus);
-                                if(thisStatus)
-                                {
-                                    carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display","none");
+                                // console.log('checkThanksYouCcSpinASale Status: ' + thisStatus);
+                                if (thisStatus) {
+                                    carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display", "none");
                                     console.log('SAS load on Thank You page is disabled');
                                     return;
                                 }
@@ -1164,17 +1134,15 @@
                             {
                                 var thisStatus = checkIfAnyOtherPage();
                                 //console.log('checkIfAnyOtherPage Status: ' + thisStatus);
-                                if(thisStatus)
+                                if(!thisStatus)
                                 {
-                                    carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display","none");
-
                                     console.log('SAS is disabled on all other pages');
                                     return;
                                 }
                             }
                             var w = carecartSpinnerJquery(window).width();
                             const is_enabled_on_mobile = (typeof response.records.store_settings.settings_data.is_mobile_enabled === 'undefined') ? 1 : parseInt(response.records.store_settings.settings_data.is_mobile_enabled);
-                            if(w < 600 && is_enabled_on_mobile === 0) {
+                            if (w < 600 && is_enabled_on_mobile === 0) {
                                 console.log('SAS is disabled on mobile');
                                 return;
                             }
@@ -1189,20 +1157,19 @@
                                 if (response.records.store_settings.settings_data.is_triggered_enable && parseInt(response.records.store_settings.settings_data.is_triggered_enable) == 1) {
                                     carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
                                     if ("our-little-hero.myshopify.com" == Shopify.shop) {
-                                        carecartSpinnerJquery("#wheelify-spin-trigger-cc").css("display","none");
+                                        carecartSpinnerJquery("#wheelify-spin-trigger-cc").css("display", "none");
                                     }
                                     const settingsData = response.records.store_settings.settings_data;
                                     var tBtn = carecartSpinnerJquery('body').find('#wheelify-spin-trigger-cc');
                                     if (settingsData.button_position === 'middle_right') {
                                         tBtn.css({
                                             bottom: '48vh',
-                                            right:'20px'
+                                            right: '20px'
                                         });
-                                    }
-                                    else if (settingsData.button_position === 'bottom_right') {
+                                    } else if (settingsData.button_position === 'bottom_right') {
                                         tBtn.css({
                                             bottom: '8vh',
-                                            right:'20px'
+                                            right: '20px'
                                         });
                                     }//new added
                                     else if (settingsData.button_position === 'bottom_left') {
@@ -1215,31 +1182,25 @@
                                             bottom: '48vh'
                                         });
                                     }
-                                }
-                                else {
+                                } else {
                                     carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
                                     var tBtn = carecartSpinnerJquery('body').find('#wheelify-spin-trigger-cc');
                                     tBtn.hide();
                                     //console.log('SAS spinner trigger button should display');
                                 }
-/* ************************************** Display Spinner on Mouse Screen Exit - START *********************************************************** */
+                                /* ************************************** Display Spinner on Mouse Screen Exit - START *********************************************************** */
                                 if (response.records.store_settings.settings_data.is_exit_spinner_display_enabled && parseInt(response.records.store_settings.settings_data.is_exit_spinner_display_enabled) == 1) {
                                     console.log("SAS Spinner will load after Mouse exit's screen");
                                     carecartSpinnerJquery(document).mouseleave(function () {
                                         //console.log('SAS out of screen');
-                                        if(carecartSpinnerJquery('#wheelify-spin_a_sale_cc_store_front_module:visible').length == 0)
-                                        {
-                                            if(window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1)
-                                            {
+                                        if (carecartSpinnerJquery('#wheelify-spin_a_sale_cc_store_front_module:visible').length == 0) {
+                                            if (window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1) {
                                                 //************* 60 Min (1 min = 60 * 1000 milliseconds) *******************
                                                 var timeInMin = 60 * 60 * 1000;
-                                                if(window.localStorage.getItem('screenExitDisplaySpinnerExpire') == 1)
-                                                {
+                                                if (window.localStorage.getItem('screenExitDisplaySpinnerExpire') == 1) {
                                                     //console.log("screenExitDisplaySpinnerExpire is Defined");
-                                                }
-                                                else
-                                                {
-                                                    window.localStorage.setItem('screenExitDisplaySpinnerExpire',1);
+                                                } else {
+                                                    window.localStorage.setItem('screenExitDisplaySpinnerExpire', 1);
                                                     //carecartSpinnerJquery("body").find("#wheelify-spin_a_sale_cc_store_front_module").fadeIn();
                                                     carecartSpinnerJquery("#wheelify-spin-trigger-cc").click();
 //******************************************* Do NOT Trigger after First Exit From Screen Until 60 Min (1 min = 60 * 1000 milliseconds *****************************
@@ -1249,28 +1210,25 @@
                                                     }, timeInMin);
                                                 }
                                                 //alert("out of screen");
-                                            }
-                                            else
-                                            {
+                                            } else {
                                                 console.log('SAS Urgency bar is already triggered, Exit Intent will not trigger');
                                             }
                                         }
                                     });
                                 }
-/* ************************************** Display Spinner on Mouse Screen Exit - END *********************************************************** */
-/* ************************************** Display Spinner if percentage scroll is enabled  - START *********************************************************** */
-                                if (response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled && parseInt(response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled) == 1){
+                                /* ************************************** Display Spinner on Mouse Screen Exit - END *********************************************************** */
+                                /* ************************************** Display Spinner if percentage scroll is enabled  - START *********************************************************** */
+                                if (response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled && parseInt(response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled) == 1) {
                                     //console.log("SAS is_scroll_spinner_percentage_enabled is ENABLED");
                                     var scrollPercentageRequired = response.records.store_settings.settings_data.scroll_spinner_percentage ? response.records.store_settings.settings_data.scroll_spinner_percentage : 50;
                                     //console.log('SAS scrollPercentageRequired: ' + scrollPercentageRequired);
                                     console.log("SAS Scroll Spinner Percentage is ENABLED & Percentage Set is: " + scrollPercentageRequired);
                                     //**************** Testing Scroll Page Percentage ****************************
                                     var timeInMinScroll = 60 * 60 * 1000;
-                                    if(window.localStorage.getItem('scrollScreenDisplaySpinnerExpire') === null)
-                                    {
+                                    if (window.localStorage.getItem('scrollScreenDisplaySpinnerExpire') === null) {
                                         //console.log("SAS scrollScreenDisplaySpinnerExpire is NULL");
                                         console.log("SAS Scroll Screen NOT yet done to load Spinner");
-                                        carecartSpinnerJquery(window).on('scroll', function(){
+                                        carecartSpinnerJquery(window).on('scroll', function () {
                                             var s = carecartSpinnerJquery(window).scrollTop(),
                                                 d = carecartSpinnerJquery(document).height(),
                                                 c = carecartSpinnerJquery(window).height();
@@ -1279,21 +1237,15 @@
 
                                             //console.clear();
                                             //console.log('SAS scrolled percentage: ' + scrolledPercentage);
-                                            if(scrolledPercentage >= scrollPercentageRequired)
-                                            {
-                                                if(window.localStorage.getItem('scrollScreenDisplaySpinnerExpire') === null)
-                                                {
-                                                    if(carecartSpinnerJquery('#wheelify-spin_a_sale_cc_store_front_module:visible').length == 0)
-                                                    {
+                                            if (scrolledPercentage >= scrollPercentageRequired) {
+                                                if (window.localStorage.getItem('scrollScreenDisplaySpinnerExpire') === null) {
+                                                    if (carecartSpinnerJquery('#wheelify-spin_a_sale_cc_store_front_module:visible').length == 0) {
                                                         window.localStorage.setItem('scrollScreenDisplaySpinnerExpire', 1);
                                                         console.log("SAS scrollScreenDisplaySpinnerExpire is NOW SET");
-                                                        console.log("SAS scrolledPercentage is: " +  scrolledPercentage + " >= scrollPercentageRequired: " + scrollPercentageRequired + " & Spiller Load is Due");
-                                                        if(window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1)
-                                                        {
+                                                        console.log("SAS scrolledPercentage is: " + scrolledPercentage + " >= scrollPercentageRequired: " + scrollPercentageRequired + " & Spiller Load is Due");
+                                                        if (window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1) {
                                                             carecartSpinnerJquery("#wheelify-spin-trigger-cc").click();
-                                                        }
-                                                        else
-                                                        {
+                                                        } else {
                                                             console.log("SAS scrollScreenDisplaySpinnerExpire WILL NOT Trigger as Urgency Bar is Triggered");
                                                         }
                                                         setTimeout(function () {
@@ -1306,31 +1258,28 @@
                                                 }
                                             }
                                         });
-                                    }
-                                    else
-                                    {
+                                    } else {
                                         //console.log("SAS scrollScreenDisplaySpinnerExpire is NOT NULL");
                                         console.log("SAS Scroll Screen has already loaded Spinner once");
                                     }
                                 }
-/* ************************************** Display Spinner if percentage scroll is enabled  - END *********************************************************** */
+                                /* ************************************** Display Spinner if percentage scroll is enabled  - END *********************************************************** */
                                 setTimeout(function () {
                                     var spinnerColors = response.records.store_slices_color;
-                                    if(spinnerColors.every(element => element === null))
-                                    {
+                                    if (spinnerColors.every(element => element === null)) {
                                         spinnerColors = ["#000000", "#F1C40F", "#E67E22", "#E74C3C", "#95A5A6", "#16A085", "#27AE60", "#2980B9", "#8E44AD", "#2C3E50"];
                                     }
                                     var ccWheelStrokeColor = response.records.store_settings.wheel_stroke_color;
                                     var ccCenterCircleStrokeColor = response.records.store_settings.center_circle_stroke_color;
                                     var ccCenterCircleFillColor = response.records.store_settings.center_circle_fill_color;
 
-                                    if(ccWheelStrokeColor === null){
+                                    if (ccWheelStrokeColor === null) {
                                         ccWheelStrokeColor = "#D0BD0C";
                                     }
-                                    if(ccCenterCircleStrokeColor === null){
+                                    if (ccCenterCircleStrokeColor === null) {
                                         ccCenterCircleStrokeColor = "#F1DC15";
                                     }
-                                    if(ccCenterCircleFillColor === null){
+                                    if (ccCenterCircleFillColor === null) {
                                         ccCenterCircleFillColor = "#EDEDED";
                                     }
                                     //console.log(SAS spinnerColors);
@@ -1379,7 +1328,7 @@
                                     showSpinASaleModule(type);
                                     couponAndMsgAreSetThenLoad();
                                 }, parseInt(response.records.store_settings.settings_data.delay_time) * 1000);
-/* *********************************************** Start - Display Urgency Timer Bar **********************************	*/
+                                /* *********************************************** Start - Display Urgency Timer Bar **********************************	*/
                                 if (response.records.store_settings.conversion_booster_settings != null && response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled != null && parseInt(response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled) == 1) {
                                     window.localStorage.setItem('urgencyTimerBarEnabled', 1);
                                     //console.log('SAS Urgency Bar is Active');
@@ -1390,31 +1339,28 @@
                                     //var wonCouponCode = '<strong>' + window.localStorage.getItem('cc-sas-spinner-cached-coupon-code') + '</strong>';
                                     //spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{coupon_code}}',wonCouponCode);
                                     //console.log('SAS spinASaleCcUrgencyTimeBarText ' + spinASaleCcUrgencyTimeBarText);
-                                    window.localStorage.setItem('urgencyTimerBarTimeInMin',response.records.store_settings.conversion_booster_settings.urgency_timer_bar_display_time_in_min);
+                                    window.localStorage.setItem('urgencyTimerBarTimeInMin', response.records.store_settings.conversion_booster_settings.urgency_timer_bar_display_time_in_min);
                                     var spinASaleCcUrgencyTimeBarInMin = window.localStorage.getItem('urgencyTimerBarTimeInMin');
                                     //console.log('SAS spinASaleCcUrgencyTimeBarInMin: ' + spinASaleCcUrgencyTimeBarInMin);
                                     var deadlineSpinAWheel = new Date(Date.parse(new Date()) + spinASaleCcUrgencyTimeBarInMin * 60 * 1000);
                                     var timerDiv = '<span style="font-weight: bold;"><span class="cc-spin-a-sale-minutes">' + spinASaleCcUrgencyTimeBarInMin + '</span>:<span class="cc-spin-a-sale-seconds">00</span></span>';
                                     //console.log('SAS timerDiv: ' + timerDiv);
                                     //console.log('SAS spinASaleCcUrgencyTimeBarText: ' + spinASaleCcUrgencyTimeBarText);
-                                    spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{time}}',timerDiv);
-                                    spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{ time }}',timerDiv);
+                                    spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{time}}', timerDiv);
+                                    spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{ time }}', timerDiv);
                                     var urgencyTimeBarBackgroundColor = '#FFD400';
-                                    if(response.records.store_settings.conversion_booster_settings.urgency_time_bar_background_color && response.records.store_settings.conversion_booster_settings.urgency_time_bar_background_color != null)
-                                    {
+                                    if (response.records.store_settings.conversion_booster_settings.urgency_time_bar_background_color && response.records.store_settings.conversion_booster_settings.urgency_time_bar_background_color != null) {
                                         urgencyTimeBarBackgroundColor = response.records.store_settings.conversion_booster_settings.urgency_time_bar_background_color;
                                     }
                                     //console.log('SAS urgencyTimeBarBackgroundColor: ' + urgencyTimeBarBackgroundColor);
                                     carecartSpinnerJquery('#wheelify-couponwheel_notice_content').css("background-color", urgencyTimeBarBackgroundColor);
                                     var urgencyTimeBarTextColor = '#000000';
-                                    if(response.records.store_settings.conversion_booster_settings.urgency_time_bar_text_color && response.records.store_settings.conversion_booster_settings.urgency_time_bar_text_color != null)
-                                    {
+                                    if (response.records.store_settings.conversion_booster_settings.urgency_time_bar_text_color && response.records.store_settings.conversion_booster_settings.urgency_time_bar_text_color != null) {
                                         urgencyTimeBarTextColor = response.records.store_settings.conversion_booster_settings.urgency_time_bar_text_color;
                                     }
                                     //console.log('SAS urgencyTimeBarTextColor: ' + urgencyTimeBarTextColor);
                                     carecartSpinnerJquery('#wheelify-couponwheel_notice_content').css("color", urgencyTimeBarTextColor);
-                                    if(response.records.store_settings.conversion_booster_settings.urgency_timer_bar_position_top_or_bottom == 'top')
-                                    {
+                                    if (response.records.store_settings.conversion_booster_settings.urgency_timer_bar_position_top_or_bottom == 'top') {
                                         carecartSpinnerJquery('#wheelify-couponwheel_notice_content').removeClass('bar-bottom').addClass('bar-top');
                                     }
                                     //console.log('SAS spinASaleCcUrgencyTimeBarText after Timer Replacement: ' + spinASaleCcUrgencyTimeBarText);
@@ -1425,17 +1371,20 @@
                                     //console.log('SAS deadlineSpinAWheel deadlineSpinAWheel: ' + deadlineSpinAWheel);
                                     //initializeClockSpinAWheel('cc-spin-a-sale-clock-div-preview', deadlineSpinAWheel);
                                 }
-/* *********************************************** End - Display Urgency Timer Bar **********************************	*/
-/* *********************************************** Start - Conversion Booster Progress Bar **********************************	*/
+                                /* *********************************************** End - Display Urgency Timer Bar **********************************	*/
+                                /* *********************************************** Start - Conversion Booster Progress Bar **********************************	*/
                                 if (response.records.store_settings.conversion_booster_settings != null && response.records.store_settings.conversion_booster_settings.conversion_booster_show_offers_claimed != null && parseInt(response.records.store_settings.conversion_booster_settings.conversion_booster_show_offers_claimed) == 1) {
                                     console.log('SAS Conversion Booster Progress Bar is Active');
                                     carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar').css("visibility", "visible");
                                     carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar-inner').width(response.records.store_settings.conversion_booster_settings.conversion_booster_percentage_offers_claimed + '%');
-                                    carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar-inner').css({"background-color": response.records.store_settings.conversion_booster_settings.conversion_booster_progress_bar_color, "display":"block"});
+                                    carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar-inner').css({
+                                        "background-color": response.records.store_settings.conversion_booster_settings.conversion_booster_progress_bar_color,
+                                        "display": "block"
+                                    });
                                     carecartSpinnerJquery('.wheelify-cc-spin-a-sale-couponwheel_offers_text').text(response.records.store_settings.conversion_booster_settings.conversion_booster_offers_claimed_text);
                                 }
-/* *********************************************** End - Conversion Booster Progress Bar **********************************	*/
-/* *********************************************** Start - Anti-Cheat Shield Settings **********************************	*/
+                                /* *********************************************** End - Conversion Booster Progress Bar **********************************	*/
+                                /* *********************************************** Start - Anti-Cheat Shield Settings **********************************	*/
                                 if (response.records.store_settings.anti_cheat_engine_settings != null && (parseInt(response.records.store_settings.anti_cheat_engine_settings.anti_cheat_engine_limit_spin_by_cookies) == 1 || parseInt(response.records.store_settings.anti_cheat_engine_settings.anti_cheat_engine_limit_spin_by_email) == 1 || parseInt(response.records.store_settings.anti_cheat_engine_settings.anti_cheat_engine_limit_spin_by_ip_address) == 1)) {
                                     window.localStorage.setItem('cc-sas-spinner-anti-cheat-shield', 1);
                                     console.log('SAS  Anti-Cheat Shield is Active');
@@ -1458,21 +1407,21 @@
                             //#wheelify-spin_a_sale_cc_store_front_module .wheelify-content-spinner{background-color: black;}
 //************************************ Change Spinner Color if NOT default of Spinner i-e #FF0000 ****************************************
                             var spinnerPegColor = response.records.store_settings.spinner_peg_color;
-                            if (response.records.store_settings.spinner_peg_color && spinnerPegColor != "" && spinnerPegColor != null && spinnerPegColor != "#FF0000"){
+                            if (response.records.store_settings.spinner_peg_color && spinnerPegColor != "" && spinnerPegColor != null && spinnerPegColor != "#FF0000") {
                                 carecartSpinnerJquery('.peg').css('fill', spinnerPegColor);
                             }
 //************************************ Change Try Your Luck Background Color if NOT default i-e #FFFFFF ****************************************
                             var tryYourLuckBgColor = response.records.store_settings.try_luck_bg_color;
-                            if (response.records.store_settings.try_luck_bg_color && tryYourLuckBgColor != "" && tryYourLuckBgColor != null && tryYourLuckBgColor != "#FFFFFF"){
+                            if (response.records.store_settings.try_luck_bg_color && tryYourLuckBgColor != "" && tryYourLuckBgColor != null && tryYourLuckBgColor != "#FFFFFF") {
                                 carecartSpinnerJquery('.btn-submit-form').css('background-color', tryYourLuckBgColor);
                             }
 //************************************ Change Try Your Luck Text Color if NOT default i-e #384F66 ****************************************
                             var tryYourLuckTextColor = response.records.store_settings.try_luck_text_color;
-                            if (response.records.store_settings.try_luck_text_color && tryYourLuckTextColor != "" && tryYourLuckTextColor != null && tryYourLuckTextColor != "#384F66"){
+                            if (response.records.store_settings.try_luck_text_color && tryYourLuckTextColor != "" && tryYourLuckTextColor != null && tryYourLuckTextColor != "#384F66") {
                                 carecartSpinnerJquery('.btn-submit-form').css('color', tryYourLuckTextColor);
                             }
-/* ************************************** Display Background Image - Start *********************************************************** */
-                            if (response.records.store_settings.spinner_bg_image && response.records.store_settings.spinner_bg_image != "" && response.records.store_settings.spinner_bg_image != null){
+                            /* ************************************** Display Background Image - Start *********************************************************** */
+                            if (response.records.store_settings.spinner_bg_image && response.records.store_settings.spinner_bg_image != "" && response.records.store_settings.spinner_bg_image != null) {
                                 // Check For desktop/Mobile
                                 var spinnerBgImage = '';
                                 (function (a) {
@@ -1487,12 +1436,12 @@
                                 var themeBgImageURL = CDN_WHEELIFY_URL + spinnerBgImage;
                                 carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + themeBgImageURL + ')');
                             }
-/* ************************************** Display Background Image - End *********************************************************** */
-                            if(Shopify.shop == 'srnsmart.myshopify.com'){
+                            /* ************************************** Display Background Image - End *********************************************************** */
+                            if (Shopify.shop == 'srnsmart.myshopify.com') {
                                 carecartSpinnerJquery('#customer_login_link').append('<div class="customer-login-links-new"><a href="#." id="cc-spin-a-wheel-open-spinner-mate">Spin to win</a></div>');
                                 //console.log('SAS In srnsmart.myshopify.com');
 
-                                carecartSpinnerJquery("#cc-spin-a-wheel-open-spinner-mate").click(function(){
+                                carecartSpinnerJquery("#cc-spin-a-wheel-open-spinner-mate").click(function () {
                                     carecartSpinnerJquery('#wheelify-spin-trigger-cc').click();
                                 });
                             }
@@ -1508,6 +1457,7 @@
                 function displaySpinnerOnTigger() {
                     carecartSpinnerJquery("#wheelify-spin-trigger-cc").click();
                 }
+
                 /* Post Data to Server */
 
                 function postImpressionData() {
@@ -1573,7 +1523,7 @@
 
                     /******** Klaviyo Integration ***********/
 
-                    if(carecartSpinnerJquery('#cc-spin-a-sale-consent-checkbox').prop('checked') == true){
+                    if (carecartSpinnerJquery('#cc-spin-a-sale-consent-checkbox').prop('checked') == true) {
                         carecartSpinnerJquery.ajax({
                             url: API_URL + "store-front-api/klaviyo/check-klaviyo-status",
                             type: 'POST',
@@ -1615,7 +1565,7 @@
 
                     /***** Klaviyo Itegration ******/
 
-                    if(carecartSpinnerJquery('#cc-spin-a-sale-consent-checkbox').prop('checked') == true){
+                    if (carecartSpinnerJquery('#cc-spin-a-sale-consent-checkbox').prop('checked') == true) {
                         console.log('Trigger Mailchimp list');
                         carecartSpinnerJquery.ajax({
                             url: API_URL + "store-front-api/post-mailchimp-email-post-list",
@@ -1640,24 +1590,25 @@
                         });
                     }
                 }
-/*
-				function checkCachedTimeForCoupon(){
-					var globalSettingsDataCachedTime = window.localStorage.getItem('spinnerCachedTime');
-					if(globalSettingsDataCachedTime!==undefined  && globalSettingsDataCachedTime!==null){
-						var currentTime = new Date();
-						var previousTime = new Date(globalSettingsDataCachedTime);
-						var msec = parseInt(currentTime - previousTime);
-						var minutes = parseInt(Math.floor(msec / 60000));
-						console.log('SAS Time : '+minutes);
-						if(minutes<=2){
-							return false;
-						}
 
-					}
-					return true;
+                /*
+                                function checkCachedTimeForCoupon(){
+                                    var globalSettingsDataCachedTime = window.localStorage.getItem('spinnerCachedTime');
+                                    if(globalSettingsDataCachedTime!==undefined  && globalSettingsDataCachedTime!==null){
+                                        var currentTime = new Date();
+                                        var previousTime = new Date(globalSettingsDataCachedTime);
+                                        var msec = parseInt(currentTime - previousTime);
+                                        var minutes = parseInt(Math.floor(msec / 60000));
+                                        console.log('SAS Time : '+minutes);
+                                        if(minutes<=2){
+                                            return false;
+                                        }
 
-				}
-*/
+                                    }
+                                    return true;
+
+                                }
+                */
 
                 function updateCachedTime() {
                     var timeNow = new Date();
@@ -1715,48 +1666,47 @@
                 }
 
                 function checkThanksYouCcSpinASale() {
-                    //console.log('SAS inside checkThanksYouCcSpinASale');
-                    var is_page = !(!window.location.pathname.match("(.*)/orders/(.*)") && !window.location.pathname.match("(.*)/orders") || window.location.pathname.match("(.*)/checkouts/(.*)") || window.location.pathname.match("(.*)/thank_you"));
-                    //console.log(is_page);
+                    // console.log('SAS inside checkThanksYouCcSpinASale');
+                    //var is_page = !(!window.location.pathname.match("(.*)/orders/(.*)") && !window.location.pathname.match("(.*)/orders") || window.location.pathname.match("(.*)/checkouts/(.*)") || window.location.pathname.match("(.*)/thank_you"));
+                    let is_page = (window.location.pathname.match("(.*)/thank_you") ? true : false);
+                    console.log("Thanks you page =>> " + is_page);
                     return is_page;
                 }
 
-				function checkIfAnyOtherPage() {
-					//console.log('SAS inside checkIfAnyOtherPage');
-					let status = false;
-					if (checkHomePageCcSpinASale()) {
-						console.log('SAS valid homepage');
-						//return true;
-						status = true;
-					}
-					if (checkCollectionsCcSpinASale()) {
-						console.log('SAS valid collections page');
-						//return true;
-						status = true;
-					}
-					if (checkBlogPageCcSpinASale()) {
-						console.log('SAS valid blog page');
-						//return true;
-						status = true;
-					}
-					if (checkProductCcSpinASale()) {
-						console.log('SAS valid products page');
-						//return true;
-						status = true;
-					}
-					if (checkCartCcSpinASale()) {
-						console.log('SAS valid cart page');
-						//return true;
-						status = true;
-					}
-					if (checkThanksYouCcSpinASale()) {
-						console.log('SAS valid Thank You page');
-						//return true;
-						status = true
-					}
-
-					return status;
-				}
+                function checkIfAnyOtherPage(){
+                    //console.log('SAS inside checkIfAnyOtherPage');
+                    if(checkHomePageCcSpinASale())
+                    {
+                        //console.log('SAS valid homepage');
+                        return true;
+                    }
+                    if(checkCollectionsCcSpinASale())
+                    {
+                        //console.log('SAS valid collections page');
+                        return true;
+                    }
+                    if(checkBlogPageCcSpinASale())
+                    {
+                        //console.log('SAS valid blog page');
+                        return true;
+                    }
+                    if(checkProductCcSpinASale())
+                    {
+                        //console.log('SAS valid products page');
+                        return true;
+                    }
+                    if(checkCartCcSpinASale())
+                    {
+                        //console.log('SAS valid cart page');
+                        return true;
+                    }
+                    if(checkThanksYouCcSpinASale())
+                    {
+                        //console.log('SAS valid Thank You page');
+                        return true;
+                    }
+                    return false;
+                }
 
                 function checkStoreSpecificUrlCcSpinASale(url) {
                     //console.log('SAS inside checkStoreSpecificUrlCcSpinASale');
@@ -1765,11 +1715,9 @@
                     //console.log('SAS url: ' + url);
                     //console.log('SAS currentPageUrl: ' + currentPageUrl);
 
-                    if(url == currentPageUrl)
-                    {
+                    if (url == currentPageUrl) {
                         is_page = true;
-                    }
-                    else {
+                    } else {
                         is_page = false;
                     }
                     //console.log('SAS is_page:' + is_page);
@@ -1777,23 +1725,23 @@
                 }
 
                 if (!getParameterByName('cc-show-spin-a-sale-test')) {
-/*
-					if(Shopify.shop == 'the-happy-scalp.myshopify.com')
-					{
-						if(window.location.href != 'https://thehappyscalp.com/')
-						{
-							console.log("SAS Spinner Allowed ONLY on home page for thehappyscalp.com");
-							return;
-						}
-					}
-*/
-/*
-					if (ifCachedData()) {
-						console.log('SAS In Cached Data:');
-						var cachedData = JSON.parse(window.localStorage.getItem('cc-sas-spinner-ajax-cached-data'));
-						pupulateData(cachedData);
-					} else {
-*/
+                    /*
+                                        if(Shopify.shop == 'the-happy-scalp.myshopify.com')
+                                        {
+                                            if(window.location.href != 'https://thehappyscalp.com/')
+                                            {
+                                                console.log("SAS Spinner Allowed ONLY on home page for thehappyscalp.com");
+                                                return;
+                                            }
+                                        }
+                    */
+                    /*
+                                        if (ifCachedData()) {
+                                            console.log('SAS In Cached Data:');
+                                            var cachedData = JSON.parse(window.localStorage.getItem('cc-sas-spinner-ajax-cached-data'));
+                                            pupulateData(cachedData);
+                                        } else {
+                    */
 
                     carecartSpinnerJquery.ajax({
                         url: API_URL + "store-front-api/get-store-information",
@@ -1806,7 +1754,7 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function (response) {
-                            if (response.records !== null){
+                            if (response.records !== null) {
                                 window.localStorage.setItem('cc-sas-spinner-ajax-cached-time', d);
                                 window.localStorage.setItem('cc-sas-spinner-ajax-cached-data', JSON.stringify(response));
                                 pupulateData(response);
@@ -1843,11 +1791,9 @@
                     window.localStorage.setItem('cc-sas-spinner-hide-timer-bar', 1);
                 });
 
-/*
-                 * Test on your store flow
+                /* Test on your store flow
                  * cc-show-spin-a-sale-test=yes
-                 *
-*/
+                 * */
                 if (getParameterByName('cc-show-spin-a-sale-test')) {
 
                     carecartSpinnerJquery("body").prepend('<div id="test-spin-loader-dev" style="\n' +
@@ -1882,7 +1828,7 @@
                                 // check if enalbed on mobile
                                 var w = carecartSpinnerJquery(window).width();
                                 const is_enabled_on_mobile = (typeof response.records.store_settings.settings_data.is_mobile_enabled === 'undefined') ? 1 : parseInt(response.records.store_settings.settings_data.is_mobile_enabled);
-                                if(w < 600 && is_enabled_on_mobile === 0) {
+                                if (w < 600 && is_enabled_on_mobile === 0) {
                                     console.log('SAS is disabled on mobile');
                                     carecartSpinnerJquery("#test-spin-loader-dev").remove();
                                     return;
@@ -1893,20 +1839,19 @@
                                     /* Append template*/
                                     carecartSpinnerJquery("body").append(response.records.store_front_template);
                                     /* Append triggered button */
-                                    if(response.records.store_settings.settings_data.is_triggered_enable && parseInt(response.records.store_settings.settings_data.is_triggered_enable)==1){
+                                    if (response.records.store_settings.settings_data.is_triggered_enable && parseInt(response.records.store_settings.settings_data.is_triggered_enable) == 1) {
                                         carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
                                         const settingsData = response.records.store_settings.settings_data;
                                         var tBtn = carecartSpinnerJquery('body').find('#wheelify-spin-trigger-cc');
                                         if (settingsData.button_position === 'middle_right') {
                                             tBtn.css({
                                                 bottom: '48vh',
-                                                right:'20px'
+                                                right: '20px'
                                             });
-                                        }
-                                        else if (settingsData.button_position === 'bottom_right') {
+                                        } else if (settingsData.button_position === 'bottom_right') {
                                             tBtn.css({
                                                 bottom: '8vh',
-                                                right:'20px'
+                                                right: '20px'
                                             });
                                         }//new added
                                         else if (settingsData.button_position === 'bottom_left') {
@@ -1919,9 +1864,7 @@
                                                 bottom: '48vh'
                                             });
                                         }
-                                    }
-                                    else
-                                    {
+                                    } else {
                                         carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
                                         var tBtn = carecartSpinnerJquery('body').find('#wheelify-spin-trigger-cc');
                                         tBtn.hide();
@@ -1939,21 +1882,21 @@
                                     carecartSpinnerJquery('#spin_a_sale_cc_store_front_module_close_button').find('i.fa-times').css('color', closeCrossColor);
 //************************************ Change Spinner Color if NOT default of Spinner i-e #FF0000 ****************************************
                                     var spinnerPegColor = response.records.store_settings.spinner_peg_color;
-                                    if (response.records.store_settings.spinner_peg_color && spinnerPegColor != "" && spinnerPegColor != null && spinnerPegColor != "#FF0000"){
+                                    if (response.records.store_settings.spinner_peg_color && spinnerPegColor != "" && spinnerPegColor != null && spinnerPegColor != "#FF0000") {
                                         carecartSpinnerJquery('.peg').css('fill', spinnerPegColor);
                                     }
 //************************************ Change Try Your Luck Background Color if NOT default i-e #FFFFFF ****************************************
                                     var tryYourLuckBgColor = response.records.store_settings.try_luck_bg_color;
-                                    if (response.records.store_settings.try_luck_bg_color && tryYourLuckBgColor != "" && tryYourLuckBgColor != null && tryYourLuckBgColor != "#FFFFFF"){
+                                    if (response.records.store_settings.try_luck_bg_color && tryYourLuckBgColor != "" && tryYourLuckBgColor != null && tryYourLuckBgColor != "#FFFFFF") {
                                         carecartSpinnerJquery('.btn-submit-form').css('background-color', tryYourLuckBgColor);
                                     }
 //************************************ Change Try Your Luck Text Color if NOT default i-e #384F66 ****************************************
                                     var tryYourLuckTextColor = response.records.store_settings.try_luck_text_color;
-                                    if (response.records.store_settings.try_luck_text_color && tryYourLuckTextColor != "" && tryYourLuckTextColor != null && tryYourLuckTextColor != "#384F66"){
+                                    if (response.records.store_settings.try_luck_text_color && tryYourLuckTextColor != "" && tryYourLuckTextColor != null && tryYourLuckTextColor != "#384F66") {
                                         carecartSpinnerJquery('.btn-submit-form').css('color', tryYourLuckTextColor);
                                     }
                                     /* ************************************** Display Background Image - Start *********************************************************** */
-                                    if (response.records.store_settings.spinner_bg_image && response.records.store_settings.spinner_bg_image != "" && response.records.store_settings.spinner_bg_image != null){
+                                    if (response.records.store_settings.spinner_bg_image && response.records.store_settings.spinner_bg_image != "" && response.records.store_settings.spinner_bg_image != null) {
                                         // Check For desktop/Mobile
                                         var spinnerBgImage = '';
                                         (function (a) {
@@ -1968,20 +1911,19 @@
                                         var themeBgImageURL = CDN_WHEELIFY_URL + spinnerBgImage;
                                         carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + themeBgImageURL + ')');
                                     }
-/* ************************************** Display Background Image - End *********************************************************** */
-/* ************************************** Display Spinner if percentage scroll is enabled  - START *********************************************************** */
-                                    if (response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled && parseInt(response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled) == 1){
+                                    /* ************************************** Display Background Image - End *********************************************************** */
+                                    /* ************************************** Display Spinner if percentage scroll is enabled  - START *********************************************************** */
+                                    if (response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled && parseInt(response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled) == 1) {
                                         //console.log("SAS is_scroll_spinner_percentage_enabled is ENABLED");
                                         var scrollPercentageRequired = response.records.store_settings.settings_data.scroll_spinner_percentage ? response.records.store_settings.settings_data.scroll_spinner_percentage : 50;
                                         //console.log('SAS scrollPercentageRequired: ' + scrollPercentageRequired);
                                         console.log("SAS Scroll Spinner Percentage is ENABLED & Percentage Set is: " + scrollPercentageRequired);
                                         //**************** Testing Scroll Page Percentage ****************************
                                         var timeInMinScroll = 60 * 60 * 1000;
-                                        if(window.localStorage.getItem('scrollScreenDisplaySpinnerExpire') === null)
-                                        {
+                                        if (window.localStorage.getItem('scrollScreenDisplaySpinnerExpire') === null) {
                                             //console.log("SAS scrollScreenDisplaySpinnerExpire is NULL");
                                             console.log("SAS Scroll Screen NOT yet done to load Spinner");
-                                            carecartSpinnerJquery(window).on('scroll', function(){
+                                            carecartSpinnerJquery(window).on('scroll', function () {
                                                 var s = carecartSpinnerJquery(window).scrollTop(),
                                                     d = carecartSpinnerJquery(document).height(),
                                                     c = carecartSpinnerJquery(window).height();
@@ -1990,13 +1932,11 @@
 
                                                 //console.clear();
                                                 //console.log('SAS scrolled percentage: ' + scrolledPercentage);
-                                                if(scrolledPercentage >= scrollPercentageRequired)
-                                                {
-                                                    if(window.localStorage.getItem('scrollScreenDisplaySpinnerExpire') === null)
-                                                    {
+                                                if (scrolledPercentage >= scrollPercentageRequired) {
+                                                    if (window.localStorage.getItem('scrollScreenDisplaySpinnerExpire') === null) {
                                                         window.localStorage.setItem('scrollScreenDisplaySpinnerExpire', 1);
                                                         console.log("SAS scrollScreenDisplaySpinnerExpire is NOW SET");
-                                                        console.log("SAS scrolledPercentage is: " +  scrolledPercentage + " >= scrollPercentageRequired: " + scrollPercentageRequired + " & Spiller Load is Due");
+                                                        console.log("SAS scrolledPercentage is: " + scrolledPercentage + " >= scrollPercentageRequired: " + scrollPercentageRequired + " & Spiller Load is Due");
                                                         carecartSpinnerJquery("#wheelify-spin-trigger-cc").click();
 
                                                         setTimeout(function () {
@@ -2008,31 +1948,28 @@
                                                     }
                                                 }
                                             });
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             //console.log("SAS scrollScreenDisplaySpinnerExpire is NOT NULL");
                                             console.log("SAS Scroll Screen has already loaded Spinner once");
                                         }
                                     }
-/* ************************************** Display Spinner if percentage scroll is enabled  - END *********************************************************** */
+                                    /* ************************************** Display Spinner if percentage scroll is enabled  - END *********************************************************** */
                                     setTimeout(function () {
                                         var spinnerColors = response.records.store_slices_color;
-                                        if(spinnerColors.every(element => element === null))
-                                        {
+                                        if (spinnerColors.every(element => element === null)) {
                                             spinnerColors = ["#000000", "#F1C40F", "#E67E22", "#E74C3C", "#95A5A6", "#16A085", "#27AE60", "#2980B9", "#8E44AD", "#2C3E50"];
                                         }
                                         var ccWheelStrokeColor = response.records.store_settings.wheel_stroke_color;
                                         var ccCenterCircleStrokeColor = response.records.store_settings.center_circle_stroke_color;
                                         var ccCenterCircleFillColor = response.records.store_settings.center_circle_fill_color;
 
-                                        if(ccWheelStrokeColor === null){
+                                        if (ccWheelStrokeColor === null) {
                                             ccWheelStrokeColor = "#D0BD0C";
                                         }
-                                        if(ccCenterCircleStrokeColor === null){
+                                        if (ccCenterCircleStrokeColor === null) {
                                             ccCenterCircleStrokeColor = "#F1DC15";
                                         }
-                                        if(ccCenterCircleFillColor === null){
+                                        if (ccCenterCircleFillColor === null) {
                                             ccCenterCircleFillColor = "#EDEDED";
                                         }
                                         dataSpin = {
@@ -2125,12 +2062,10 @@
                                         }), o.click(function (i) {
                                             i.preventDefault();
                                             var checkboxIsMandatory = 0;
-                                            if(carecartSpinnerJquery('#cc-spin-a-sale-consent-checkbox').prop('required'))
-                                            {
+                                            if (carecartSpinnerJquery('#cc-spin-a-sale-consent-checkbox').prop('required')) {
                                                 checkboxIsMandatory = 1;
                                                 //console.log("SAS Checkbox is Mandatory");
-                                            }
-                                            else {
+                                            } else {
                                                 //console.log("SAS Checkbox is NOT Mandatory");
                                             }
                                             var t = s.val(),
@@ -2144,21 +2079,15 @@
                                             d = carecartSpinnerJquery('#cc-spinner-email'),
                                                 n.text("");
 
-                                            if(checkboxIsMandatory == 1)
-                                            {
-                                                if(w.prop("checked") == true)
-                                                {
+                                            if (checkboxIsMandatory == 1) {
+                                                if (w.prop("checked") == true) {
                                                     //console.log("SAS Checkbox is Mandatory & Checkbox Checked");
-                                                }
-                                                else
-                                                {
+                                                } else {
                                                     x = "";
                                                     //console.log("SAS Checkbox is Mandatory & Checkbox is NOT Checked");
                                                 }
                                                 //console.log("SAS value of x : " + x);
-                                            }
-                                            else
-                                            {
+                                            } else {
                                                 //console.log("SAS x value should be 0 as NOT needed: " + x);
                                             }
                                             return "" == t ? (s.addClass("animated shake"), void setTimeout(function () {
@@ -2170,15 +2099,15 @@
                                             }, 1e3)) : "" == x ? (w.addClass("animated shake"), void setTimeout(function () {
                                                 w.removeClass("animated shake")
                                             }, 1e3)) : o.click();
-/*
-											return "" == t ? (n.text("You should provide your fullname!"), n.addClass("animated shake"), void setTimeout(function () {
-												n.removeClass("animated shake")
-											}, 1e3)) : "" == e ? (n.text("You should provide your email"), n.addClass("animated shake"), void setTimeout(function () {
-												n.removeClass("animated shake")
-											}, 1e3)) : isValidEmailAddress(e) ? (n.text("You email is not valid format"), n.addClass("animated shake"), void setTimeout(function () {
-												n.removeClass("animated shake")
-											}, 1e3)) : o.click();
-*/
+                                            /*
+                                                                                        return "" == t ? (n.text("You should provide your fullname!"), n.addClass("animated shake"), void setTimeout(function () {
+                                                                                            n.removeClass("animated shake")
+                                                                                        }, 1e3)) : "" == e ? (n.text("You should provide your email"), n.addClass("animated shake"), void setTimeout(function () {
+                                                                                            n.removeClass("animated shake")
+                                                                                        }, 1e3)) : isValidEmailAddress(e) ? (n.text("You email is not valid format"), n.addClass("animated shake"), void setTimeout(function () {
+                                                                                            n.removeClass("animated shake")
+                                                                                        }, 1e3)) : o.click();
+                                            */
                                         })
 
                                         carecartSpinnerJquery("#test-spin-loader-dev").remove();
@@ -2219,7 +2148,7 @@
                     };
                 }
 
-                function initializeClockSpinAWheel(id, endtime=5) {
+                function initializeClockSpinAWheel(id, endtime = 5) {
                     //console.log('SAS initializeClockSpinAWheel id: ' + id);
                     //console.log('SAS initializeClockSpinAWheel endtime: ' + endtime);
                     //var clock = document.getElementById(id);
@@ -2231,6 +2160,7 @@
                     var ccSpinASaleMinutesSpan = ccSpinASaleClock.querySelector('.cc-spin-a-sale-minutes');
                     //var minutesSpan = carecartSpinnerJquery('.cc-spin-a-sale-minutes');
                     var ccSpinASaleSecondsSpan = ccSpinASaleClock.querySelector('.cc-spin-a-sale-seconds');
+
                     //var secondsSpan = carecartSpinnerJquery('.cc-spin-a-sale-seconds');
 
                     function updateClockSpinAWheel() {
@@ -2262,61 +2192,57 @@
                     updateClockSpinAWheel();
                     var timeintervalSpinAWheel = setInterval(updateClockSpinAWheel, 1000);
                 }
+
 //***************** End - Countdown Timer function min & sec ********************
 //***************************** Store Specific Styling ***********************************************************
 //***************************** Fix Text Positioning of Store in Spinner Pop-up **********************************
-                if(Shopify.shop == 'portland-pickles-baseball.myshopify.com')
-                {
+                if (Shopify.shop == 'portland-pickles-baseball.myshopify.com') {
                     carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .wheelify-signupContainer,#wheelify-spin_a_sale_cc_store_front_module .wheelify-winContainer, #wheelify-spin_a_sale_cc_store_front_module .wheelify-loseContainer{width: 55%;}</style>');
                 }
-                if(Shopify.shop == 'the-party-champions.myshopify.com')
-                {
+                if (Shopify.shop == 'the-party-champions.myshopify.com') {
                     carecartSpinnerJquery('head').append('<style type="text/css">.wheelify-signupContainer ::-webkit-input-placeholder { /* Chrome/Opera/Safari */ color: #aaaaaa;}</style>');
                     //console.log("SAS https://partychampions.com/");
                 }
-                if(Shopify.shop == 'blackhawksurvival.myshopify.com')
-                {
+                if (Shopify.shop == 'blackhawksurvival.myshopify.com') {
                     carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .checkbox {padding: 5px 100px 15px 1px;text-align: left;text-indent: 5px;line-height: 1;background: transparent;border: none;width: 100%;height: auto;box-shadow: none;margin: 0 !important;}</style>');
                     //console.log("SAS blackhawksurvival.myshopify.com");
                 }
-                if(Shopify.shop == 'beauty-box-by-tori-spelling.myshopify.com')
-                {
+                if (Shopify.shop == 'beauty-box-by-tori-spelling.myshopify.com') {
                     carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .wheelify-signupContainer,#wheelify-spin_a_sale_cc_store_front_module .wheelify-winContainer, #wheelify-spin_a_sale_cc_store_front_module .wheelify-loseContainer{width: 52%; float: right; padding: 0 3%;}</style>');
                 }
-                if(Shopify.shop == 'petculiari.myshopify.com')
-                {
+                if (Shopify.shop == 'petculiari.myshopify.com') {
                     carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .wheelify-signupContainer p { color: #000;} #wheelify-spin_a_sale_cc_store_front_module p.wheelify-text-description {color: #000;}span#cc-spin-a-sale-consent-text {color: #000 !important;}div#wheelify-cc-spin-a-sale-powered-by-carecart { color: #000000;} #wheelify-spin-trigger-cc img, #wheelify-spin-trigger-cc span { color: #000 !important;}#wheelify-spin_a_sale_cc_store_front_module .form-group input {border: 1px solid #000;}#wheelify-spin_a_sale_cc_store_front_module .btn-submit-form, #wheelify-spin_a_sale_cc_store_front_module .btn-submit-form-ok, #wheelify-spin_a_sale_cc_store_front_module .copy-button {border: 1px solid #000;}#wheelify-spin_a_sale_cc_store_front_module .wheelify-closeButton i {font-size: 20px;color: #000;}#wheelify-spin_a_sale_cc_store_front_module .wheelify-text-heading {color: #000;}</style>');
                 }
-                if(Shopify.shop == 'store-e11even.myshopify.com'){
+                if (Shopify.shop == 'store-e11even.myshopify.com') {
                     carecartSpinnerJquery('head').append('<style type="text/css">@media only screen and (max-width: 568px) {#wheelify-spin_a_sale_cc_store_front_module .wheelify-signupContainer p{text-align: center;padding: 0px 30px;}#wheelify-spin_a_sale_cc_store_front_module .wheelify-content-spinner {padding: 38px 10px;}.wheelify-signupContainer .checkbox label {display: flex;}.wheelify-signupContainer .checkbox input {margin-right: 8px;}.wheelify-signupContainer .btn-submit-form{margin-top: 22px;}#wheelify-spin_a_sale_cc_store_front_module .checkbox {padding: 5px 30px 15px 1px;}}</style>');
                 }
-                if(Shopify.shop == 'greenrepublicau.myshopify.com'){
+                if (Shopify.shop == 'greenrepublicau.myshopify.com') {
                     carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc, #wheelify-spin-trigger-cc:active, #wheelify-spin-trigger-cc:focus, #wheelify-spin-trigger-cc:hover, #wheelify-spin-trigger-cc:visited {bottom: 98px;}</style>');
                 }
-                if(Shopify.shop == 'rana-phulkari.myshopify.com'){
+                if (Shopify.shop == 'rana-phulkari.myshopify.com') {
                     carecartSpinnerJquery('head').append('<style type="text/css">.wheelify-signupContainer .checkbox input {display: inline;vertical-align: baseline;margin-right: 6px;}</style>');
                 }
-                if(Shopify.shop == 'tinyfied.myshopify.com'){
+                if (Shopify.shop == 'tinyfied.myshopify.com') {
                     carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc span {z-index: -1;}</style>');
                 }
 //************************ Make Placeholders black for store whose placeholders are showing white ********************************
-/*
-				if(Shopify.shop == 'sky-fit-store.myshopify.com' || Shopify.shop == 'courtsidecases.myshopify.com' || Shopify.shop == 'period-poo-boutique.myshopify.com'){
-					//carecartSpinnerJquery('head').append('<style type="text/css">.form-group input::placeholder { color: black !important; }</style>');
-					carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .form-group input::-webkit-input-placeholder {color: #000;}#wheelify-spin_a_sale_cc_store_front_module .form-group input:-ms-input-placeholder {color: #000;}#wheelify-spin_a_sale_cc_store_front_module .form-group input::placeholder{color: #000;}</style>');
-					console.log('SAS Make Placeholders black');
-				}
-*/
+                /*
+                                if(Shopify.shop == 'sky-fit-store.myshopify.com' || Shopify.shop == 'courtsidecases.myshopify.com' || Shopify.shop == 'period-poo-boutique.myshopify.com'){
+                                    //carecartSpinnerJquery('head').append('<style type="text/css">.form-group input::placeholder { color: black !important; }</style>');
+                                    carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .form-group input::-webkit-input-placeholder {color: #000;}#wheelify-spin_a_sale_cc_store_front_module .form-group input:-ms-input-placeholder {color: #000;}#wheelify-spin_a_sale_cc_store_front_module .form-group input::placeholder{color: #000;}</style>');
+                                    console.log('SAS Make Placeholders black');
+                                }
+                */
 //*********************** Move spinner 25px above from bottom (current 30px) ***************************************************
-                if(Shopify.shop == 'kingsonsbags.myshopify.com' || Shopify.shop == 'cocolouisau.myshopify.com'){
+                if (Shopify.shop == 'kingsonsbags.myshopify.com' || Shopify.shop == 'cocolouisau.myshopify.com') {
                     carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc { bottom:55px !important;}</style>');
                 }
 //*********************** Custom Fix - longdan1.myshopify.com ***************************************************
-                if(Shopify.shop == 'longdan1.myshopify.com'){
+                if (Shopify.shop == 'longdan1.myshopify.com') {
                     carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .checkbox {width: 100%;background-color: transparent;height: auto;border: none;}</style>');
                 }
 //*********************** Custom Fix - sugar-ruff.myshopify.com ***** Make Slices Text Color Black **********************************
-                if(Shopify.shop == 'sugar-ruff.myshopify.com'){
+                if (Shopify.shop == 'sugar-ruff.myshopify.com') {
                     carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .wheelText {fill: #000;}</style>');
                 }
 //********************** In mobile view, hide the Spinner Trigger Text and display ONLY the wheel ***********************************
@@ -2324,13 +2250,10 @@
                     (carecartSpinnerJquery.browser = carecartSpinnerJquery.browser || {}).mobile = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))
                 })(navigator.userAgent || navigator.vendor || window.opera);
 
-                if(Shopify.shop == 'pawmerang-pet-store.myshopify.com')
-                {
-/*
-                    (function (a) {
+                if (Shopify.shop == 'pawmerang-pet-store.myshopify.com') {
+                    /*(function (a) {
                         (carecartSpinnerJquery.browser = carecartSpinnerJquery.browser || {}).mobile = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))
-                    })(navigator.userAgent || navigator.vendor || window.opera);
-*/
+                    })(navigator.userAgent || navigator.vendor || window.opera);*/
 
                     if (carecartSpinnerJquery.browser.mobile) {
                         console.log('SAS pawmerang-pet-store.myshopify.com opened in mobile');
@@ -2345,28 +2268,27 @@
                 }
                 if (Shopify.shop == 'forestsuperfood.myshopify.com') {
                     carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc {bottom: 14vh !important;}</style>');
-/*
-                    if (carecartSpinnerJquery.browser.mobile){
+                    /*if (carecartSpinnerJquery.browser.mobile){
 
-                    }
-*/
+                    }*/
                 }
                 if (Shopify.shop == 'gammalife.myshopify.com') {
-                    if (carecartSpinnerJquery.browser.mobile){
+                    if (carecartSpinnerJquery.browser.mobile) {
                         carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc {bottom: 2vh !important;}</style>');
-                    }
+                    } else{carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc {bottom: 4vh !important;}</style>');}
                 }
                 //carecartSpinnerJquery('head').append('<style type="text/css"> :empty{display: block; !important;}</style>');
 
 //*********************** Custom Fix - gammalifestyle.myshopify.com - Urgency Bar Top Styling Fix ************************
-/*
-				if(Shopify.shop == 'gammalifestyle.myshopify.com' || Shopify.shop == 'almowear.myshopify.com'){
-					carecartSpinnerJquery('head').append('<style type="text/css">.bar-top{bottom: auto;}</style>');
-				}
-*/
+                /*
+                                if(Shopify.shop == 'gammalifestyle.myshopify.com' || Shopify.shop == 'almowear.myshopify.com'){
+                                    carecartSpinnerJquery('head').append('<style type="text/css">.bar-top{bottom: auto;}</style>');
+                                }
+                */
             });
 
         }, 1000);
     });
+
 
 })();
