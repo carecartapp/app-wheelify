@@ -1349,7 +1349,7 @@
 									};
 
 								}, 500);
-								if (!SASGoingToShow()) {
+								if (SASGoingToShow()) {
 									setTimeout(function () {
 										var type = 'auto';
 										showSpinASaleModule(type);
