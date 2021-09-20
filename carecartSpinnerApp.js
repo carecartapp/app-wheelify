@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt **************************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0-new-ui - Build ver 1.0.33 *******************
-//****** Updated at: 13-Sept-2021, 03:06 PM ***************************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.7.0.0 - Build ver 1.0.34 **************************
+//****** Updated at: 20-Sept-2021, 11:10 AM ***************************************************************
 
 (function () {
 	var d = new Date();
@@ -14,7 +14,7 @@
 
 	//var API_URL = 'https://dev-spinner.carecart.io' + '/';
 
-	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.33/';
+	var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@1.0.34/';
 
 	var dataSpin = false;
 
@@ -864,6 +864,9 @@
 					if (Shopify.shop == 'presha-luxury.myshopify.com') {
 						carecartSpinnerJquery("#NewsletterPopup-newsletter-popup").removeAttr("tabindex");
 					}
+					if (Shopify.shop == 'auscrystals-com-au.myshopify.com') {
+						carecartSpinnerJquery("body").append("<style type='text/css'>.pegContainer{transform-origin: 0px 0px 0px;transform: matrix(1.70666, 0, 0, 1.70666, -374.604, 62.2927);}</style>");
+					}
 					/*if(Shopify.shop == 'dorsila.myshopify.com'){
 						let selector = carecartSpinnerJquery(".wheelify-wheelContainer svg").find('g.valueContainer').children();
 						for (let i = 1; i < selector.length; i++) {
@@ -996,6 +999,7 @@
 				}
 
 				function pupulateData(response) {
+					console.log(response);
 					//console.log('SAS AJAX Success ');
 					if (response && response._metadata && response._metadata.outcome && response._metadata.outcome == "SUCCESS") {
 						console.log('SAS Success Response');
@@ -1174,7 +1178,7 @@
 								carecartSpinnerJquery("body").append(response.records.store_front_template);
 
 								/* Append triggered button */
-								if (response.records.store_settings.settings_data.is_triggered_enable && parseInt(response.records.store_settings.settings_data.is_triggered_enable) == 1) {
+								if (response.records.store_settings.settings_data.is_triggered_enable && parseInt(response.records.store_settings.settings_data.is_triggered_enable) == 1 && response.records.store_settings.settings_data.button_position != "hidden") {
 									carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
 									if ("our-little-hero.myshopify.com" == Shopify.shop) {
 										carecartSpinnerJquery("#wheelify-spin-trigger-cc").css("display", "none");
@@ -1861,7 +1865,7 @@
 									/* Append template*/
 									carecartSpinnerJquery("body").append(response.records.store_front_template);
 									/* Append triggered button */
-									if (response.records.store_settings.settings_data.is_triggered_enable && parseInt(response.records.store_settings.settings_data.is_triggered_enable) == 1) {
+									if (response.records.store_settings.settings_data.is_triggered_enable && parseInt(response.records.store_settings.settings_data.is_triggered_enable) == 1 && response.records.store_settings.settings_data.button_position != "hidden") {
 										carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
 										const settingsData = response.records.store_settings.settings_data;
 										var tBtn = carecartSpinnerJquery('body').find('#wheelify-spin-trigger-cc');
