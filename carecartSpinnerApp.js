@@ -51,7 +51,7 @@
     }
 
     cssFileInjection(API_URL + "public/phone/css/intlTelInput.css?v=2");               // Dev and UAT URL
-    cssFileInjection(API_URL + "public/phone/css/phoneStyle.css?v=2");                 // Dev and UAT URL
+    cssFileInjection(API_URL + "public/phone/css/phoneStyle.css?v=3");                 // Dev and UAT URL
     //cssFileInjection(API_URL +"public/phone/js/intlTelInput.js?v=1");                 // Dev and UAT URL
 
     cssFileInjection(API_URL + "public/app/css/front-store-spinner-min.css?v=" + new Date().toLocaleTimeString());      // Dev and UAT URL
@@ -1037,12 +1037,12 @@
                     carecartSpinnerJquery('#wheelify-spin-trigger-cc').addClass('shake triggerButton_shake');
                     setTimeout(function () {
                         stopShakeButton();
-                    }, 5000);
+                    }, 1000);
                 }
                 function pupulateData(response) {
                     setTimeout(function () {
                         stopShakeButton();
-                    }, 5000);
+                    }, 1000);
                     //console.log('SAS AJAX Success ');
                     if (response && response._metadata && response._metadata.outcome && response._metadata.outcome == "SUCCESS") {
                         console.log('SAS Success Response');
