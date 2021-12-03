@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.3 *******************
-//****** Updated at: 24-Nov-2021, 11:43 AM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.4 *******************
+//****** Updated at: 03-Dec-2021, 11:52 AM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -1270,6 +1270,8 @@
                                             utilsScript: API_URL + "public/phone/js/utils.js",
                                             initialCountry: initialCountry == '' ? 'US' : initialCountry
                                         });
+
+                                        phoneNumber.value = iti.getSelectedCountryData().dialCode;
 
                                         phoneNumber.addEventListener("countrychange", function () {
                                             console.log(iti.getSelectedCountryData());
