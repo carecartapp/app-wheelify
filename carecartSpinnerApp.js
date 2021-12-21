@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.8 *******************
-//****** Updated at: 21-Dec-2021, 03:21 PM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.9 *******************
+//****** Updated at: 21-Dec-2021, 04:32 PM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -8,7 +8,7 @@
 
     var API_URL = 'https://app-spinner.carecart.io/';
 
-    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.8/';
+    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.9/';
 
     var dataSpin = false;
 
@@ -1024,25 +1024,40 @@
                     }
                 }
 
-                function stopShakeButton() {
-                    if (carecartSpinnerJquery('#wheelify-spin-trigger-cc').hasClass('triggerButton_shake')) {
-                        carecartSpinnerJquery('#wheelify-spin-trigger-cc').removeClass('shake triggerButton_shake');
-                        setTimeout(function () {
-                            startShakeButton();
-                        }, 5000);
+                function stopShakeButton(response) {
+                    if (carecartSpinnerJquery('#wheelify-spin-trigger-cc').hasClass('triggerButton_shake') || carecartSpinnerJquery('#wheelify-spin-trigger-cc').hasClass('vtriggerButton_shake')) {
+                        let settings = response.records.store_settings.settings_data;
+
+                        if (settings.button_position === 'middle_right' || settings.button_position === 'middle_left') {
+                             carecartSpinnerJquery('#wheelify-spin-trigger-cc').removeClass('shake vtriggerButton_shake');
+                        } else {
+                            carecartSpinnerJquery('#wheelify-spin-trigger-cc').removeClass('shake triggerButton_shake');
+                        }
+
+                        setTimeout(function (response) {
+                            startShakeButton(response);
+                        }, 5000, response);
                     }
                 }
 
-                function startShakeButton() {
-                    carecartSpinnerJquery('#wheelify-spin-trigger-cc').addClass('shake triggerButton_shake');
-                    setTimeout(function () {
-                        stopShakeButton();
-                    }, 1000);
+                function startShakeButton(response) {
+                    let settings = response.records.store_settings.settings_data;
+
+                    if (settings.button_position === 'middle_right' || settings.button_position === 'middle_left') {
+                        carecartSpinnerJquery('#wheelify-spin-trigger-cc').addClass('shake vtriggerButton_shake');
+                    } else {
+                        carecartSpinnerJquery('#wheelify-spin-trigger-cc').addClass('shake triggerButton_shake');
+                    }
+
+                    setTimeout(function (response) {
+                        stopShakeButton(response);
+                    }, 1000, response);
                 }
+
                 function pupulateData(response) {
-                    setTimeout(function () {
-                        stopShakeButton();
-                    }, 1000);
+                    setTimeout(function (response) {
+                        stopShakeButton(response);
+                    }, 1000, response);
                     //console.log('SAS AJAX Success ');
                     if (response && response._metadata && response._metadata.outcome && response._metadata.outcome == "SUCCESS") {
                         console.log('SAS Success Response');
@@ -1554,8 +1569,20 @@
                                 } else {
                                     spinnerBgImage = response.records.store_settings.spinner_bg_image;
                                 }
+                                
                                 var themeBgImageURL = CDN_WHEELIFY_URL + spinnerBgImage;
+
+                                if(response.records.store_settings.spinner_background_image_url)
+                                {
+                                    themeBgImageURL = response.records.store_settings.spinner_background_image_url;
+                                }
                                 carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + themeBgImageURL + ')');
+                            } else {
+                                if(response.records.store_settings.spinner_background_image_url)
+                                {
+                                    var defaultThemeBgImage = response.records.store_settings.spinner_background_image_url;
+                                    carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + defaultThemeBgImage + ')');
+                                }
                             }
                             /* ************************************** Display Background Image - End *********************************************************** */
                             if (Shopify.shop == 'srnsmart.myshopify.com') {
