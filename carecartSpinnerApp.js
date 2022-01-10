@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.9 *******************
-//****** Updated at: 21-Dec-2021, 04:32 PM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.1 *******************
+//****** Updated at: 16-Nov-2021, 11:43 AM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -8,7 +8,7 @@
 
     var API_URL = 'https://app-spinner.carecart.io/';
 
-    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.9/';
+    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.2/';
 
     var dataSpin = false;
 
@@ -856,7 +856,27 @@
                     window.localStorage.setItem('cc-sas-spinner-coupon-load-time', timeNow);
                     //console.log("SAS setSpinCouponLoadTime is NOW Set to current time");
                 }
+                function SASGoingToShow() {
+                    let spinnerShowTime = window.localStorage.getItem("cc-sas-spinner-cached-time");
+                    var currentTime = new Date();
+                    var previousTime = new Date(spinnerShowTime);
+                    var msec = parseInt(currentTime - previousTime);
+                    var minutes = parseInt(Math.floor(msec / 60000));
 
+                    /* Time when spinner will display again */
+                    let timeToDisplay = 5;
+                    if (Shopify.shop == "almowear.myshopify.com") {
+                        timeToDisplay = 60;
+                    }
+
+                    if (spinnerShowTime == undefined) {
+                        return true;
+                    } else if (minutes >= timeToDisplay) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
                 function showSpinASaleModule(type = '') {
                     //console.log('showSpinASaleModule type: ' + type);
                     if (type && type == 'triggered') {
@@ -1327,6 +1347,10 @@
                                 if (response.records.store_settings.settings_data.is_exit_spinner_display_enabled && parseInt(response.records.store_settings.settings_data.is_exit_spinner_display_enabled) == 1) {
                                     console.log("SAS Spinner will load after Mouse exit's screen");
                                     carecartSpinnerJquery(document).mouseleave(function () {
+                                        if (!SASGoingToShow()) {
+                                            console.log("SAS Mouse exit: Trigger already");
+                                            return;
+                                        }
                                         //console.log('SAS out of screen');
                                         if (carecartSpinnerJquery('#wheelify-spin_a_sale_cc_store_front_module:visible').length == 0) {
                                             if (window.localStorage.getItem('cc-sas-spinner-copy-button-clicked') != 1) {
@@ -1366,6 +1390,10 @@
                                         //console.log("SAS scrollScreenDisplaySpinnerExpire is NULL");
                                         console.log("SAS Scroll Screen NOT yet done to load Spinner");
                                         carecartSpinnerJquery(window).on('scroll', function () {
+                                            if (!SASGoingToShow()) {
+                                                console.log("SAS on Scroll: Trigger already");
+                                                return;
+                                            }
                                             var s = carecartSpinnerJquery(window).scrollTop(),
                                                 d = carecartSpinnerJquery(document).height(),
                                                 c = carecartSpinnerJquery(window).height();
@@ -1462,11 +1490,13 @@
                                     };
 
                                 }, 500);
-                                setTimeout(function () {
-                                    var type = 'auto';
-                                    showSpinASaleModule(type);
-                                    couponAndMsgAreSetThenLoad();
-                                }, parseInt(response.records.store_settings.settings_data.delay_time) * 1000);
+                                if (SASGoingToShow()) {
+                                    setTimeout(function () {
+                                        var type = 'auto';
+                                        showSpinASaleModule(type);
+                                        couponAndMsgAreSetThenLoad();
+                                    }, parseInt(response.records.store_settings.settings_data.delay_time) * 1000);
+                                }
                                 /* *********************************************** Start - Display Urgency Timer Bar **********************************	*/
                                 if (response.records.store_settings.conversion_booster_settings != null && response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled != null && parseInt(response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled) == 1) {
                                     window.localStorage.setItem('urgencyTimerBarEnabled', 1);
