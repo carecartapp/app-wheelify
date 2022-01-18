@@ -2012,7 +2012,7 @@
                                     window.localStorage.setItem('cc-sas-spinner-ajax-cached-time', d);
                                     window.localStorage.setItem('cc-sas-spinner-ajax-cached-data', JSON.stringify(response));
                                     pupulateData(response);
-                                }, parseInt(response.records.store_settings.settings_data.delay_time) * 1000);
+                                }, 5000);
                             }
                         },
                         error: function (error) {
