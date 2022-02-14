@@ -1,11 +1,10 @@
 //******* @author: CareCart App-Wheelify - Abdullah Butt *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.1 *******************
-//****** Updated at: 16-Nov-2021, 11:43 AM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.4 *******************
+//****** Updated at: 03-Dec-2021, 11:52 AM  ********************************************************
 
 (function () {
     var d = new Date();
-    //var version = d.getSeconds();
-
+    
     var API_URL = 'https://app-spinner.carecart.io/';
 
     var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.2/';
@@ -49,7 +48,7 @@
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
-
+    
     cssFileInjection(API_URL + "public/phone/css/intlTelInput.css?v=" + new Date().toLocaleTimeString());               // Dev and UAT URL
     cssFileInjection(API_URL + "public/phone/css/phoneStyle.css?v=" + new Date().toLocaleTimeString());                 // Dev and UAT URL
     //cssFileInjection(API_URL +"public/phone/js/intlTelInput.js?v=" + new Date().toLocaleTimeString());                 // Dev and UAT URL
@@ -1281,11 +1280,13 @@
 
                                     if (phoneNumber != null) {
                                         var iti = window.intlTelInput(phoneNumber, {
-                                            utilsScript: API_URL + "public/phone/js/utils.js?v=" + new Date().toLocaleTimeString(),
+                                            utilsScript: API_URL + "public/phone/js/utils.js",
                                             initialCountry: initialCountry == '' ? 'US' : initialCountry
                                         });
 
-                                        phoneNumber.addEventListener("countrychange", function() {
+                                        phoneNumber.value = iti.getSelectedCountryData().dialCode;
+
+                                        phoneNumber.addEventListener("countrychange", function () {
                                             console.log(iti.getSelectedCountryData());
                                             phoneNumber.value = iti.getSelectedCountryData().dialCode;
                                         });
@@ -1302,41 +1303,150 @@
 
                                 });
 
+
+                                
+
                                 /*********** Phone Number Collection ************/
+                                
+                                /*********** Wheel Margin ************/
+                               
+                                carecartSpinnerJquery("head").append(
+                                    '<style type="text/css"> @media only screen and (max-width: 575px) {#wheelify-spin_a_sale_cc_store_front_module.wheelify-wrapper-spinner.popupview .wheelify-ContentRight {min-height: 468px;}} </style>'
+                                );  
+                                    carecartSpinnerJquery("head").append(
+                                    '<style type="text/css"> @media only screen and (max-width: 575px) {#wheelify-spin_a_sale_cc_store_front_module .wheelify-ContentRight{ min-height: 560px;}} </style>'
+                                );
 
                                 /* Append triggered button */
-                                if (response.records.store_settings.settings_data.is_triggered_enable && parseInt(response.records.store_settings.settings_data.is_triggered_enable) == 1) {
-                                    carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
-                                    if ("our-little-hero.myshopify.com" == Shopify.shop) {
-                                        carecartSpinnerJquery("#wheelify-spin-trigger-cc").css("display", "none");
+                                    if (response.records.store_settings.settings_data.is_triggered_enable && parseInt(response.records.store_settings.settings_data.is_triggered_enable) == 1) {
+                                        carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
+                                        if ("our-little-hero.myshopify.com" == Shopify.shop) {
+                                            carecartSpinnerJquery("#wheelify-spin-trigger-cc").css("display", "none");
+                                        }
+                                        const settingsData = response.records.store_settings.settings_data;
+                                        var tBtn = carecartSpinnerJquery('body').find('#wheelify-spin-trigger-cc');
+                                    
+                                        // if (settingsData.button_position === 'middle_right') {  
+                                        //     tBtn.css({
+                                        //         bottom: '48vh',
+                                        //         right: '-45px',
+                                        //         transform: 'rotate(270deg)'
+                                        //     });
+                                        // }
+                                        // else if (settingsData.button_position === 'bottom_right') {
+                                        //     tBtn.css({
+                                        //         bottom: '8vh',
+                                        //         right: '20px'
+                                        //     });
+                                        // }//new added
+                                        // else if (settingsData.button_position === 'bottom_left') {
+                                        //     tBtn.css({
+                                        //         left: '20px'
+                                        //     });
+                                        // } else if (settingsData.button_position === 'middle_left') {
+                                        //     tBtn.css({
+                                        //         left: '-48px',
+                                        //         bottom: '48vh',
+                                        //         transform: 'rotate(270deg)'
+                                        //     });
+                                        // }
+
+                                        // Trigger Button Margin
+                                        
+                                        if(settingsData.button_position === 'middle_right' ) {
+                                            let triggerBottom = settingsData.trigger_btn_margin_desktop / 3;
+                                            triggerBottom === 0 ? triggerBottom =  8 : triggerBottom += 8;
+                                            tBtn.css({
+                                                right: '-45px', 
+                                                bottom: triggerBottom+'vh',
+                                                transform: 'rotate(270deg)'
+                                            });
+                                            if(carecartSpinnerJquery('#wheelify-spin-trigger-cc').hasClass('shake vtriggerButton_shake')){
+                                                carecartSpinnerJquery('#wheelify-spin-trigger-cc').removeClass('shake vtriggerButton_shake');
+                                                setInterval(function(){
+                                                    shakeVertical('#wheelify-spin-trigger-cc', 50, triggerBottom, 10);
+                                                }, 3000);
+                                            }
+                                        }
+
+                                        else if(settingsData.button_position === 'middle_left' ) {
+                                            let triggerBottom = settingsData.trigger_btn_margin_desktop / 3;
+                                            triggerBottom === 0 ? triggerBottom =  8 : triggerBottom += 8;
+                                            tBtn.css({
+                                                left: '-45px',
+                                                bottom: triggerBottom+'vh',
+                                                transform: 'rotate(270deg)'
+                                            });
+                                            if(carecartSpinnerJquery('#wheelify-spin-trigger-cc').hasClass('shake vtriggerButton_shake')){
+                                                carecartSpinnerJquery('#wheelify-spin-trigger-cc').removeClass('shake vtriggerButton_shake');
+                                                setInterval(function(){
+                                                    shakeVertical('#wheelify-spin-trigger-cc', 50, triggerBottom, 10);
+                                                }, 3000);
+                                            }
+                                        }
+                                        
+                                        else if(settingsData.button_position === 'bottom_right' ) {
+                                            let triggerBottom = settingsData.trigger_btn_margin_desktop / 3;
+                                            triggerBottom === 0 ? triggerBottom =  8 : triggerBottom += 8;
+                                            tBtn.css({
+                                                bottom: triggerBottom+'vh',
+                                                right: '20px'
+                                            });
+                                        }
+                                        
+                                        else if(settingsData.button_position === 'bottom_left' ) {
+                                            let triggerBottom = settingsData.trigger_btn_margin_desktop / 3;
+                                            triggerBottom === 0 ? triggerBottom =  8 : triggerBottom += 8;
+                                            tBtn.css({
+                                                bottom: triggerBottom+'vh',
+                                                left: '20px'
+                                            });
+                                        }
+
+                                        var windowWidth = window.screen.width < window.outerWidth ? window.screen.width : window.outerWidth;
+
+                                        if (windowWidth < 575) {
+                                            if(settingsData.button_position === 'middle_right' ) {
+                                                let triggerBottom = settingsData.trigger_btn_margin_mobile / 3;
+                                                triggerBottom === 0 ? triggerBottom =  15 : triggerBottom += 15;
+                                                tBtn.css({
+                                                    right: '-45px', 
+                                                    bottom: triggerBottom+'vh',
+                                                    transform: 'rotate(270deg)'
+                                                });
+                                            }
+                                            
+                                            else if(settingsData.button_position === 'middle_left' ) {
+                                                let triggerBottom = settingsData.trigger_btn_margin_mobile / 3;
+                                                triggerBottom === 0 ? triggerBottom =  15 : triggerBottom += 15;
+                                                tBtn.css({
+                                                    left: '-48px',
+                                                    bottom: triggerBottom+'vh',
+                                                    transform: 'rotate(270deg)'
+                                                });
+                                            }
+                                            
+                                            else if(settingsData.button_position === 'bottom_right' ) {
+                                                let triggerBottom = settingsData.trigger_btn_margin_mobile / 4;
+                                                triggerBottom === 0 ? triggerBottom =  10 : triggerBottom += 10;
+                                                console.log(triggerBottom)
+                                                tBtn.css({
+                                                    bottom: triggerBottom+'vh',
+                                                    right: '20px'
+                                                });
+                                            }
+                                            
+                                            else if(settingsData.button_position === 'bottom_left' ) {
+                                                let triggerBottom = settingsData.trigger_btn_margin_mobile / 4;
+                                                triggerBottom === 0 ? triggerBottom =  10 : triggerBottom += 10;
+                                                tBtn.css({
+                                                    bottom: triggerBottom+'vh',
+                                                    left: '20px'
+                                                });
+                                            }
+                                        }
                                     }
-                                    const settingsData = response.records.store_settings.settings_data;
-                                    var tBtn = carecartSpinnerJquery('body').find('#wheelify-spin-trigger-cc');
-                                    if (settingsData.button_position === 'middle_right') {  
-                                        tBtn.css({
-                                            bottom: '48vh',
-                                            right: '-45px',
-                                            transform: 'rotate(270deg)'
-                                        });
-                                    }
-                                    else if (settingsData.button_position === 'bottom_right') {
-                                        tBtn.css({
-                                            bottom: '8vh',
-                                            right: '20px'
-                                        });
-                                    }//new added
-                                    else if (settingsData.button_position === 'bottom_left') {
-                                        tBtn.css({
-                                            left: '20px'
-                                        });
-                                    } else if (settingsData.button_position === 'middle_left') {
-                                        tBtn.css({
-                                            left: '-48px',
-                                            bottom: '48vh',
-                                            transform: 'rotate(270deg)'
-                                        });
-                                    }
-                                }
+                                
                                 else {
                                     carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
                                     var tBtn = carecartSpinnerJquery('body').find('#wheelify-spin-trigger-cc');
@@ -1602,17 +1712,48 @@
                                 
                                 var themeBgImageURL = CDN_WHEELIFY_URL + spinnerBgImage;
 
-                                if(response.records.store_settings.spinner_background_image_url)
-                                {
-                                    themeBgImageURL = response.records.store_settings.spinner_background_image_url;
-                                }
                                 carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + themeBgImageURL + ')');
                             } else {
-                                if(response.records.store_settings.spinner_background_image_url)
-                                {
-                                    var defaultThemeBgImage = response.records.store_settings.spinner_background_image_url;
-                                    carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + defaultThemeBgImage + ')');
+                                if(response.records.store_settings.spinner_theme && response.records.store_settings.spinner_theme == 'customTheme') {
+                                    var windowWidth = window.screen.width < window.outerWidth ? window.screen.width : window.outerWidth;
+                               
+                                    if(response.records.store_settings.spinner_background_image_url)
+                                    {
+                                        var defaultThemeBgImage = response.records.store_settings.spinner_background_image_url;
+                                        carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + defaultThemeBgImage + ')');
+                                        window.localStorage.setItem("spinner_background_image_url_desktop", defaultThemeBgImage);
+                                    }
+
+                                    if(response.records.store_settings.spinner_background_image_url_mobile)
+                                    {
+                                        var isMobile = false; //initiate as false
+                                        // device detection
+                                        if (windowWidth < 575) {                                        
+                                            isMobile = true;
+                                            console.log('Mobile View');
+                                            var defaultThemeBgImage = response.records.store_settings.spinner_background_image_url_mobile;
+                                            carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + defaultThemeBgImage + ')');
+                                            window.localStorage.setItem("spinner_background_image_url_mobile", defaultThemeBgImage);
+                                        } else {
+                                            console.log('Not Mobile View');
+                                        }
+                                        
+                                        var windowSize = window.matchMedia("(max-width: 575px)")
+                                        myFunction(windowSize) // Call listener function at run time
+                                        windowSize.addListener(myFunction) // Attach listener function on state changes
+                                    } else {
+                                        if (windowWidth < 575) {                                        
+                                            var defaultThemeBgImage = response.records.store_settings.spinner_background_image_url_mobile;
+                                            carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + defaultThemeBgImage + ')');
+                                            window.localStorage.setItem("spinner_background_image_url_mobile", defaultThemeBgImage);
+                                        } 
+                                        
+                                        var windowSize = window.matchMedia("(max-width: 575px)")
+                                        myFunction(windowSize) //Call listener function at run time
+                                        windowSize.addListener(myFunction) // Attach listener function on state changes
+                                    }
                                 }
+                               
                             }
                             /* ************************************** Display Background Image - End *********************************************************** */
                             if (Shopify.shop == 'srnsmart.myshopify.com') {
@@ -1630,6 +1771,27 @@
                     if (response.records.store_settings.conversion_booster_settings != null && response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled != null && parseInt(response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled) == 1 && window.localStorage.getItem("cc-sas-spinner-copy-button-clicked") == 1) {
                         couponAndMsgAreSetThenLoad();
                     }
+                }
+
+                function myFunction(windowSize) {
+                    
+                    console.log(windowSize);
+                    console.log(localStorage.getItem("spinner_background_image_url_desktop"));
+                    console.log(localStorage.getItem("spinner_background_image_url_mobile"));
+                    
+                    if (windowSize.matches) {                                                
+                        carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + localStorage.getItem("spinner_background_image_url_mobile") + ')');
+                    } else {
+                        carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + localStorage.getItem("spinner_background_image_url_desktop") + ')');
+                    }
+                }
+
+
+                function shakeVertical(div, interval=100, distance, times=6){
+                    for(var iter=0;iter<(times+1);iter++){
+                        carecartSpinnerJquery(div).animate({ "bottom": ((iter%2==0 ? distance : distance-1))+"vh"}, interval);
+                    }
+                    carecartSpinnerJquery(div).animate({ "bottom": distance+"vh"}, interval);
                 }
 
                 function displaySpinnerOnTigger() {
@@ -1952,7 +2114,6 @@
                     //console.log('SAS is_page:' + is_page);
                     return is_page;
                 }
-
                 if (!getParameterByName('cc-show-spin-a-sale-test')) {
                     /*
                                         if(Shopify.shop == 'the-happy-scalp.myshopify.com')
@@ -2055,7 +2216,7 @@
                 /*
                                  * Test on your store flow
                                  * cc-show-spin-a-sale-test=yes
-                                 *
+                                 * https://freeshippingbar2.myshopify.com/?cc-show-spin-a-sale-preview=yes
                 */
                 if (getParameterByName('cc-show-spin-a-sale-test')) {
 
@@ -2112,10 +2273,11 @@
                                         carecartSpinnerJquery("body").append(response.records.store_front_trigger_button);
                                         const settingsData = response.records.store_settings.settings_data;
                                         var tBtn = carecartSpinnerJquery('body').find('#wheelify-spin-trigger-cc');
-                                        if (settingsData.button_position === 'middle_right') {
+                                        if (settingsData.button_position === 'middle_right') {  
                                             tBtn.css({
                                                 bottom: '48vh',
-                                                right: '20px'
+                                                right: '-45px',
+                                                transform: 'rotate(270deg)'
                                             });
                                         }
                                         else if (settingsData.button_position === 'bottom_right') {
@@ -2130,8 +2292,9 @@
                                             });
                                         } else if (settingsData.button_position === 'middle_left') {
                                             tBtn.css({
-                                                left: '20px',
-                                                bottom: '48vh'
+                                                left: '-48px',
+                                                bottom: '48vh',
+                                                transform: 'rotate(270deg)'
                                             });
                                         }
                                     }
@@ -2181,8 +2344,87 @@
                                         }
                                         var themeBgImageURL = CDN_WHEELIFY_URL + spinnerBgImage;
                                         carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + themeBgImageURL + ')');
+                                    } else {
+                                        if(response.records.store_settings.spinner_theme && response.records.store_settings.spinner_theme == 'customTheme') {
+                                            var windowWidth = window.screen.width < window.outerWidth ? window.screen.width : window.outerWidth;
+                                       
+                                            if(response.records.store_settings.spinner_background_image_url)
+                                            {
+                                                var defaultThemeBgImage = response.records.store_settings.spinner_background_image_url;
+                                                carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + defaultThemeBgImage + ')');
+                                            }
+
+                                            if(response.records.store_settings.spinner_background_image_url_mobile)
+                                            {
+                                                var isMobile = false; //initiate as false
+                                                // device detection
+                                                if (windowWidth < 575) {                                        
+                                                    isMobile = true;
+                                                    console.log('Mobile View');
+                                                    var defaultThemeBgImage = response.records.store_settings.spinner_background_image_url_mobile;
+                                                    carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + defaultThemeBgImage + ')');
+                                                } else {
+                                                    console.log('Not Mobile View');
+                                                }
+                                               
+                                            }
+                                        }
+                                       
                                     }
                                     /* ************************************** Display Background Image - End *********************************************************** */
+                                    /* *********************************************** Start - Display Urgency Timer Bar **********************************	*/
+                                if (response.records.store_settings.conversion_booster_settings != null && response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled != null && parseInt(response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled) == 1) {
+                                    window.localStorage.setItem('urgencyTimerBarEnabled', 1);
+                                    //console.log('SAS Urgency Bar is Active');
+                                    //carecartSpinnerJquery('#wheelify-couponwheel_notice_content').show();
+                                    var spinASaleCcUrgencyTimeBarTextHtml = '<span class="cc-spin-a-sale-clock-div" id="cc-spin-a-sale-clock-div-preview">' + response.records.store_settings.conversion_booster_settings.urgency_timer_bar_text + '</span>';
+                                    carecartSpinnerJquery('#wheelify-spin_a_sale_cc_urgency_time_bar_text').html(spinASaleCcUrgencyTimeBarTextHtml);
+                                    var spinASaleCcUrgencyTimeBarText = carecartSpinnerJquery('#wheelify-spin_a_sale_cc_urgency_time_bar_text').html();
+                                    //var wonCouponCode = '<strong>' + window.localStorage.getItem('cc-sas-spinner-cached-coupon-code') + '</strong>';
+                                    //spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{coupon_code}}',wonCouponCode);
+                                    //console.log('SAS spinASaleCcUrgencyTimeBarText ' + spinASaleCcUrgencyTimeBarText);
+                                    window.localStorage.setItem('urgencyTimerBarTimeInMin', response.records.store_settings.conversion_booster_settings.urgency_timer_bar_display_time_in_min);
+                                    var spinASaleCcUrgencyTimeBarInMin = window.localStorage.getItem('urgencyTimerBarTimeInMin');
+                                    //console.log('SAS spinASaleCcUrgencyTimeBarInMin: ' + spinASaleCcUrgencyTimeBarInMin);
+                                    var deadlineSpinAWheel = new Date(Date.parse(new Date()) + spinASaleCcUrgencyTimeBarInMin * 60 * 1000);
+                                    var timerDiv = '<span style="font-weight: bold;"><span class="cc-spin-a-sale-minutes">' + spinASaleCcUrgencyTimeBarInMin + '</span>:<span class="cc-spin-a-sale-seconds">00</span></span>';
+                                    //console.log('SAS timerDiv: ' + timerDiv);
+                                    //console.log('SAS spinASaleCcUrgencyTimeBarText: ' + spinASaleCcUrgencyTimeBarText);
+                                    spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{time}}', timerDiv);
+                                    spinASaleCcUrgencyTimeBarText = spinASaleCcUrgencyTimeBarText.replace('{{ time }}', timerDiv);
+                                    var urgencyTimeBarBackgroundColor = '#FFD400';
+                                    if (response.records.store_settings.conversion_booster_settings.urgency_time_bar_background_color && response.records.store_settings.conversion_booster_settings.urgency_time_bar_background_color != null) {
+                                        urgencyTimeBarBackgroundColor = response.records.store_settings.conversion_booster_settings.urgency_time_bar_background_color;
+                                    }
+                                    //console.log('SAS urgencyTimeBarBackgroundColor: ' + urgencyTimeBarBackgroundColor);
+                                    carecartSpinnerJquery('#wheelify-couponwheel_notice_content').css("background-color", urgencyTimeBarBackgroundColor);
+                                    var urgencyTimeBarTextColor = '#000000';
+                                    if (response.records.store_settings.conversion_booster_settings.urgency_time_bar_text_color && response.records.store_settings.conversion_booster_settings.urgency_time_bar_text_color != null) {
+                                        urgencyTimeBarTextColor = response.records.store_settings.conversion_booster_settings.urgency_time_bar_text_color;
+                                    }
+                                    //console.log('SAS urgencyTimeBarTextColor: ' + urgencyTimeBarTextColor);
+                                    carecartSpinnerJquery('#wheelify-couponwheel_notice_content').css("color", urgencyTimeBarTextColor);
+                                    if (response.records.store_settings.conversion_booster_settings.urgency_timer_bar_position_top_or_bottom == 'top') {
+                                        carecartSpinnerJquery('#wheelify-couponwheel_notice_content').removeClass('bar-bottom').addClass('bar-top');
+                                    }
+                                    //console.log('SAS spinASaleCcUrgencyTimeBarText after Timer Replacement: ' + spinASaleCcUrgencyTimeBarText);
+                                    //carecartSpinnerJquery('#wheelify-couponwheel_notice_timer').html(timerDiv);
+                                    //carecartSpinnerJquery('#wheelify-spin_a_sale_cc_urgency_time_bar_text').html(spinASaleCcUrgencyTimeBarText);
+                                    //console.log('SAS spinASaleCcUrgencyTimeBarText: ' + spinASaleCcUrgencyTimeBarText);
+                                    //carecartSpinnerJquery('#wheelify-couponwheel_notice_content').show();
+                                    //console.log('SAS deadlineSpinAWheel deadlineSpinAWheel: ' + deadlineSpinAWheel);
+                                    //initializeClockSpinAWheel('cc-spin-a-sale-clock-div-preview', deadlineSpinAWheel);
+                                }
+                                /* *********************************************** End - Display Urgency Timer Bar **********************************	*/
+                                /* *********************************************** Start - Conversion Booster Progress Bar **********************************	*/
+                                if (response.records.store_settings.conversion_booster_settings != null && response.records.store_settings.conversion_booster_settings.conversion_booster_show_offers_claimed != null && parseInt(response.records.store_settings.conversion_booster_settings.conversion_booster_show_offers_claimed) == 1) {
+                                    console.log('SAS Conversion Booster Progress Bar is Active');
+                                    carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar').css("visibility", "visible");
+                                    carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar-inner').width(response.records.store_settings.conversion_booster_settings.conversion_booster_percentage_offers_claimed + '%');
+                                    carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar-inner').css({ "background-color": response.records.store_settings.conversion_booster_settings.conversion_booster_progress_bar_color, "display": "block" });
+                                    carecartSpinnerJquery('.wheelify-cc-spin-a-sale-couponwheel_offers_text').text(response.records.store_settings.conversion_booster_settings.conversion_booster_offers_claimed_text);
+                                }
+                                /* *********************************************** End - Conversion Booster Progress Bar **********************************	*/
                                     /* ************************************** Display Spinner if percentage scroll is enabled  - START *********************************************************** */
                                     if (response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled && parseInt(response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled) == 1) {
                                         //console.log("SAS is_scroll_spinner_percentage_enabled is ENABLED");
@@ -2495,9 +2737,6 @@
                 //***************** End - Countdown Timer function min & sec ********************
                 //***************************** Store Specific Styling ***********************************************************
                 //***************************** Fix Text Positioning of Store in Spinner Pop-up **********************************
-                if (Shopify.shop == 'portland-pickles-baseball.myshopify.com') {
-                    carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .wheelify-signupContainer,#wheelify-spin_a_sale_cc_store_front_module .wheelify-winContainer, #wheelify-spin_a_sale_cc_store_front_module .wheelify-loseContainer{width: 55%;}</style>');
-                }
                 if (Shopify.shop == 'the-party-champions.myshopify.com') {
                     carecartSpinnerJquery('head').append('<style type="text/css">.wheelify-signupContainer ::-webkit-input-placeholder { /* Chrome/Opera/Safari */ color: #aaaaaa;}</style>');
                     //console.log("SAS https://partychampions.com/");
@@ -2509,32 +2748,11 @@
                 if (Shopify.shop == 'beauty-box-by-tori-spelling.myshopify.com') {
                     carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .wheelify-signupContainer,#wheelify-spin_a_sale_cc_store_front_module .wheelify-winContainer, #wheelify-spin_a_sale_cc_store_front_module .wheelify-loseContainer{width: 52%; float: right; padding: 0 3%;}</style>');
                 }
-                if (Shopify.shop == 'petculiari.myshopify.com') {
-                    carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .wheelify-signupContainer p { color: #000;} #wheelify-spin_a_sale_cc_store_front_module p.wheelify-text-description {color: #000;}span#cc-spin-a-sale-consent-text {color: #000 !important;}div#wheelify-cc-spin-a-sale-powered-by-carecart { color: #000000;} #wheelify-spin-trigger-cc img, #wheelify-spin-trigger-cc span { color: #000 !important;}#wheelify-spin_a_sale_cc_store_front_module .form-group input {border: 1px solid #000;}#wheelify-spin_a_sale_cc_store_front_module .btn-submit-form, #wheelify-spin_a_sale_cc_store_front_module .btn-submit-form-ok, #wheelify-spin_a_sale_cc_store_front_module .copy-button {border: 1px solid #000;}#wheelify-spin_a_sale_cc_store_front_module .wheelify-closeButton i {font-size: 20px;color: #000;}#wheelify-spin_a_sale_cc_store_front_module .wheelify-text-heading {color: #000;}</style>');
-                }
                 if (Shopify.shop == 'store-e11even.myshopify.com') {
                     carecartSpinnerJquery('head').append('<style type="text/css">@media only screen and (max-width: 568px) {#wheelify-spin_a_sale_cc_store_front_module .wheelify-signupContainer p{text-align: center;padding: 0px 30px;}#wheelify-spin_a_sale_cc_store_front_module .wheelify-content-spinner {padding: 38px 10px;}.wheelify-signupContainer .checkbox label {display: flex;}.wheelify-signupContainer .checkbox input {margin-right: 8px;}.wheelify-signupContainer .btn-submit-form{margin-top: 22px;}#wheelify-spin_a_sale_cc_store_front_module .checkbox {padding: 5px 30px 15px 1px;}}</style>');
                 }
-                if (Shopify.shop == 'greenrepublicau.myshopify.com') {
-                    carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc, #wheelify-spin-trigger-cc:active, #wheelify-spin-trigger-cc:focus, #wheelify-spin-trigger-cc:hover, #wheelify-spin-trigger-cc:visited {bottom: 98px;}</style>');
-                }
                 if (Shopify.shop == 'rana-phulkari.myshopify.com') {
                     carecartSpinnerJquery('head').append('<style type="text/css">.wheelify-signupContainer .checkbox input {display: inline;vertical-align: baseline;margin-right: 6px;}</style>');
-                }
-                if (Shopify.shop == 'tinyfied.myshopify.com') {
-                    carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc span {z-index: -1;}</style>');
-                }
-                //************************ Make Placeholders black for store whose placeholders are showing white ********************************
-                /*
-                                if(Shopify.shop == 'sky-fit-store.myshopify.com' || Shopify.shop == 'courtsidecases.myshopify.com' || Shopify.shop == 'period-poo-boutique.myshopify.com'){
-                                    //carecartSpinnerJquery('head').append('<style type="text/css">.form-group input::placeholder { color: black !important; }</style>');
-                                    carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin_a_sale_cc_store_front_module .form-group input::-webkit-input-placeholder {color: #000;}#wheelify-spin_a_sale_cc_store_front_module .form-group input:-ms-input-placeholder {color: #000;}#wheelify-spin_a_sale_cc_store_front_module .form-group input::placeholder{color: #000;}</style>');
-                                    console.log('SAS Make Placeholders black');
-                                }
-                */
-                //*********************** Move spinner 25px above from bottom (current 30px) ***************************************************
-                if (Shopify.shop == 'kingsonsbags.myshopify.com' || Shopify.shop == 'cocolouisau.myshopify.com') {
-                    carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc { bottom:55px !important;}</style>');
                 }
                 //*********************** Custom Fix - longdan1.myshopify.com ***************************************************
                 if (Shopify.shop == 'longdan1.myshopify.com') {
@@ -2548,50 +2766,14 @@
                 (function (a) {
                     (carecartSpinnerJquery.browser = carecartSpinnerJquery.browser || {}).mobile = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))
                 })(navigator.userAgent || navigator.vendor || window.opera);
-
-                if (Shopify.shop == 'pawmerang-pet-store.myshopify.com') {
-                    /*
-                                        (function (a) {
-                                            (carecartSpinnerJquery.browser = carecartSpinnerJquery.browser || {}).mobile = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))
-                                        })(navigator.userAgent || navigator.vendor || window.opera);
-                    */
-
-                    if (carecartSpinnerJquery.browser.mobile) {
-                        console.log('SAS pawmerang-pet-store.myshopify.com opened in mobile');
-                        carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc span {display: none;}</style>');
-                        console.log('SAS spinner text should be hidden now');
-                    } else {
-                        console.log('SAS pawmerang-pet-store.myshopify.com opened in desktop');
-                        //tBtnText.show();
-                        carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc span {display: block;}</style>');
-                        console.log('SAS spinner text should be displayed now');
-                    }
-                }
-                if (Shopify.shop == 'forestsuperfood.myshopify.com') {
-                    carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc {bottom: 14vh !important;}</style>');
-                    /*
-                                        if (carecartSpinnerJquery.browser.mobile){
-                    
-                                        }
-                    */
-                }
                 if (Shopify.shop == 'gammalife.myshopify.com') {
                     if (carecartSpinnerJquery.browser.mobile) {
                         carecartSpinnerJquery('head').append('<style type="text/css">#wheelify-spin-trigger-cc {bottom: 2vh !important;}</style>');
                     }
                 }
-                //carecartSpinnerJquery('head').append('<style type="text/css"> :empty{display: block; !important;}</style>');
-
-                //*********************** Custom Fix - gammalifestyle.myshopify.com - Urgency Bar Top Styling Fix ************************
-                /*
-                                if(Shopify.shop == 'gammalifestyle.myshopify.com' || Shopify.shop == 'almowear.myshopify.com'){
-                                    carecartSpinnerJquery('head').append('<style type="text/css">.bar-top{bottom: auto;}</style>');
-                                }
-                */
             });
 
         }, 1000);
     });
 
 })();
-
