@@ -1,5 +1,5 @@
 //******* @author: CareCart App-Wheelify - Rehan Azaz *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.24 *******************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.25 *******************
 //****** Updated at: 18-Feb-2022, 11:52 AM  ********************************************************
 
 (function () {
@@ -8,7 +8,7 @@
 
     var API_URL = 'https://app-spinner.carecart.io/';
 
-    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.24/';
+    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.25/';
 
     var dataSpin = false;
 
@@ -2453,6 +2453,7 @@
                                     if (response.records.store_settings.try_luck_text_color && tryYourLuckTextColor != "" && tryYourLuckTextColor != null && tryYourLuckTextColor != "#384F66") {
                                         carecartSpinnerJquery('.btn-submit-form').css('color', tryYourLuckTextColor);
                                     }
+                                    console.log(" BG image")
                                     /* ************************************** Display Background Image - Start *********************************************************** */
                                     if (response.records.store_settings.spinner_bg_image && response.records.store_settings.spinner_bg_image != "" && response.records.store_settings.spinner_bg_image != null) {
                                         // Check For desktop/Mobile
@@ -2478,6 +2479,7 @@
                                                 carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + defaultThemeBgImage + ')');
                                                 window.localStorage.setItem("spinner_background_image_url_desktop", defaultThemeBgImage);
                                             }
+                                            console.log(" BG image")
 
                                             if(response.records.store_settings.spinner_background_image_url_mobile)
                                             {
@@ -2497,6 +2499,8 @@
                                                 myFunction(windowSize) // Call listener function at run time
                                                 windowSize.addListener(myFunction) // Attach listener function on state changes
                                             } else {
+                                                console.log(" BG image")
+
                                                 if (windowWidth < 575) {                                        
                                                     var defaultThemeBgImage = response.records.store_settings.spinner_background_image_url_mobile;
                                                     carecartSpinnerJquery('.wheelify-content-spinner').css('background-image', 'url(' + defaultThemeBgImage + ')');
