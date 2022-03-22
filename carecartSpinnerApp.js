@@ -15,6 +15,7 @@
     var campaignId = null;          // Ab Test Module
     var abTestId = null;            // Ab Test Module
     var abTestVariationId = null;   // Ab Test Module
+    var isPhoneNumberMandatory = 0;
 
     function scriptInjection(src, callback) {
         var script = document.createElement('script');
@@ -708,7 +709,7 @@
                         }, 1e3), carecartSpinnerJquery('.btn-submit-form').prop('disabled', false)) : (AllowPhoneNumberField == 1 && "" == xpV) ? (m.addClass("animated shake"), void setTimeout(function () {
                             m.removeClass("animated shake")
                         }, 1e3), carecartSpinnerJquery('.btn-submit-form').prop('disabled', false))
-                            : (AllowPhoneNumberField == 1 && mV != '' && isValidPhoneNumber(mV)) ? (m.addClass("animated shake"), phoneNumberError.addClass("animated shake"), phoneNumberError.show(), void setTimeout(function () {
+                            : (isPhoneNumberMandatory == 1 && AllowPhoneNumberField == 1 && mV != '' && isValidPhoneNumber(mV)) ? (m.addClass("animated shake"), phoneNumberError.addClass("animated shake"), phoneNumberError.show(), void setTimeout(function () {
                                 m.removeClass("animated shake")
                             }, 1e3), carecartSpinnerJquery('.btn-submit-form').prop('disabled', false)) : "" == x ? (w.addClass("animated shake"), void setTimeout(function () {
                                 w.removeClass("animated shake");
@@ -1304,8 +1305,13 @@
 
                                 });
 
-
+                                if (response.records.store_settings.settings_data.collect_phone_number_mandatory == 1) {
+                                   isPhoneNumberMandatory = 1;
+                                }
                                 
+                                if (response.records.store_settings.settings_data.collect_phone_number_mandatory == 0) {
+                                   isPhoneNumberMandatory = 0;
+                                }
 
                                 /*********** Phone Number Collection ************/
                                 
