@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="748.599" height="74.072" viewBox="0 0 748.599 74.072">
+  <g id="Group_10399" data-name="Group 10399" transform="translate(11935.582 -5619.727)">
+    <path id="Path_9538" data-name="Path 9538" d="M.029-.13,37.017-.273,36.8,73.542.009,73.771Z" transform="translate(-11224 5620)" fill="#fffbe5"/>
+    <g id="Group_10398" data-name="Group 10398" transform="translate(-12650 5533)">
+      <path id="Path_9522" data-name="Path 9522" d="M-11642.582,6687.3h345.884l26.132,35.879-26.132,36.121h-345.884Z" transform="translate(12357 -6599.298)" fill="#2698f9"/>
+      <path id="Path_9523" data-name="Path 9523" d="M-11293.336,6687.834l26.35,36.009-26.35,36.372,372.725.584,27.252-36.844-27.252-37.156Z" transform="translate(12356 -6600)" fill="#2698f9"/>
+      <path id="Path_9537" data-name="Path 9537" d="M-11293.336,6687.834l26.35,36.009-26.35,36.372,372.725.584,27.252-36.844-27.252-37.156Z" transform="translate(12356 -6600)" fill="#2698f9"/>
+      <g id="Group_10268" data-name="Group 10268" transform="translate(734 100)">
+        <circle id="Ellipse_845" data-name="Ellipse 845" cx="24" cy="24" r="24" fill="#fff"/>
+      </g>
+      <g id="Group_10392" data-name="Group 10392" transform="translate(1109 100)">
+        <circle id="Ellipse_845-2" data-name="Ellipse 845" cx="24" cy="24" r="24" fill="#fff"/>
+      </g>
+      <text id="_Light_Theme_1._Headline_H3" data-name="🌕 Light Theme/1. Headline/H3" transform="translate(805 144)" fill="rgba(255,255,255,0.87)" font-size="21" font-family="Roboto-Regular, Roboto"><tspan x="0" y="0">App Install</tspan></text>
+      <text id="_Light_Theme_1._Headline_H3-2" data-name="🌕 Light Theme/1. Headline/H3" transform="translate(1180 144)" fill="rgba(255,255,255,0.87)" font-size="21" font-family="Roboto-Regular, Roboto"><tspan x="0" y="0">Set up App</tspan></text>
+      <text id="_Light_Theme_1._Headline_H3-3" data-name="🌕 Light Theme/1. Headline/H3" transform="translate(805 119)" fill="rgba(255,255,255,0.87)" font-size="13" font-family="Roboto-BoldCondensed, Roboto" font-weight="700"><tspan x="0" y="0">STEP 1</tspan></text>
+      <text id="_Light_Theme_1._Headline_H3-4" data-name="🌕 Light Theme/1. Headline/H3" transform="translate(1180 119)" fill="rgba(255,255,255,0.87)" font-size="13" font-family="Roboto-BoldCondensed, Roboto" font-weight="700"><tspan x="0" y="0">STEP 2</tspan></text>
+      <path id="check" d="M26.622,5.73a1.329,1.329,0,0,1,.112,1.89L12.76,23.132a1.329,1.329,0,0,1-1.9.078L2.774,15.6a1.341,1.341,0,0,1,1.815-1.975l6.274,5.644a1.329,1.329,0,0,0,1.876-.1L24.76,5.84a1.329,1.329,0,0,1,1.862-.11Z" transform="translate(743.64 109.599)" fill="#2698f9" fill-rule="evenodd"/>
+      <path id="check-2" data-name="check" d="M26.622,5.73a1.329,1.329,0,0,1,.112,1.89L12.76,23.132a1.329,1.329,0,0,1-1.9.078L2.774,15.6a1.341,1.341,0,0,1,1.815-1.975l6.274,5.644a1.329,1.329,0,0,0,1.876-.1L24.76,5.84a1.329,1.329,0,0,1,1.862-.11Z" transform="translate(1118.64 109.599)" fill="#2698f9" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>
