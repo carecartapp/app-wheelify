@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="405" height="74" viewBox="0 0 405 74">
+  <g id="Group_10397" data-name="Group 10397" transform="translate(-1435 -87)">
+    <g id="Group_10395" data-name="Group 10395" transform="translate(0 -1)">
+      <rect id="Rectangle_5809" data-name="Rectangle 5809" width="405" height="74" transform="translate(1435 88)" fill="#fffbe5"/>
+      <g id="Group_10393" data-name="Group 10393" transform="translate(1484 100)">
+        <circle id="Ellipse_845" data-name="Ellipse 845" cx="24" cy="24" r="24" fill="#2698f9"/>
+      </g>
+      <text id="_Light_Theme_1._Headline_H3" data-name="🌕 Light Theme/1. Headline/H3" transform="translate(1555 144)" fill="rgba(0,0,0,0.87)" font-size="21" font-family="Roboto-Regular, Roboto"><tspan x="0" y="0">Review the App</tspan></text>
+      <text id="_Light_Theme_1._Headline_H3-2" data-name="🌕 Light Theme/1. Headline/H3" transform="translate(1555 119)" fill="rgba(0,0,0,0.87)" font-size="13" font-family="Roboto-BoldCondensed, Roboto" font-weight="700"><tspan x="0" y="0">STEP 3</tspan></text>
+      <text id="_Light_Theme_1._Headline_H3-3" data-name="🌕 Light Theme/1. Headline/H3" transform="translate(1595 119)" fill="#2698f9" font-size="13" font-family="Roboto-BoldCondensed, Roboto" font-weight="700"><tspan x="0" y="0">(Optional)</tspan></text>
+      <path id="check" d="M26.622,5.73a1.329,1.329,0,0,1,.112,1.89L12.76,23.132a1.329,1.329,0,0,1-1.9.078L2.774,15.6a1.341,1.341,0,0,1,1.815-1.975l6.274,5.644a1.329,1.329,0,0,0,1.876-.1L24.76,5.84a1.329,1.329,0,0,1,1.862-.11Z" transform="translate(1493.64 109.599)" fill="#fff" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>
