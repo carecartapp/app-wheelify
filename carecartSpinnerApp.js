@@ -1,5 +1,5 @@
 //******* @author: CareCart App-Wheelify - Rehan Azaz *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.29 *******************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.30 *******************
 //****** Updated at: 18-Feb-2022, 11:52 AM  ********************************************************
 
 (function () {
@@ -8,7 +8,7 @@
 
     var API_URL = 'https://app-spinner.carecart.io/';
 
-    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.29/';
+    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.30/';
 
     var dataSpin = false;
 
@@ -1855,6 +1855,16 @@
                         couponUsed: couponUsed,
                         winResult: winResult
                     }
+
+                    var clientIpAddress = null;
+                    if (window.localStorage.getItem('cc-sas-spinner-user-ip-address') === null) {
+                        carecartSpinnerJquery.getJSON("https://api.ipify.org/?format=json", function (e) {
+                            clientIpAddress = e.ip;
+                        });
+                    } else {
+                        clientIpAddress = window.localStorage.getItem('cc-sas-spinner-user-ip-address');
+                    }
+
                     carecartSpinnerJquery('#wheelify-cc-spin-a-sale-loader-on-click').hide();
                     console.log('SAS customerInformation: ' + customerInformation.name + ' ' + customerInformation.email);
                     setSpinCouponLoadTime();
@@ -1866,7 +1876,8 @@
                             customerInformation: customerInformation,
                             campaignId: campaignId, // Ab Test Module
                             abTestId: abTestId,     // Ab Test Module
-                            abTestVariationId: abTestVariationId  // Ab Test Module
+                            abTestVariationId: abTestVariationId,  // Ab Test Module
+                            ipAddress: clientIpAddress
                         },
                         crossDomain: true,
                         dataType: "json",
