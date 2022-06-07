@@ -520,27 +520,27 @@ a#couponwheel_notice_close_btn:hover {
     padding: 0 0 5px 1px;
 }
 }@media screen and (device-aspect-ratio:2/3) {
-    input[type=date], input[type=date]: focus, input[type=datetime-local], input[type=datetime-local]:focus, input[type=datetime], input[type=datetime]:focus, input[type=email], input[type=email]:focus, input[type=month], input[type=month]:focus, input[type=number], input[type=number]:focus, input[type=password], input[type=password]:focus, input[type=tel], input[type=tel]:focus, input[type=text], input[type=text]:focus, input[type=time], input[type=time]:focus, input[type=url], input[type=url]:focus, input[type=week], input[type=week]:focus, select, select:focus, textarea, textarea:focus {
+    input[type=date], input[type=date]:focus, input[type=datetime-local], input[type=datetime-local]:focus, input[type=datetime], input[type=datetime]:focus, input[type=email], input[type=email]:focus, input[type=month], input[type=month]:focus, input[type=number], input[type=number]:focus, input[type=password], input[type=password]:focus, input[type=tel], input[type=tel]:focus, input[type=text], input[type=text]:focus, input[type=time], input[type=time]:focus, input[type=url], input[type=url]:focus, input[type=week], input[type=week]:focus, select, select:focus, textarea, textarea:focus {
     font-size: 16px;
 }
 }@media screen and (device-aspect-ratio:40/71) {
-    .form-control, .form-control: focus, input[type=date], input[type=date]:focus, input[type=datetime-local], input[type=datetime-local]:focus, input[type=datetime], input[type=datetime]:focus, input[type=email], input[type=email]:focus, input[type=month], input[type=month]:focus, input[type=number], input[type=number]:focus, input[type=password], input[type=password]:focus, input[type=tel], input[type=tel]:focus, input[type=text], input[type=text]:focus, input[type=time], input[type=time]:focus, input[type=url], input[type=url]:focus, input[type=week], input[type=week]:focus, select, select:focus, textarea, textarea:focus {
+    .form-control, .form-control:focus, input[type=date], input[type=date]:focus, input[type=datetime-local], input[type=datetime-local]:focus, input[type=datetime], input[type=datetime]:focus, input[type=email], input[type=email]:focus, input[type=month], input[type=month]:focus, input[type=number], input[type=number]:focus, input[type=password], input[type=password]:focus, input[type=tel], input[type=tel]:focus, input[type=text], input[type=text]:focus, input[type=time], input[type=time]:focus, input[type=url], input[type=url]:focus, input[type=week], input[type=week]:focus, select, select:focus, textarea, textarea:focus {
     font-size: 16px;
 }
 }@media screen and (device-aspect-ratio:375/667) {
-    .form-control, .form-control: focus, input[type=date], input[type=date]:focus, input[type=datetime-local], input[type=datetime-local]:focus, input[type=datetime], input[type=datetime]:focus, input[type=email], input[type=email]:focus, input[type=month], input[type=month]:focus, input[type=number], input[type=number]:focus, input[type=password], input[type=password]:focus, input[type=tel], input[type=tel]:focus, input[type=text], input[type=text]:focus, input[type=time], input[type=time]:focus, input[type=url], input[type=url]:focus, input[type=week], input[type=week]:focus, select, select:focus, textarea, textarea:focus {
+    .form-control, .form-control:focus, input[type=date], input[type=date]:focus, input[type=datetime-local], input[type=datetime-local]:focus, input[type=datetime], input[type=datetime]:focus, input[type=email], input[type=email]:focus, input[type=month], input[type=month]:focus, input[type=number], input[type=number]:focus, input[type=password], input[type=password]:focus, input[type=tel], input[type=tel]:focus, input[type=text], input[type=text]:focus, input[type=time], input[type=time]:focus, input[type=url], input[type=url]:focus, input[type=week], input[type=week]:focus, select, select:focus, textarea, textarea:focus {
     font-size: 16px;
 }
 }@media screen and (device-aspect-ratio:9/16) {
-    .form-control, .form-control: focus, input[type=date], input[type=date]:focus, input[type=datetime-local], input[type=datetime-local]:focus, input[type=datetime], input[type=datetime]:focus, input[type=email], input[type=email]:focus, input[type=month], input[type=month]:focus, input[type=number], input[type=number]:focus, input[type=password], input[type=password]:focus, input[type=tel], input[type=tel]:focus, input[type=text], input[type=text]:focus, input[type=time], input[type=time]:focus, input[type=url], input[type=url]:focus, input[type=week], input[type=week]:focus, select, select:focus, textarea, textarea:focus {
+    .form-control, .form-control:focus, input[type=date], input[type=date]:focus, input[type=datetime-local], input[type=datetime-local]:focus, input[type=datetime], input[type=datetime]:focus, input[type=email], input[type=email]:focus, input[type=month], input[type=month]:focus, input[type=number], input[type=number]:focus, input[type=password], input[type=password]:focus, input[type=tel], input[type=tel]:focus, input[type=text], input[type=text]:focus, input[type=time], input[type=time]:focus, input[type=url], input[type=url]:focus, input[type=week], input[type=week]:focus, select, select:focus, textarea, textarea:focus {
     font-size: 16px;
 }
 }@media only screen and (device-width:414px) and (device-height:896px) and (-webkit-device-pixel-ratio:3) {
-    .form-control, .form-control: focus, input[type=date], input[type=date]:focus, input[type=datetime-local], input[type=datetime-local]:focus, input[type=datetime], input[type=datetime]:focus, input[type=email], input[type=email]:focus, input[type=month], input[type=month]:focus, input[type=number], input[type=number]:focus, input[type=password], input[type=password]:focus, input[type=tel], input[type=tel]:focus, input[type=text], input[type=text]:focus, input[type=time], input[type=time]:focus, input[type=url], input[type=url]:focus, input[type=week], input[type=week]:focus, select, select:focus, textarea, textarea:focus {
+    .form-control, .form-control:focus, input[type=date], input[type=date]:focus, input[type=datetime-local], input[type=datetime-local]:focus, input[type=datetime], input[type=datetime]:focus, input[type=email], input[type=email]:focus, input[type=month], input[type=month]:focus, input[type=number], input[type=number]:focus, input[type=password], input[type=password]:focus, input[type=tel], input[type=tel]:focus, input[type=text], input[type=text]:focus, input[type=time], input[type=time]:focus, input[type=url], input[type=url]:focus, input[type=week], input[type=week]:focus, select, select:focus, textarea, textarea:focus {
     font-size: 16px;
 }
 }@media screen and (-webkit-min-device-pixel-ratio:0) {
-    input: focus, select:focus, textarea:focus {
+    input:focus, select:focus, textarea:focus {
     font-size: 16px;
     background: #eee;
 }
@@ -571,7 +571,7 @@ input, select, textarea {
     bottom:  -20px;
 }
  @media only screen and (max-width: 575px) {
-     #wheelify-spin_a_sale_cc_store_front_module: not(.popupview) .wheelify-ContentRight  {
+     #wheelify-spin_a_sale_cc_store_front_module:not(.popupview) .wheelify-ContentRight  {
     min-height:  624px !important;
 }
 }
