@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Rehan Azaz *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.30 *******************
-//****** Updated at: 18-Feb-2022, 11:52 AM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.33 *******************
+//****** Updated at: 28-July-2022, 02:29 PM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -8,7 +8,7 @@
 
     var API_URL = 'https://app-spinner.carecart.io/';
 
-    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.30/';
+    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.33/';
 
     var dataSpin = false;
 
@@ -1174,8 +1174,9 @@
                             //****************************** If SAS is disabled on Homepage, it will NOT be loaded on Homepage *************************************
                             if (response.records.store_settings.settings_data.display_home_page_enabled && parseInt(response.records.store_settings.settings_data.display_home_page_enabled) == 0) {
                                 var thisStatus = checkHomePageCcSpinASale();
+                                let customPagesStatus = checkCustomUrls(response.records.store_settings.settings_data.custom_urls);
                                 //console.log('checkHomePageCcSpinASale Status: ' + thisStatus);
-                                if (thisStatus) {
+                                if (thisStatus && !customPagesStatus) {
                                     carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display", "none");
                                     console.log('SAS load on homepage is disabled');
                                     return;
@@ -1184,8 +1185,9 @@
                             //****************************** If SAS is disabled on Collections page, it will NOT be loaded on Collections page *************************************
                             if (response.records.store_settings.settings_data.display_collections_page_enabled && parseInt(response.records.store_settings.settings_data.display_collections_page_enabled) == 0) {
                                 var thisStatus = checkCollectionsCcSpinASale();
+                                let customPagesStatus = checkCustomUrls(response.records.store_settings.settings_data.custom_urls);
                                 //console.log('checkCollectionsCcSpinASale Status: ' + thisStatus);
-                                if (thisStatus) {
+                                if (thisStatus && !customPagesStatus) {
                                     carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display", "none");
                                     console.log('SAS load on Collections Page is disabled');
                                     return;
@@ -1194,8 +1196,9 @@
                             //****************************** If SAS is disabled on Blog Posts, it will NOT be loaded on Blog Posts *************************************
                             if (response.records.store_settings.settings_data.display_blog_posts_page_enabled && parseInt(response.records.store_settings.settings_data.display_blog_posts_page_enabled) == 0) {
                                 var thisStatus = checkBlogPageCcSpinASale();
+                                let customPagesStatus = checkCustomUrls(response.records.store_settings.settings_data.custom_urls);
                                 //console.log('checkBlogPageCcSpinASale Status: ' + thisStatus);
-                                if (thisStatus) {
+                                if (thisStatus && !customPagesStatus) {
                                     carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display", "none");
                                     console.log('SAS load on Blog Posts is disabled');
                                     return;
@@ -1204,8 +1207,9 @@
                             //****************************** If SAS is disabled on Products Page, it will NOT be loaded on Products Page *************************************
                             if (response.records.store_settings.settings_data.display_products_page_enabled && parseInt(response.records.store_settings.settings_data.display_products_page_enabled) == 0) {
                                 var thisStatus = checkProductCcSpinASale();
+                                let customPagesStatus = checkCustomUrls(response.records.store_settings.settings_data.custom_urls);
                                 //console.log('checkProductCcSpinASale Status: ' + thisStatus);
-                                if (thisStatus) {
+                                if (thisStatus && !customPagesStatus) {
                                     carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display", "none");
                                     console.log('SAS load on Products Page is disabled');
                                     return;
@@ -1214,8 +1218,9 @@
                             //****************************** If SAS is disabled on Cart Page, it will NOT be loaded on Cart Page *************************************
                             if (response.records.store_settings.settings_data.display_cart_page_enabled && parseInt(response.records.store_settings.settings_data.display_cart_page_enabled) == 0) {
                                 var thisStatus = checkCartCcSpinASale();
+                                let customPagesStatus = checkCustomUrls(response.records.store_settings.settings_data.custom_urls);
                                 //console.log('checkCartCcSpinASale Status: ' + thisStatus);
-                                if (thisStatus) {
+                                if (thisStatus && !customPagesStatus) {
                                     carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display", "none");
                                     console.log('SAS load on Cart Page is disabled');
                                     return;
@@ -1224,8 +1229,9 @@
                             //****************************** If SAS is disabled on Thank You page, it will NOT be loaded on Thank You Page *************************************
                             if (response.records.store_settings.settings_data.display_thank_you_page_enabled && parseInt(response.records.store_settings.settings_data.display_thank_you_page_enabled) == 0) {
                                 var thisStatus = checkThanksYouCcSpinASale();
+                                let customPagesStatus = checkCustomUrls(response.records.store_settings.settings_data.custom_urls);
                                 //console.log('checkThanksYouCcSpinASale Status: ' + thisStatus);
-                                if (thisStatus) {
+                                if (thisStatus && !customPagesStatus) {
                                     carecartSpinnerJquery("#wheelify-spin-trigger-2").css("display", "none");
                                     console.log('SAS load on Thank You page is disabled');
                                     return;
@@ -1243,16 +1249,17 @@
                                     return;
                                 }
                             }
-                            if (response.records.store_settings.settings_data && response.records.store_settings.settings_data.custom_urls_check == 1 && response.records.store_settings.settings_data.custom_urls !== null) {
-                                var customPagesStatus = checkCustomUrls(response.records.store_settings.settings_data.custom_urls);
-                                var isActive = isActiveOnAnyPages(response);
-                                if (customPagesStatus || isActiveOnAnyPages) {
-                                    console.log("SAS custom page matched");
-                                } else {
-                                    console.log("SAS custom page not matched");
-                                    return
-                                }
-                            }
+                            //****************************** If SAS is enabled on Custom pages, it will NOT be loaded on any other page **********************************
+                            // if (response.records.store_settings.settings_data && response.records.store_settings.settings_data.custom_urls_check == 1 && response.records.store_settings.settings_data.custom_urls !== null) {
+                            //     let customPagesStatus = checkCustomUrls(response.records.store_settings.settings_data.custom_urls);
+                            //     let isActive = isActiveOnAnyPages(response);
+                            //     if (customPagesStatus || isActive) {
+                            //         console.log("SAS custom page matched");
+                            //     } else {
+                            //         console.log("SAS custom page not matched");
+                            //         return
+                            //     }
+                            // }
                             var w = carecartSpinnerJquery(window).width();
                             const is_enabled_on_mobile = (typeof response.records.store_settings.settings_data.is_mobile_enabled === 'undefined') ? 1 : parseInt(response.records.store_settings.settings_data.is_mobile_enabled);
                             if (w < 600 && is_enabled_on_mobile === 0) {
@@ -1614,7 +1621,7 @@
                                         couponAndMsgAreSetThenLoad();
                                     }, parseInt(response.records.store_settings.settings_data.delay_time) * 1000);
                                 }
-                                /* *********************************************** Start - Display Urgency Timer Bar **********************************	*/
+                                /* *********************************************** Start - Display Urgency Timer Bar ********************************** */
                                 if (response.records.store_settings.conversion_booster_settings != null && response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled != null && parseInt(response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled) == 1) {
                                     window.localStorage.setItem('urgencyTimerBarEnabled', 1);
                                     //console.log('SAS Urgency Bar is Active');
@@ -1657,8 +1664,8 @@
                                     //console.log('SAS deadlineSpinAWheel deadlineSpinAWheel: ' + deadlineSpinAWheel);
                                     //initializeClockSpinAWheel('cc-spin-a-sale-clock-div-preview', deadlineSpinAWheel);
                                 }
-                                /* *********************************************** End - Display Urgency Timer Bar **********************************	*/
-                                /* *********************************************** Start - Conversion Booster Progress Bar **********************************	*/
+                                /* *********************************************** End - Display Urgency Timer Bar **********************************   */
+                                /* *********************************************** Start - Conversion Booster Progress Bar **********************************   */
                                 if (response.records.store_settings.conversion_booster_settings != null && response.records.store_settings.conversion_booster_settings.conversion_booster_show_offers_claimed != null && parseInt(response.records.store_settings.conversion_booster_settings.conversion_booster_show_offers_claimed) == 1) {
                                     console.log('SAS Conversion Booster Progress Bar is Active');
                                     carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar').css("visibility", "visible");
@@ -1666,15 +1673,15 @@
                                     carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar-inner').css({ "background-color": response.records.store_settings.conversion_booster_settings.conversion_booster_progress_bar_color, "display": "block" });
                                     carecartSpinnerJquery('.wheelify-cc-spin-a-sale-couponwheel_offers_text').text(response.records.store_settings.conversion_booster_settings.conversion_booster_offers_claimed_text);
                                 }
-                                /* *********************************************** End - Conversion Booster Progress Bar **********************************	*/
-                                /* *********************************************** Start - Anti-Cheat Shield Settings **********************************	*/
+                                /* *********************************************** End - Conversion Booster Progress Bar ********************************** */
+                                /* *********************************************** Start - Anti-Cheat Shield Settings **********************************    */
                                 if (response.records.store_settings.anti_cheat_engine_settings != null && (parseInt(response.records.store_settings.anti_cheat_engine_settings.anti_cheat_engine_limit_spin_by_cookies) == 1 || parseInt(response.records.store_settings.anti_cheat_engine_settings.anti_cheat_engine_limit_spin_by_email) == 1 || parseInt(response.records.store_settings.anti_cheat_engine_settings.anti_cheat_engine_limit_spin_by_ip_address) == 1)) {
                                     window.localStorage.setItem('cc-sas-spinner-anti-cheat-shield', 1);
                                     console.log('SAS  Anti-Cheat Shield is Active');
                                     //console.log(response.records.store_settings.anti_cheat_engine_settings.anti_cheat_engine_spin_limit_quota_text);
                                     carecartSpinnerJquery('#wheelify-cc-spin-a-sale-already-used-spin-quota p').text(response.records.store_settings.anti_cheat_engine_settings.anti_cheat_engine_spin_limit_quota_text);
                                 }
-                                /* *********************************************** End - Anti-Cheat Shield Settings **********************************	*/
+                                /* *********************************************** End - Anti-Cheat Shield Settings **********************************  */
 
                             }
                             var storeBgColor = response.records.store_settings.spinner_bg_color;
@@ -2093,28 +2100,28 @@
                     }
                     return customPagesStatus;
                 }
-                function isActiveOnAnyPages(response) {
-                    let flag = true;
-                    if (parseInt(response.records.store_settings.settings_data.display_home_page_enabled) == 0) {
-                        flag = false;
-                    }
-                    if (parseInt(response.records.store_settings.settings_data.display_collections_page_enabled) == 0) {
-                        flag = false;
-                    }
-                    if (parseInt(response.records.store_settings.settings_data.display_blog_posts_page_enabled) == 0) {
-                        flag = false;
-                    }
-                    if (parseInt(response.records.store_settings.settings_data.display_products_page_enabled) == 0) {
-                        flag = false;
-                    }
-                    if (parseInt(response.records.store_settings.settings_data.display_cart_page_enabled) == 0) {
-                        flag = false;
-                    }
-                    if (parseInt(response.records.store_settings.settings_data.display_thank_you_page_enabled) == 0) {
-                        flag = false;
-                    }
-                    return flag;
-                }
+                // function isActiveOnAnyPages(response) {
+                //     let flag = true;
+                //     if (parseInt(response.records.store_settings.settings_data.display_home_page_enabled) == 0) {
+                //         flag = false;
+                //     }
+                //     if (parseInt(response.records.store_settings.settings_data.display_collections_page_enabled) == 0) {
+                //         flag = false;
+                //     }
+                //     if (parseInt(response.records.store_settings.settings_data.display_blog_posts_page_enabled) == 0) {
+                //         flag = false;
+                //     }
+                //     if (parseInt(response.records.store_settings.settings_data.display_products_page_enabled) == 0) {
+                //         flag = false;
+                //     }
+                //     if (parseInt(response.records.store_settings.settings_data.display_cart_page_enabled) == 0) {
+                //         flag = false;
+                //     }
+                //     if (parseInt(response.records.store_settings.settings_data.display_thank_you_page_enabled) == 0) {
+                //         flag = false;
+                //     }
+                //     return flag;
+                // }
 
                 function checkStoreSpecificUrlCcSpinASale(url) {
                     //console.log('SAS inside checkStoreSpecificUrlCcSpinASale');
@@ -2533,7 +2540,7 @@
                                        
                                     }
                                     /* ************************************** Display Background Image - End *********************************************************** */
-                                    /* *********************************************** Start - Display Urgency Timer Bar **********************************	*/
+                                    /* *********************************************** Start - Display Urgency Timer Bar ********************************** */
                                 if (response.records.store_settings.conversion_booster_settings != null && response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled != null && parseInt(response.records.store_settings.conversion_booster_settings.is_urgency_timer_bar_enabled) == 1) {
                                     window.localStorage.setItem('urgencyTimerBarEnabled', 1);
                                     //console.log('SAS Urgency Bar is Active');
@@ -2576,8 +2583,8 @@
                                     //console.log('SAS deadlineSpinAWheel deadlineSpinAWheel: ' + deadlineSpinAWheel);
                                     //initializeClockSpinAWheel('cc-spin-a-sale-clock-div-preview', deadlineSpinAWheel);
                                 }
-                                /* *********************************************** End - Display Urgency Timer Bar **********************************	*/
-                                /* *********************************************** Start - Conversion Booster Progress Bar **********************************	*/
+                                /* *********************************************** End - Display Urgency Timer Bar **********************************   */
+                                /* *********************************************** Start - Conversion Booster Progress Bar **********************************   */
                                 if (response.records.store_settings.conversion_booster_settings != null && response.records.store_settings.conversion_booster_settings.conversion_booster_show_offers_claimed != null && parseInt(response.records.store_settings.conversion_booster_settings.conversion_booster_show_offers_claimed) == 1) {
                                     console.log('SAS Conversion Booster Progress Bar is Active');
                                     carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar').css("visibility", "visible");
@@ -2585,7 +2592,7 @@
                                     carecartSpinnerJquery('.wheelify-cc-spin-a-sale-spinner-progress-bar-inner').css({ "background-color": response.records.store_settings.conversion_booster_settings.conversion_booster_progress_bar_color, "display": "block" });
                                     carecartSpinnerJquery('.wheelify-cc-spin-a-sale-couponwheel_offers_text').text(response.records.store_settings.conversion_booster_settings.conversion_booster_offers_claimed_text);
                                 }
-                                /* *********************************************** End - Conversion Booster Progress Bar **********************************	*/
+                                /* *********************************************** End - Conversion Booster Progress Bar ********************************** */
                                     /* ************************************** Display Spinner if percentage scroll is enabled  - START *********************************************************** */
                                     if (response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled && parseInt(response.records.store_settings.settings_data.is_scroll_spinner_percentage_enabled) == 1) {
                                         //console.log("SAS is_scroll_spinner_percentage_enabled is ENABLED");
