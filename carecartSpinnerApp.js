@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Rehan Azaz *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.33 *******************
-//****** Updated at: 28-July-2022, 02:29 PM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.36 *******************
+//****** Updated at: 26-august-2022, 06:45 PM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -8,7 +8,7 @@
 
     var API_URL = 'https://app-spinner.carecart.io/';
 
-    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.33/';
+    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.36/';
 
     var dataSpin = false;
 
@@ -753,7 +753,8 @@
                                                     emailError.addClass("animated shake");
                                                 } else {
                                                     console.log('SAS Engine Block response: ' + response._metadata.outcome);
-                                                    q.show();
+                                                    //q.show();
+                                                    carecartSpinnerJquery('#wheelify-cc-spin-a-sale-already-used-spin-quota').css("display", "block");
                                                     q.addClass("animated shake");
                                                 }
                                             },
