@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Rehan Azaz *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.36 *******************
-//****** Updated at: 26-august-2022, 06:45 PM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.37 *******************
+//****** Updated at: 04-Oct-2022, 14:24 AM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -8,7 +8,7 @@
 
     var API_URL = 'https://app-spinner.carecart.io/';
 
-    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.36/';
+    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.37/';
 
     var dataSpin = false;
 
@@ -739,7 +739,7 @@
                                             dataType: "json",
                                             success: function (response) {
                                                 carecartSpinnerJquery('.btn-submit-form').prop('disabled', false);
-                                                carecartSpinnerJquery('#wheelify-cc-spin-a-sale-loader-on-click').hide();
+                                                //carecartSpinnerJquery('#wheelify-cc-spin-a-sale-loader-on-click').hide();
                                                 if (response && response._metadata && response._metadata.outcome && response._metadata.outcome == "SUCCESS") {
                                                     //console.log('response._metadata.outcome: ' + response._metadata.outcome);
                                                     q.hide();
@@ -753,8 +753,7 @@
                                                     emailError.addClass("animated shake");
                                                 } else {
                                                     console.log('SAS Engine Block response: ' + response._metadata.outcome);
-                                                    //q.show();
-                                                    carecartSpinnerJquery('#wheelify-cc-spin-a-sale-already-used-spin-quota').css("display", "block");
+                                                    q.show();
                                                     q.addClass("animated shake");
                                                 }
                                             },
@@ -1265,7 +1264,18 @@
                             const is_enabled_on_mobile = (typeof response.records.store_settings.settings_data.is_mobile_enabled === 'undefined') ? 1 : parseInt(response.records.store_settings.settings_data.is_mobile_enabled);
                             if (w < 600 && is_enabled_on_mobile === 0) {
                                 console.log('SAS is disabled on mobile');
-                                return;
+                                //return;
+                                // hide "Trigger Button on Mobile"
+                                setTimeout(() => {
+                                    carecartSpinnerJquery('#wheelify-spin-trigger-cc').css('display','none');
+                                 }, 10);
+                            }
+                            // show "Trigger Button on Mobile"
+                            if (w < 600 && is_enabled_on_mobile === 1) {
+                                
+                                setTimeout(() => {
+                                   carecartSpinnerJquery('#wheelify-spin-trigger-cc').css('display','block');
+                                }, 10);
                             }
 
                             /* Check If Module template exist*/
@@ -1589,7 +1599,7 @@
                                         wheelSize: 1024,
                                         wheelTextOffsetY: 60,
                                         wheelTextColor: "#FFFFFF",
-                                        wheelTextSize: "30px",
+                                        wheelTextSize: response.records.wheelTextFontSize,
                                         wheelImageOffsetY: 100,
                                         wheelImageSize: 200,
                                         centerCircleSize: 220,
@@ -2669,7 +2679,7 @@
                                             wheelSize: 1024,
                                             wheelTextOffsetY: 60,
                                             wheelTextColor: "#FFFFFF",
-                                            wheelTextSize: "30px",
+                                            wheelTextSize: response.records.wheelTextFontSize,
                                             wheelImageOffsetY: 100,
                                             wheelImageSize: 200,
                                             centerCircleSize: 220,
