@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify - Rehan Azaz *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.37 *******************
-//****** Updated at: 04-Oct-2022, 14:24 AM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.38 *******************
+//****** Updated at: 26-Oct-2022, 06:15 AM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -8,7 +8,7 @@
 
     var API_URL = 'https://app-spinner.carecart.io/';
 
-    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.37/';
+    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.38/';
 
     var dataSpin = false;
 
@@ -16,6 +16,7 @@
     var abTestId = null;            // Ab Test Module
     var abTestVariationId = null;   // Ab Test Module
     var isPhoneNumberMandatory = 0;
+    var store_respin_time= 60;
 
     function scriptInjection(src, callback) {
         var script = document.createElement('script');
@@ -829,6 +830,7 @@
                 //************** Reset Coupon Code display to Form enabling Re-Run The Wheel ***************************************
                 function checkSpinCouponLoadTime() {
                     //console.log("SAS in checkSpinCouponLoadTime");
+                    console.log(store_respin_time);
                     var spinnerCouponLoadTime = window.localStorage.getItem('cc-sas-spinner-coupon-load-time');
                     if (spinnerCouponLoadTime !== undefined && spinnerCouponLoadTime !== null) {
                         //console.log("SAS spinnerCouponLoadTime is NOT null & NOT undefined");
@@ -838,10 +840,10 @@
                         var minutes = parseInt(Math.floor(msec / 60000));
                         console.log('SAS Time checkSpinCouponLoadTime: ' + minutes);
 
-                        if (minutes <= 59) {
+                        if (minutes <= store_respin_time) {
                             return false;
                         }
-                        if (minutes > 60) {
+                        if (minutes > store_respin_time) {
                             console.log('SAS Time checkSpinCouponLoadTime Now greater than 60 & about to reset: ' + minutes);
                             window.localStorage.setItem('cc-sas-spinner-cached-coupon-code', null);
                             window.localStorage.setItem('cc-sas-spinner-cached-coupon-code-message', null);
@@ -1082,6 +1084,10 @@
                     //console.log('SAS AJAX Success ');
                     if (response && response._metadata && response._metadata.outcome && response._metadata.outcome == "SUCCESS") {
                         console.log('SAS Success Response');
+                        if(response.records.store_respin_time){
+                            store_respin_time=response.records.store_respin_time;
+                        }
+                         
                         /* Check If Module is Active*/
                         if (response.records && response.records.store_settings && response.records.store_settings) {
                             console.log('SAS is active & enabled in Slices Menu');
