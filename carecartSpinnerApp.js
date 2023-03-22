@@ -1,6 +1,6 @@
-//******* @author: CareCart App-Wheelify - Rehan Azaz *******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.38 *******************
-//****** Updated at: 26-Oct-2022, 06:15 AM  ********************************************************
+//******* @author: CareCart App-Wheelify*******************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.41 *******************
+//****** Updated at: 21-March-2023, 05:59 AM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -8,7 +8,7 @@
 
     var API_URL = 'https://app-spinner.carecart.io/';
 
-    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.38/';
+    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.41/';
 
     var dataSpin = false;
 
@@ -82,7 +82,7 @@
 
                 if (window.localStorage.getItem('cc-sas-spinner-cookies-data') === null) {
                     var ccCareCartSpinnerUserCookieInfo = document.cookie;
-
+					let timestamp = new Date().getTime();
                     //console.log('ccCareCartSpinnerUserCookieInfo: ' + ccCareCartSpinnerUserCookieInfo);
 
                     var firstBracket = ccCareCartSpinnerUserCookieInfo.indexOf(';');
@@ -90,7 +90,7 @@
                     ccCareCartSpinnerUserCookieInfo = ccCareCartSpinnerUserCookieInfo.substring(0, secondBracket);
                     ccCareCartSpinnerUserCookieInfo = ccCareCartSpinnerUserCookieInfo.split(';')[1];
                     ccCareCartSpinnerUserCookieInfo = carecartSpinnerJquery.trim(ccCareCartSpinnerUserCookieInfo);
-                    window.localStorage.setItem('cc-sas-spinner-cookies-data', 'cc-sas-spinner-coo-' + ccCareCartSpinnerUserCookieInfo);
+                    window.localStorage.setItem('cc-sas-spinner-cookies-data', 'cc-sas-spinner-coo-' + ccCareCartSpinnerUserCookieInfo + timestamp);
                     //console.log('ccCareCartSpinner Data Updated: ' + window.localStorage.getItem('cc-sas-spinner-cookies-data'));
                 }
                 else {
