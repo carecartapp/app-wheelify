@@ -484,7 +484,6 @@ a#couponwheel_notice_close_btn:hover {
     margin-right: auto;
     order: 1;
     max-width: 400px;
-    min-height: 530px;
 }
 #wheelify-spin_a_sale_cc_store_front_module .wheelify-wheelContainer {
     position: static!important;
@@ -657,3 +656,16 @@ input, select, textarea {
         transform: translate(-50%, -50%) rotate(360deg);
     }
  }
+
+         /* Responsive popup hotFix */
+@media only screen and (max-width:575px){
+    #wheelify-spin_a_sale_cc_store_front_module .wheelify-content-spinner{
+        padding-top: 18px;
+    }
+    #wheelify-spin_a_sale_cc_store_front_module .wheelify-signupContainer p{
+        margin-top: 0px;
+    }
+    #wheelify-spin_a_sale_cc_store_front_module .wheelify-closeButton{
+        padding-right: 5px;
+    }
+}
