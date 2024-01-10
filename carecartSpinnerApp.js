@@ -1,5 +1,5 @@
 //******* @author: CareCart App-Wheelify*******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.41 *******************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.44 *******************
 //****** Updated at: 21-March-2023, 05:59 AM  ********************************************************
 
 (function () {
@@ -1344,9 +1344,18 @@
                                 carecartSpinnerJquery("head").append(
                                     '<style type="text/css"> @media only screen and (max-width: 575px) {#wheelify-spin_a_sale_cc_store_front_module.wheelify-wrapper-spinner.popupview .wheelify-ContentRight {min-height: 468px;}} </style>'
                                 );  
-                                    carecartSpinnerJquery("head").append(
-                                    '<style type="text/css"> @media only screen and (max-width: 575px) {#wheelify-spin_a_sale_cc_store_front_module .wheelify-ContentRight{ min-height: 560px;}} </style>'
-                                );
+                                if(response.records.store_settings.settings_data.phone_number_mandatory == 1 && response.records.store_settings.conversion_booster_settings.conversion_booster_show_offers_claimed == 1){
+                                    carecartSpinnerJquery("#wheelify-spin_a_sale_cc_store_front_module .wheelify-ContentRight").css("min-height","600px");
+                                }else if(response.records.store_settings.settings_data.phone_number_mandatory == 1 || response.records.store_settings.conversion_booster_settings.conversion_booster_show_offers_claimed == 1){
+                                    carecartSpinnerJquery("#wheelify-spin_a_sale_cc_store_front_module .wheelify-ContentRight").css("min-height","560px");
+                                }else{
+                                    carecartSpinnerJquery("#wheelify-spin_a_sale_cc_store_front_module .wheelify-ContentRight").css("min-height","520px");
+                                }
+                                    
+                                var isMobile = window.innerWidth <= 575;
+                                    if (isMobile) {
+                                        carecartSpinnerJquery('#wheelify-spin_a_sale_cc_store_front_module').removeClass('popupview');
+                                    }
 
                                 /* Append triggered button */
                                     if (response.records.store_settings.settings_data.is_triggered_enable && parseInt(response.records.store_settings.settings_data.is_triggered_enable) == 1) {
