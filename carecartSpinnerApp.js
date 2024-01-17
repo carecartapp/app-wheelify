@@ -1,5 +1,5 @@
 //******* @author: CareCart App-Wheelify*******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.44 *******************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.47 *******************
 //****** Updated at: 21-March-2023, 05:59 AM  ********************************************************
 
 (function () {
@@ -23,9 +23,17 @@
         script.type = "text/javascript";
 
         script.src = src;
-        if (typeof callback == 'function') {
-            script.addEventListener('load', callback);
-        }
+        // if (typeof callback == 'function') {
+        //     script.addEventListener('load', callback);
+        // }
+
+	// Execute the callback function after the script has loaded
+        script.onload = function () {
+            if (typeof callback === 'function') {
+                callback();
+            }
+        };
+	    
 
         document.getElementsByTagName('head')[0].appendChild(script);
     }
@@ -1316,6 +1324,12 @@
                                             console.log(iti.getSelectedCountryData());
                                             phoneNumber.value = iti.getSelectedCountryData().dialCode;
                                         });
+
+					var isMobile = window.innerWidth <= 575;
+                                        if (isMobile) {
+                                            var selectedFlag = document.querySelector('.iti__selected-flag');
+                                            selectedFlag.insertAdjacentElement('afterend', myCountryList);
+                                        }
 
 
                                         if (typeof (response.records.store_settings.settings_data.international_phone_number_mandatory) != 'undefined' &&
