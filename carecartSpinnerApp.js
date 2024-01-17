@@ -8,7 +8,7 @@
 
     var API_URL = 'https://app-spinner.carecart.io/';
 
-    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.41/';
+    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.47/';
 
     var dataSpin = false;
 
@@ -60,8 +60,10 @@
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
     
-    cssFileInjection(API_URL + "public/phone/css/intlTelInput.css?v=" + new Date().toLocaleTimeString());               // Dev and UAT URL
-    cssFileInjection(API_URL + "public/phone/css/phoneStyle.css?v=" + new Date().toLocaleTimeString());                 // Dev and UAT URL
+    cssFileInjection(CDN_WHEELIFY_URL + "intlTelInput.css?v=" + new Date().toLocaleTimeString());               // Dev and UAT URL
+    cssFileInjection(CDN_WHEELIFY_URL + "phoneStyle.css?v=" + new Date().toLocaleTimeString());                 // Dev and UAT URL
+    //cssFileInjection(API_URL + "public/phone/css/intlTelInput.css?v=" + new Date().toLocaleTimeString());               // Dev and UAT URL
+    //cssFileInjection(API_URL + "public/phone/css/phoneStyle.css?v=" + new Date().toLocaleTimeString());                 // Dev and UAT URL
     //cssFileInjection(API_URL +"public/phone/js/intlTelInput.js?v=" + new Date().toLocaleTimeString());                 // Dev and UAT URL
 
     cssFileInjection(API_URL + "public/app/css/front-store-spinner-min.css?v=" + new Date().toLocaleTimeString());      // Dev and UAT URL
@@ -1302,7 +1304,8 @@
 
                                 //var phoneNumber = document.querySelector("#cc-spinner-phone-number");
 
-                                scriptInjection(API_URL + "public/phone/js/intlTelInput.js", function () {
+				//scriptInjection(API_URL + "public/phone/js/intlTelInput.js", function () {
+                                scriptInjection(CDN_WHEELIFY_URL + "intlTelInput.js", function () {
                                     var phoneNumber = document.querySelector("#cc-spinner-phone-number");
 
                                     var initialCountry = '';
@@ -1314,7 +1317,8 @@
 
                                     if (phoneNumber != null) {
                                         var iti = window.intlTelInput(phoneNumber, {
-                                            utilsScript: API_URL + "public/phone/js/utils.js",
+                                            //utilsScript: API_URL + "public/phone/js/utils.js",
+					    utilsScript: CDN_WHEELIFY_URL + "utils.js",
                                             initialCountry: initialCountry == '' ? 'US' : initialCountry
                                         });
 
@@ -2346,8 +2350,8 @@
                                    /*********** Phone Number Collection ************/
 
                                     //var phoneNumber = document.querySelector("#cc-spinner-phone-number");
-
-                                    scriptInjection(API_URL + "public/phone/js/intlTelInput.js", function () {
+ 				   //scriptInjection(API_URL + "public/phone/js/intlTelInput.js", function () {
+                                    scriptInjection(CDN_WHEELIFY_URL + "intlTelInput.js", function () {
                                         var phoneNumber = document.querySelector("#cc-spinner-phone-number");
 
                                         var initialCountry = '';
@@ -2359,7 +2363,8 @@
 
                                         if (phoneNumber != null) {
                                             var iti = window.intlTelInput(phoneNumber, {
-                                                utilsScript: API_URL + "public/phone/js/utils.js",
+                                                //utilsScript: API_URL + "public/phone/js/utils.js",
+						    utilsScript: CDN_WHEELIFY_URL + "utils.js",
                                                 initialCountry: initialCountry == '' ? 'US' : initialCountry
                                             });
 
