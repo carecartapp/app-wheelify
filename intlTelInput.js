@@ -3,7 +3,7 @@
  * https://github.com/jackocnr/intl-tel-input.git
  * Licensed under the MIT license
  */
-
+var myCountryList = [];
 // wrap in UMD
 (function(factory) {
     if (typeof module === "object" && module.exports) module.exports = factory(); else window.intlTelInput = factory();
@@ -398,6 +398,7 @@
                                 "class": "iti iti--container"
                             });
                             this.dropdown.appendChild(this.countryList);
+                            myCountryList = this.countryList;
                         } else {
                             this.flagsContainer.appendChild(this.countryList);
                         }
