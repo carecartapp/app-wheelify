@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify*******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.50 *******************
-//****** Updated at: 17-Jan-2024, 07:55 AM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.51 *******************
+//****** Updated at: 18-Jan-2024, 07:55 AM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -8,7 +8,7 @@
 
     var API_URL = 'https://app-spinner.carecart.io/';
 
-    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.50/';
+    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.51/';
 
     var dataSpin = false;
 
@@ -66,7 +66,8 @@
     //cssFileInjection(API_URL + "public/phone/css/phoneStyle.css?v=" + new Date().toLocaleTimeString());                 // Dev and UAT URL
     //cssFileInjection(API_URL +"public/phone/js/intlTelInput.js?v=" + new Date().toLocaleTimeString());                 // Dev and UAT URL
 
-    cssFileInjection(API_URL + "public/app/css/front-store-spinner-min.css?v=" + new Date().toLocaleTimeString());      // Dev and UAT URL
+    cssFileInjection(CDN_WHEELIFY_URL + "front-store-spinner-min.css?v=" + new Date().toLocaleTimeString());      // Dev and UAT URL
+    //cssFileInjection(API_URL + "public/app/css/front-store-spinner-min.css?v=" + new Date().toLocaleTimeString());      // Dev and UAT URL
     //cssFileInjection(CDN_WHEELIFY_URL +"front-store-spinner-min.css");                                               // Production URL
     //cssFileInjection(API_URL +"public/app/css/front-store-spinner.css?v=time()");
 
