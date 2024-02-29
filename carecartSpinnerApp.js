@@ -1,5 +1,5 @@
 //******* @author: CareCart App-Wheelify*******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.52 *******************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.54 *******************
 //****** Updated at: 18-Jan-2024, 07:55 AM  ********************************************************
 
 (function () {
@@ -8,7 +8,7 @@
 
     var API_URL = 'https://app-spinner.carecart.io/';
 
-    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.52/';
+    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.54/';
 
     var dataSpin = false;
 
@@ -653,14 +653,7 @@
                     }), o.click(function (i) {
                         carecartSpinnerJquery('.btn-submit-form').prop('disabled', true);
                         i.preventDefault();
-                        var checkboxIsMandatory = 0;
-                        if (carecartSpinnerJquery('#cc-spin-a-sale-consent-checkbox').prop('required')) {
-                            checkboxIsMandatory = 1;
-                            //console.log("SAS Checkbox is Mandatory");
-                        }
-                        else {
-                            //console.log("SAS Checkbox is NOT Mandatory");
-                        }
+                        var checkboxIsMandatory = 1;
                         var t = s.val(),
                             e = d.val(),
                             mV = m.val(),
@@ -2790,14 +2783,7 @@
                                             i()
                                         }), o.click(function (i) {
                                             i.preventDefault();
-                                            var checkboxIsMandatory = 0;
-                                            if (carecartSpinnerJquery('#cc-spin-a-sale-consent-checkbox').prop('required')) {
-                                                checkboxIsMandatory = 1;
-                                                //console.log("SAS Checkbox is Mandatory");
-                                            }
-                                            else {
-                                                //console.log("SAS Checkbox is NOT Mandatory");
-                                            }
+                                            var checkboxIsMandatory = 1;
                                             var t = s.val(),
                                                 e = d.val(),
                                                 mV = m.val(),
