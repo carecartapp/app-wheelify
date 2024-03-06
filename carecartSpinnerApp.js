@@ -1,6 +1,6 @@
 //******* @author: CareCart App-Wheelify*******************************************
-//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.55 *******************
-//****** Updated at: 29-FEB-2024, 04:30 PM  ********************************************************
+//****** Store Frontend JS - carecartSpinnerApp.js GH v.6.0.0 - Build ver 2.0.56 *******************
+//****** Updated at: 06-MARCH-2024, 12:44 PM  ********************************************************
 
 (function () {
     var d = new Date();
@@ -8,7 +8,7 @@
 
     var API_URL = 'https://app-spinner.carecart.io/';
 
-    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.55/';
+    var CDN_WHEELIFY_URL = 'https://cdn.jsdelivr.net/gh/carecartapp/app-wheelify@2.0.56/';
 
     var dataSpin = false;
 
@@ -653,7 +653,7 @@
                     }), o.click(function (i) {
                         carecartSpinnerJquery('.btn-submit-form').prop('disabled', true);
                         i.preventDefault();
-                        var checkboxIsMandatory = 1;
+                        var checkboxIsMandatory = 0;
                         var t = s.val(),
                             e = d.val(),
                             mV = m.val(),
@@ -2783,7 +2783,7 @@
                                             i()
                                         }), o.click(function (i) {
                                             i.preventDefault();
-                                            var checkboxIsMandatory = 1;
+                                            var checkboxIsMandatory = 0;
                                             var t = s.val(),
                                                 e = d.val(),
                                                 mV = m.val(),
